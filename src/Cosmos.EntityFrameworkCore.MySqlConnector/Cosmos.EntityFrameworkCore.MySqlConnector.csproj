@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <Import Project="..\..\build\common.props" />
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <LangVersion>7.2</LangVersion>
+        <RootNamespace />
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Cosmos.EntityFrameworkCore\Cosmos.EntityFrameworkCore.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Cosmos.Data.Extensions.DependencyInjection" Version="0.1.1-alpha1-107375" />
+        <PackageReference Include="Cosmos.Data.Extensions.MySqlConnector" Version="0.1.1-alpha1-107375" />
+        <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.2.0" />
+    </ItemGroup>
+
+</Project>
