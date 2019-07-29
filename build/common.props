@@ -7,14 +7,14 @@
 	</PropertyGroup>
 
 	<PropertyGroup Label="Package">
-		<Product>Cosmos.Data</Product>
+		<Product>Cosmos.EntityFrameworkCore</Product>
 		<Authors>AlexLEWIS;dotnetcore;StarrySky;Cosmos</Authors>
-		<RepositoryUrl>https://github.com/cosmos-loops/Data</RepositoryUrl>
+		<RepositoryUrl>https://github.com/cosmos-loops/Data.EntityFrameworkCore</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<PackageProjectUrl>https://github.com/cosmos-loops/Data</PackageProjectUrl>
+		<PackageProjectUrl>https://github.com/cosmos-loops/Data.EntityFrameworkCore</PackageProjectUrl>
 		<PackageIconUrl>https://avatars2.githubusercontent.com/u/25580633?s=200</PackageIconUrl>
 		<PackageLicenseUrl>https://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
-		<PackageTags>StarrySky;Cosmos;Data;Dependency;Framework</PackageTags>
+		<PackageTags>StarrySky;Cosmos;Data;EntityFrameworkCore;Framework</PackageTags>
 	</PropertyGroup>
 
 </Project>

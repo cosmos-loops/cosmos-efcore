@@ -11,13 +11,13 @@ for /R "nuget_pub" %%s in (*) do (
 )
 
 ::Extensions for EntityFrameworkCore
-dotnet pack extra/Cosmos.EntityFrameworkCore/src/Cosmos.EntityFrameworkCore -c Release -o ../../../../nuget_pub
-dotnet pack extra/Cosmos.EntityFrameworkCore/src/Cosmos.EntityFrameworkCore.MySql -c Release -o ../../../../nuget_pub
-dotnet pack extra/Cosmos.EntityFrameworkCore/src/Cosmos.EntityFrameworkCore.MySqlConnector -c Release -o ../../../../nuget_pub
-dotnet pack extra/Cosmos.EntityFrameworkCore/src/Cosmos.EntityFrameworkCore.Oracle -c Release -o ../../../../nuget_pub
-dotnet pack extra/Cosmos.EntityFrameworkCore/src/Cosmos.EntityFrameworkCore.PostgreSql -c Release -o ../../../../nuget_pub
-dotnet pack extra/Cosmos.EntityFrameworkCore/src/Cosmos.EntityFrameworkCore.SqlServer -c Release -o ../../../../nuget_pub
-dotnet pack extra/Cosmos.EntityFrameworkCore/src/Cosmos.EntityFrameworkCore.Sqlite -c Release -o ../../../../nuget_pub
+dotnet pack src/Cosmos.EntityFrameworkCore -c Release -o ../../nuget_pub
+dotnet pack src/Cosmos.EntityFrameworkCore.MySql -c Release -o ../../nuget_pub
+dotnet pack src/Cosmos.EntityFrameworkCore.MySqlConnector -c Release -o ../../nuget_pub
+dotnet pack src/Cosmos.EntityFrameworkCore.Oracle -c Release -o ../../nuget_pub
+dotnet pack src/Cosmos.EntityFrameworkCore.PostgreSql -c Release -o ../../nuget_pub
+dotnet pack src/Cosmos.EntityFrameworkCore.SqlServer -c Release -o ../../nuget_pub
+dotnet pack src/Cosmos.EntityFrameworkCore.Sqlite -c Release -o ../../nuget_pub
 
 for /R "nuget_pub" %%s in (*symbols.nupkg) do (
     del %%s
