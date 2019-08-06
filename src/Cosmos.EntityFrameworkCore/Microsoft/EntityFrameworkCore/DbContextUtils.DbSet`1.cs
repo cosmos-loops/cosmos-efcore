@@ -18,6 +18,12 @@ namespace Microsoft.EntityFrameworkCore
 {
     public static partial class DbContextUtils
     {
+        /// <summary>
+        /// Get <see cref="DbContext"/>
+        /// </summary>
+        /// <param name="dbSet"></param>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <returns></returns>
         public static DbContext GetDbContext<TEntity>(this DbSet<TEntity> dbSet) where TEntity : class, IEntity, new()
         {
             return dbSet.GetType().GetField("_context", _bindingFlags).GetValue<DbContext>(dbSet);

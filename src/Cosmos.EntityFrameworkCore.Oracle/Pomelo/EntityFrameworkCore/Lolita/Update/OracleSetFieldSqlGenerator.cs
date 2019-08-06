@@ -1,14 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Pomelo.EntityFrameworkCore.Lolita.Update
 {
+    /// <summary>
+    /// Sql generator for Oracle setting field 
+    /// </summary>
     public class OracleSetFieldSqlGenerator : DefaultSetFieldSqlGenerator
     {
+        /// <summary>
+        /// Create a new instance of <see cref="OracleSetFieldSqlGenerator"/>
+        /// </summary>
+        /// <param name="x"></param>
         public OracleSetFieldSqlGenerator(ISqlGenerationHelper x) : base(x) { }
 
+        /// <summary>
+        /// Translate to sql
+        /// </summary>
+        /// <param name="operation"></param>
+        /// <returns></returns>
+        /// <exception cref="NotSupportedException"></exception>
         public override string TranslateToSql(SetFieldInfo operation)
         {
             switch (operation.Type)

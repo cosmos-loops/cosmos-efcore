@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Cosmos.EntityFrameworkCore.SqlServer</name>
+    </assembly>
+    <members>
+        <member name="T:Cosmos.Data.DbContextConfigExtensions">
+            <summary>
+            Extensions for Cosmos DbContext
+            </summary>
+        </member>
+        <member name="M:Cosmos.Data.DbContextConfigExtensions.UseEfCoreWithSqlServer``1(Cosmos.Data.DbContextConfig,System.Action{Cosmos.EntityFrameworkCore.EfCoreOptions})">
+            <summary>
+            Use EntityFramework Core with Microsoft SQL Server
+            </summary>
+            <param name="config"></param>
+            <param name="optAct"></param>
+            <typeparam name="TContext"></typeparam>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:Cosmos.Data.DbContextConfigExtensions.UseEfCoreWithSqlServer``2(Cosmos.Data.DbContextConfig,System.Action{Cosmos.EntityFrameworkCore.EfCoreOptions})">
+            <summary>
+            Use EntityFramework Core with Microsoft SQL Server
+            </summary>
+            <param name="config"></param>
+            <param name="optAct"></param>
+            <typeparam name="TCtxtService"></typeparam>
+            <typeparam name="TCtxImplementation"></typeparam>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="T:Cosmos.EntityFrameworkCore.Map.AggregateRootMap`1">
+            <summary>
+            Mapping config for AggregateRoot
+            <br />
+            聚合根映射配置
+            </summary>
+            <typeparam name="TEntity">实体类型</typeparam>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.Map.AggregateRootMap`1.MapVersion(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{`0})">
+            <summary>
+            映射乐观离线锁
+            </summary>
+        </member>
+        <member name="T:Cosmos.EntityFrameworkCore.Map.EntityMap`1">
+            <summary>
+            Entity map
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+        </member>
+        <member name="T:Cosmos.EntityFrameworkCore.Map.ISqlServerEntityMap">
+            <summary>
+            Interface for SqlServer entity map
+            </summary>
+        </member>
+        <member name="T:Cosmos.EntityFrameworkCore.SqlServerDbContext`1">
+            <summary>
+            Cosmos DbContext for SqlServer
+            </summary>
+            <typeparam name="TContext"></typeparam>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.SqlServerDbContext`1.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{`0},Cosmos.Data.Transaction.ITransactionCallingWrapper)">
+            <summary>
+            Create a new instance of <see cref="T:Cosmos.EntityFrameworkCore.SqlServerDbContext`1"/>
+            </summary>
+            <param name="options"></param>
+            <param name="transactionCallingWrapper"></param>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.SqlServerDbContext`1.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            On model creating
+            </summary>
+            <param name="modelBuilder"></param>
+        </member>
+        <member name="T:Microsoft.EntityFrameworkCore.SqlServerLolitaDbOptionExtension">
+            <summary>
+            Extensions for Lolita database option for SqlServer
+            </summary>
+        </member>
+        <member name="P:Microsoft.EntityFrameworkCore.SqlServerLolitaDbOptionExtension.LogFragment">
+            <summary>
+            Log Fragment
+            </summary>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.SqlServerLolitaDbOptionExtension.ApplyServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Apply services
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.SqlServerLolitaDbOptionExtension.GetServiceProviderHashCode">
+            <summary>
+            Get service provider hashcode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.SqlServerLolitaDbOptionExtension.Validate(Microsoft.EntityFrameworkCore.Infrastructure.IDbContextOptions)">
+            <summary>
+            Validate
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="T:Microsoft.EntityFrameworkCore.LolitaDbOptionExtensions">
+            <summary>
+            Extensions for lolita database option
+            </summary>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.LolitaDbOptionExtensions.UseSqlServerLolita(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
+            <summary>
+            Use SqlServer lolita
+            </summary>
+            <param name="self"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.LolitaDbOptionExtensions.UseSqlServerLolita``1(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder{``0})">
+            <summary>
+            Use SqlServer lolita
+            </summary>
+            <param name="self"></param>
+            <typeparam name="TContext"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.LolitaDbOptionExtensions.UseSqlServerLolita(Microsoft.EntityFrameworkCore.DbContextOptions)">
+            <summary>
+            Use SqlServer lolita
+            </summary>
+            <param name="self"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.LolitaDbOptionExtensions.UseSqlServerLolita``1(Microsoft.EntityFrameworkCore.DbContextOptions{``0})">
+            <summary>
+            Use SqlServer lolita
+            </summary>
+            <param name="self"></param>
+            <typeparam name="TContext"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:Pomelo.EntityFrameworkCore.Lolita.Update.SqlServerSetFieldSqlGenerator">
+            <summary>
+            Sql generator for SqlServer setting field 
+            </summary>
+        </member>
+        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Update.SqlServerSetFieldSqlGenerator.#ctor(Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper)">
+            <summary>
+            Create a new instance of <see cref="T:Pomelo.EntityFrameworkCore.Lolita.Update.SqlServerSetFieldSqlGenerator"/>
+            </summary>
+            <param name="x"></param>
+        </member>
+        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Update.SqlServerSetFieldSqlGenerator.TranslateToSql(Pomelo.EntityFrameworkCore.Lolita.Update.SetFieldInfo)">
+            <summary>
+            Translate to sql
+            </summary>
+            <param name="operation"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

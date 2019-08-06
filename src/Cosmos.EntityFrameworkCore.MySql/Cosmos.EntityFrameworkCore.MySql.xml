@@ -1,0 +1,161 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Cosmos.EntityFrameworkCore.MySql</name>
+    </assembly>
+    <members>
+        <member name="T:Cosmos.Data.DbContextConfigExtensions">
+            <summary>
+            Extensions for Cosmos DbContext
+            </summary>
+        </member>
+        <member name="M:Cosmos.Data.DbContextConfigExtensions.UseEfCoreWithMySql``1(Cosmos.Data.DbContextConfig,System.Action{Cosmos.EntityFrameworkCore.EfCoreOptions})">
+            <summary>
+            Use EntityFramework Core with MySql
+            </summary>
+            <param name="context"></param>
+            <param name="optAct"></param>
+            <typeparam name="TContext"></typeparam>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.InvalidOperationException"></exception>
+        </member>
+        <member name="M:Cosmos.Data.DbContextConfigExtensions.UseEfCoreWithMySql``2(Cosmos.Data.DbContextConfig,System.Action{Cosmos.EntityFrameworkCore.EfCoreOptions})">
+            <summary>
+            Use EntityFramework Core with MySql
+            </summary>
+            <param name="context"></param>
+            <param name="optAct"></param>
+            <typeparam name="TContextService"></typeparam>
+            <typeparam name="TContextImplementation"></typeparam>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.InvalidOperationException"></exception>
+        </member>
+        <member name="T:Cosmos.EntityFrameworkCore.Map.AggregateRootMap`1">
+            <summary>
+            Mapping config for AggregateRoot
+            <br />
+            聚合根映射配置
+            </summary>
+            <typeparam name="TEntity">实体类型</typeparam>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.Map.AggregateRootMap`1.MapVersion(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{`0})">
+            <summary>
+            映射乐观离线锁
+            </summary>
+        </member>
+        <member name="T:Cosmos.EntityFrameworkCore.Map.EntityMap`1">
+            <summary>
+            Entity map
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+        </member>
+        <member name="T:Cosmos.EntityFrameworkCore.Map.IMySqlEntityMap">
+            <summary>
+            Interface for MySql entity map
+            </summary>
+        </member>
+        <member name="T:Cosmos.EntityFrameworkCore.MySqlDbContext`1">
+            <summary>
+            Cosmos DbContext for MySql
+            </summary>
+            <typeparam name="TContext"></typeparam>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.MySqlDbContext`1.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{`0},Cosmos.Data.Transaction.ITransactionCallingWrapper)">
+            <summary>
+            Create a new instance of <see cref="T:Cosmos.EntityFrameworkCore.MySqlDbContext`1"/>
+            </summary>
+            <param name="options"></param>
+            <param name="transactionCallingWrapper"></param>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.MySqlDbContext`1.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            On model creating
+            </summary>
+            <param name="modelBuilder"></param>
+        </member>
+        <member name="T:Microsoft.EntityFrameworkCore.MySqlLolitaDbOptionExtension">
+            <summary>
+            Extensions for Lolita database option for MySql
+            </summary>
+        </member>
+        <member name="P:Microsoft.EntityFrameworkCore.MySqlLolitaDbOptionExtension.LogFragment">
+            <summary>
+            Log Fragment
+            </summary>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.MySqlLolitaDbOptionExtension.ApplyServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Apply services
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.MySqlLolitaDbOptionExtension.GetServiceProviderHashCode">
+            <summary>
+            Get service provider hashcode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.MySqlLolitaDbOptionExtension.Validate(Microsoft.EntityFrameworkCore.Infrastructure.IDbContextOptions)">
+            <summary>
+            Validate
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="T:Microsoft.EntityFrameworkCore.LolitaDbOptionExtensions">
+            <summary>
+            Extensions for lolita database option
+            </summary>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.LolitaDbOptionExtensions.UseMySqlLolita(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
+            <summary>
+            Use MySql lolita
+            </summary>
+            <param name="self"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.LolitaDbOptionExtensions.UseMySqlLolita``1(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder{``0})">
+            <summary>
+            Use MySql lolita
+            </summary>
+            <param name="self"></param>
+            <typeparam name="TContext"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.LolitaDbOptionExtensions.UseMySqlLolita(Microsoft.EntityFrameworkCore.DbContextOptions)">
+            <summary>
+            Use MySql lolita
+            </summary>
+            <param name="self"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.LolitaDbOptionExtensions.UseMySqlLolita``1(Microsoft.EntityFrameworkCore.DbContextOptions{``0})">
+            <summary>
+            Use MySql lolita
+            </summary>
+            <param name="self"></param>
+            <typeparam name="TContext"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:Pomelo.EntityFrameworkCore.Lolita.Update.MySqlSetFieldSqlGenerator">
+            <summary>
+            Sql generator for MySql setting field 
+            </summary>
+        </member>
+        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Update.MySqlSetFieldSqlGenerator.#ctor(Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper)">
+            <summary>
+            Create a new instance of <see cref="T:Pomelo.EntityFrameworkCore.Lolita.Update.MySqlSetFieldSqlGenerator"/>
+            </summary>
+            <param name="x"></param>
+        </member>
+        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Update.MySqlSetFieldSqlGenerator.TranslateToSql(Pomelo.EntityFrameworkCore.Lolita.Update.SetFieldInfo)">
+            <summary>
+            Translate to sql
+            </summary>
+            <param name="operation"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

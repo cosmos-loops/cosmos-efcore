@@ -1,32 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.EntityFrameworkCore.Storage;
+﻿using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Pomelo.EntityFrameworkCore.Lolita.Update
 {
+    /// <summary>
+    /// Sql generator for MySql setting field 
+    /// </summary>
     public class MySqlSetFieldSqlGenerator : DefaultSetFieldSqlGenerator
     {
+        /// <summary>
+        /// Create a new instance of <see cref="MySqlSetFieldSqlGenerator"/>
+        /// </summary>
+        /// <param name="x"></param>
         public MySqlSetFieldSqlGenerator(ISqlGenerationHelper x) : base(x) { }
 
+        /// <summary>
+        /// Translate to sql
+        /// </summary>
+        /// <param name="operation"></param>
+        /// <returns></returns>
         public override string TranslateToSql(SetFieldInfo operation)
         {
             switch (operation.Type)
             {
                 case "WithSQL":
-                    return $"{ operation.Field } = { operation.Value }";
+                    return $"{operation.Field} = {operation.Value}";
                 case "WithValue":
-                    return $"{operation.Field} = {{{ operation.Index }}}";
+                    return $"{operation.Field} = {{{operation.Index}}}";
                 case "Plus":
-                    return $"{operation.Field} = {operation.Field} + {{{ operation.Index }}}";
+                    return $"{operation.Field} = {operation.Field} + {{{operation.Index}}}";
                 case "Subtract":
-                    return $"{operation.Field} = {operation.Field} - {{{ operation.Index }}}";
+                    return $"{operation.Field} = {operation.Field} - {{{operation.Index}}}";
                 case "Multiply":
-                    return $"{operation.Field} = {operation.Field} * {{{ operation.Index }}}";
+                    return $"{operation.Field} = {operation.Field} * {{{operation.Index}}}";
                 case "Divide":
-                    return $"{operation.Field} = {operation.Field} / {{{ operation.Index }}}";
+                    return $"{operation.Field} = {operation.Field} / {{{operation.Index}}}";
                 case "Mod":
-                    return $"{operation.Field} = {operation.Field} % {{{ operation.Index }}}";
+                    return $"{operation.Field} = {operation.Field} % {{{operation.Index}}}";
                 case "Append":
                     return $"{operation.Field} = CONCAT({operation.Field}, {{{operation.Index}}})";
                 case "Prepend":
@@ -46,6 +55,7 @@ namespace Pomelo.EntityFrameworkCore.Lolita.Update
                 case "AddYears":
                     return $"{operation.Field} = DATE_ADD({operation.Field}, INTERVAL {{{operation.Index}}} year)";
             }
+
             return string.Empty;
         }
     }

@@ -16,8 +16,17 @@ using Pomelo.EntityFrameworkCore.Lolita.Update;
 
 namespace Microsoft.EntityFrameworkCore
 {
+    /// <summary>
+    /// Extensions for update
+    /// </summary>
     public static class UpdateExtensions
     {
+        /// <summary>
+        /// Generate bulk update sql
+        /// </summary>
+        /// <param name="self"></param>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <returns></returns>
         public static string GenerateBulkUpdateSql<TEntity>(this LolitaSetting<TEntity> self)
             where TEntity : class, new()
         {
@@ -28,6 +37,12 @@ namespace Microsoft.EntityFrameworkCore
             return sql;
         }
 
+        /// <summary>
+        /// Update
+        /// </summary>
+        /// <param name="self"></param>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <returns></returns>
         public static int Update<TEntity>(this LolitaSetting<TEntity> self)
             where TEntity : class, new()
         {
@@ -36,6 +51,13 @@ namespace Microsoft.EntityFrameworkCore
             return executor.Execute(context, self.GenerateBulkUpdateSql(), self.Parameters.ToArray());
         }
 
+        /// <summary>
+        /// Update async
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="cancellationToken"></param>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <returns></returns>
         public static Task<int> UpdateAsync<TEntity>(this LolitaSetting<TEntity> self, CancellationToken cancellationToken = default(CancellationToken))
             where TEntity : class, new()
         {

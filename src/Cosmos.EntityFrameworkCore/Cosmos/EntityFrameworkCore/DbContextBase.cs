@@ -10,8 +10,16 @@ using Nito.AsyncEx.Synchronous;
 
 namespace Cosmos.EntityFrameworkCore
 {
+    /// <summary>
+    /// DbContext base
+    /// </summary>
     public abstract class DbContextBase : DbContext, IDbContext
     {
+        /// <summary>
+        /// DbContext base
+        /// </summary>
+        /// <param name="options"></param>
+        /// <param name="transactionCallingWrapper"></param>
         protected DbContextBase(DbContextOptions options, ITransactionCallingWrapper transactionCallingWrapper) : base(options)
         {
             TransactionCallingWrapper = transactionCallingWrapper ?? NullTransactionCallingWrapper.Instance;
@@ -19,8 +27,15 @@ namespace Cosmos.EntityFrameworkCore
 
         #region Database and connection
 
+        /// <summary>
+        /// Transaction calling wrapper
+        /// </summary>
         protected ITransactionCallingWrapper TransactionCallingWrapper { get; }
 
+        /// <summary>
+        /// Internal connection...
+        /// </summary>
+        /// <returns></returns>
         protected IDbConnection InternalConnection() => Database.GetDbConnection();
 
         private bool IsTransCallingWrapperWorking()
@@ -32,6 +47,9 @@ namespace Cosmos.EntityFrameworkCore
 
         #region Before save changes
 
+        /// <summary>
+        /// Save change before
+        /// </summary>
         // ReSharper disable once VirtualMemberNeverOverridden.Global
         protected virtual void SaveChangesBefore() { }
 
@@ -39,6 +57,10 @@ namespace Cosmos.EntityFrameworkCore
 
         #region Save changes
 
+        /// <summary>
+        /// Save changes
+        /// </summary>
+        /// <returns></returns>
         public override int SaveChanges()
         {
             SaveChangesBefore();
@@ -47,6 +69,11 @@ namespace Cosmos.EntityFrameworkCore
             return base.SaveChanges();
         }
 
+        /// <summary>
+        /// Save changes async
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             SaveChangesBefore();
@@ -59,11 +86,19 @@ namespace Cosmos.EntityFrameworkCore
 
         #region Commit
 
+        /// <summary>
+        /// Commit
+        /// </summary>
         public void Commit()
         {
             Commit(null);
         }
 
+        /// <summary>
+        /// Commit
+        /// </summary>
+        /// <param name="callback"></param>
+        /// <exception cref="ConcurrencyException"></exception>
         public void Commit(Action callback)
         {
             try
@@ -77,11 +112,23 @@ namespace Cosmos.EntityFrameworkCore
             }
         }
 
+        /// <summary>
+        /// Commit async
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public Task CommitAsync(CancellationToken cancellationToken = default)
         {
             return Task.Run(() => Commit(null), cancellationToken);
         }
 
+        /// <summary>
+        /// Commit async
+        /// </summary>
+        /// <param name="callback"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        /// <exception cref="ConcurrencyException"></exception>
         public async Task CommitAsync(Action callback, CancellationToken cancellationToken = default)
         {
             try
@@ -97,7 +144,7 @@ namespace Cosmos.EntityFrameworkCore
 
         private int TransactionCommit(ITransactionCallingWrapper callingWrapper)
         {
-            var result = 0;
+            int result;
 
             using (var connection = (DbConnection) InternalConnection())
             {
@@ -127,7 +174,7 @@ namespace Cosmos.EntityFrameworkCore
             ITransactionCallingWrapper callingWrapper,
             CancellationToken cancellationToken = default)
         {
-            var result = 0;
+            int result;
 
             using (var connection = (DbConnection) InternalConnection())
             {

@@ -15,8 +15,17 @@ using Pomelo.EntityFrameworkCore.Lolita.Delete;
 
 namespace Microsoft.EntityFrameworkCore
 {
+    /// <summary>
+    /// Extensions for delete
+    /// </summary>
     public static class DeleteExtensions
     {
+        /// <summary>
+        /// Generate bulk delete sql
+        /// </summary>
+        /// <param name="self"></param>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <returns></returns>
         public static string GenerateBulkDeleteSql<TEntity>(this IQueryable<TEntity> self)
             where TEntity : class, new()
         {
@@ -26,6 +35,12 @@ namespace Microsoft.EntityFrameworkCore
             return sql;
         }
 
+        /// <summary>
+        /// Delete
+        /// </summary>
+        /// <param name="self"></param>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <returns></returns>
         public static int Delete<TEntity>(this IQueryable<TEntity> self)
             where TEntity : class, new()
         {
@@ -34,6 +49,13 @@ namespace Microsoft.EntityFrameworkCore
             return executor.Execute(context, self.GenerateBulkDeleteSql());
         }
 
+        /// <summary>
+        /// Delete async
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="cancellationToken"></param>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <returns></returns>
         public static Task<int> DeleteAsync<TEntity>(this IQueryable<TEntity> self, CancellationToken cancellationToken = default(CancellationToken))
             where TEntity : class, new()
         {

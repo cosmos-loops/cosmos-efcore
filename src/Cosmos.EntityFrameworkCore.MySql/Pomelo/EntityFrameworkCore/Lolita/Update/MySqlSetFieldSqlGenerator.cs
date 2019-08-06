@@ -1,14 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.EntityFrameworkCore.Storage;
+﻿using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Pomelo.EntityFrameworkCore.Lolita.Update
 {
+    /// <summary>
+    /// Sql generator for MySql setting field 
+    /// </summary>
     public class MySqlSetFieldSqlGenerator : DefaultSetFieldSqlGenerator
     {
+        /// <summary>
+        /// Create a new instance of <see cref="MySqlSetFieldSqlGenerator"/>
+        /// </summary>
+        /// <param name="x"></param>
         public MySqlSetFieldSqlGenerator(ISqlGenerationHelper x) : base(x) { }
 
+        /// <summary>
+        /// Translate to sql
+        /// </summary>
+        /// <param name="operation"></param>
+        /// <returns></returns>
         public override string TranslateToSql(SetFieldInfo operation)
         {
             switch (operation.Type)

@@ -14,13 +14,19 @@ using Remotion.Linq;
 
 namespace Microsoft.EntityFrameworkCore
 {
-    internal static class DatabaseExtesions
+    internal static class DatabaseExtensions
     {
+        /// <summary>
+        /// Create visitor
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="qm"></param>
+        /// <returns></returns>
         public static EntityQueryModelVisitor CreateVisitor(this Database self, QueryModel qm)
         {
             var databaseTypeInfo = typeof(Database).GetTypeInfo();
-            var _queryCompilationContextFactory = (IQueryCompilationContextFactory)databaseTypeInfo.DeclaredFields.Single(x => x.Name == "_queryCompilationContextFactory").GetValue(self);
-            return _queryCompilationContextFactory.Create(async: false).CreateQueryModelVisitor();
+            var queryCompilationContextFactory = (IQueryCompilationContextFactory)databaseTypeInfo.DeclaredFields.Single(x => x.Name == "_queryCompilationContextFactory").GetValue(self);
+            return queryCompilationContextFactory.Create(async: false).CreateQueryModelVisitor();
         }
     }
 }

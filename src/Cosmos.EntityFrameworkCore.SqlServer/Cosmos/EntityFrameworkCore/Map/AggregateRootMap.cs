@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace Cosmos.EntityFrameworkCore.Map
 {
     /// <summary>
+    /// Mapping config for AggregateRoot
+    /// <br />
     /// 聚合根映射配置
     /// </summary>
     /// <typeparam name="TEntity">实体类型</typeparam>

@@ -7,12 +7,20 @@ namespace Cosmos.EntityFrameworkCore.Store
 {
     public abstract partial class StoreBase<TEntity, TKey>
     {
+        /// <summary>
+        /// Unsafe remove
+        /// </summary>
+        /// <param name="id"></param>
         public virtual void UnsafeRemove(TKey id)
         {
             var entity = FindById(id);
             InternalDelete(entity, true);
         }
 
+        /// <summary>
+        /// Unsafe remove
+        /// </summary>
+        /// <param name="entity"></param>
         public virtual void UnsafeRemove(TEntity entity)
         {
             if (entity == null)
@@ -20,6 +28,10 @@ namespace Cosmos.EntityFrameworkCore.Store
             UnsafeRemove(entity.Id);
         }
 
+        /// <summary>
+        /// Unsafe remove
+        /// </summary>
+        /// <param name="ids"></param>
         public virtual void UnsafeRemove(IEnumerable<TKey> ids)
         {
             if (ids == null)
@@ -28,6 +40,10 @@ namespace Cosmos.EntityFrameworkCore.Store
             UnsafeRemove(entities);
         }
 
+        /// <summary>
+        /// Unsafe remove
+        /// </summary>
+        /// <param name="entities"></param>
         public virtual void UnsafeRemove(IEnumerable<TEntity> entities)
         {
             if (entities == null)
@@ -36,12 +52,24 @@ namespace Cosmos.EntityFrameworkCore.Store
             InternalDelete(entities2, true);
         }
 
+        /// <summary>
+        /// Unsafe remove async
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public virtual async Task UnsafeRemoveAsync(TKey id, CancellationToken cancellationToken = default)
         {
             var entity = await FindByIdAsync(id, cancellationToken);
             InternalDelete(entity, true);
         }
 
+        /// <summary>
+        /// Unsafe remove async
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public virtual async Task UnsafeRemoveAsync(TEntity entity, CancellationToken cancellationToken = default)
         {
             if (entity == null)
@@ -49,6 +77,12 @@ namespace Cosmos.EntityFrameworkCore.Store
             await UnsafeRemoveAsync(entity.Id, cancellationToken);
         }
 
+        /// <summary>
+        /// Unsafe remove async
+        /// </summary>
+        /// <param name="ids"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public virtual async Task UnsafeRemoveAsync(IEnumerable<TKey> ids, CancellationToken cancellationToken = default)
         {
             if (ids == null)
@@ -57,6 +91,12 @@ namespace Cosmos.EntityFrameworkCore.Store
             InternalDelete(entities, true);
         }
 
+        /// <summary>
+        /// Unsafe remove async
+        /// </summary>
+        /// <param name="entities"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public virtual async Task UnsafeRemoveAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default)
         {
             if (entities == null)

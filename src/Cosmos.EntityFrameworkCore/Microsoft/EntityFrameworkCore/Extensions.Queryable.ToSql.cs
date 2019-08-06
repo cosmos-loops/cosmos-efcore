@@ -19,20 +19,41 @@ using Remotion.Linq.Parsing.Structure;
 
 namespace Microsoft.EntityFrameworkCore
 {
+    /// <summary>
+    /// Extensions for QueryToSql
+    /// </summary>
     public static class QueryToSqlExtensions
     {
+        /// <summary>
+        /// To sql
+        /// </summary>
+        /// <param name="self"></param>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <returns></returns>
         public static string ToSql<TEntity>(this IQueryable<TEntity> self)
         {
             var visitor = self.CompileQuery();
             return string.Join("", visitor.Queries.Select(x => x.ToString().TrimEnd().TrimEnd(';') + ";" + Environment.NewLine));
         }
 
+        /// <summary>
+        /// To Unevaluated
+        /// </summary>
+        /// <param name="self"></param>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <returns></returns>
         public static IEnumerable<string> ToUnevaluated<TEntity>(this IQueryable<TEntity> self)
         {
             var visitor = self.CompileQuery();
             return QueryModelVisitorUtils.VisitExpression(visitor.Expression, null);
         }
 
+        /// <summary>
+        /// Compile query
+        /// </summary>
+        /// <param name="self"></param>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <returns></returns>
         public static RelationalQueryModelVisitor CompileQuery<TEntity>(this IQueryable<TEntity> self)
         {
             var q = self as EntityQueryable<TEntity>;
@@ -55,6 +76,13 @@ namespace Microsoft.EntityFrameworkCore
             return modelVisitor;
         }
 
+        /// <summary>
+        /// Create visitor
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="factory"></param>
+        /// <param name="qm"></param>
+        /// <returns></returns>
         public static EntityQueryModelVisitor CreateVisitor(this Database self, IQueryCompilationContextFactory factory, QueryModel qm)
         {
             return factory.Create(async: false).CreateQueryModelVisitor();

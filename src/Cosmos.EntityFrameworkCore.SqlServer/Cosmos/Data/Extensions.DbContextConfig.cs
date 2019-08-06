@@ -8,8 +8,19 @@ using IEfCoreDbContext = Cosmos.EntityFrameworkCore.IDbContext;
 
 namespace Cosmos.Data
 {
+    /// <summary>
+    /// Extensions for Cosmos DbContext
+    /// </summary>
     public static class DbContextConfigExtensions
     {
+        /// <summary>
+        /// Use EntityFramework Core with Microsoft SQL Server
+        /// </summary>
+        /// <param name="config"></param>
+        /// <param name="optAct"></param>
+        /// <typeparam name="TContext"></typeparam>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
         public static IDbContextConfig UseEfCoreWithSqlServer<TContext>(
             this DbContextConfig config, Action<EfCoreOptions> optAct = null)
             where TContext : DbContext, IEfCoreDbContext
@@ -23,6 +34,15 @@ namespace Cosmos.Data
                 s => s.AddDbContext<TContext>(o => o.UseSqlServer(options.ConnectionString).UseLolita()));
         }
 
+        /// <summary>
+        /// Use EntityFramework Core with Microsoft SQL Server
+        /// </summary>
+        /// <param name="config"></param>
+        /// <param name="optAct"></param>
+        /// <typeparam name="TCtxtService"></typeparam>
+        /// <typeparam name="TCtxImplementation"></typeparam>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
         public static IDbContextConfig UseEfCoreWithSqlServer<TCtxtService, TCtxImplementation>(
             this DbContextConfig config, Action<EfCoreOptions> optAct = null)
             where TCtxtService : IEfCoreDbContext

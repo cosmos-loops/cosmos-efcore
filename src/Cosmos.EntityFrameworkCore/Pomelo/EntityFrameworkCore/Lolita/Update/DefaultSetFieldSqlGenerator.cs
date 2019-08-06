@@ -3,33 +3,49 @@ using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Pomelo.EntityFrameworkCore.Lolita.Update
 {
+    /// <summary>
+    /// Default set field sql generator
+    /// </summary>
     public class DefaultSetFieldSqlGenerator : ISetFieldSqlGenerator
     {
-        public DefaultSetFieldSqlGenerator(ISqlGenerationHelper SqlGenerationHelper)
+        /// <summary>
+        /// Create a new instance of <see cref="DefaultSetFieldSqlGenerator"/>
+        /// </summary>
+        /// <param name="sqlGenerationHelper"></param>
+        public DefaultSetFieldSqlGenerator(ISqlGenerationHelper sqlGenerationHelper)
         {
-            sqlGenerationHelper = SqlGenerationHelper;
+            SqlGenerationHelper = sqlGenerationHelper;
         }
 
-        protected ISqlGenerationHelper sqlGenerationHelper;
+        /// <summary>
+        /// Sql generation helper
+        /// </summary>
+        protected ISqlGenerationHelper SqlGenerationHelper;
 
+        /// <summary>
+        /// Translate to sql
+        /// </summary>
+        /// <param name="operation"></param>
+        /// <returns></returns>
+        /// <exception cref="NotSupportedException"></exception>
         public virtual string TranslateToSql(SetFieldInfo operation)
         {
-            switch(operation.Type)
+            switch (operation.Type)
             {
                 case "WithSQL":
-                    return $"{ operation.Field } = { operation.Value }";
+                    return $"{operation.Field} = {operation.Value}";
                 case "WithValue":
-                    return $"{operation.Field} = {{{ operation.Index }}}";
+                    return $"{operation.Field} = {{{operation.Index}}}";
                 case "Plus":
-                    return $"{operation.Field} = {operation.Field} + {{{ operation.Index }}}";
+                    return $"{operation.Field} = {operation.Field} + {{{operation.Index}}}";
                 case "Subtract":
-                    return $"{operation.Field} = {operation.Field} - {{{ operation.Index }}}";
+                    return $"{operation.Field} = {operation.Field} - {{{operation.Index}}}";
                 case "Multiply":
-                    return $"{operation.Field} = {operation.Field} * {{{ operation.Index }}}";
+                    return $"{operation.Field} = {operation.Field} * {{{operation.Index}}}";
                 case "Divide":
-                    return $"{operation.Field} = {operation.Field} / {{{ operation.Index }}}";
+                    return $"{operation.Field} = {operation.Field} / {{{operation.Index}}}";
                 case "Mod":
-                    return $"{operation.Field} = {operation.Field} % {{{ operation.Index }}}";
+                    return $"{operation.Field} = {operation.Field} % {{{operation.Index}}}";
                 case "Append":
                     throw new NotSupportedException("Relational field setter does not support this operation.");
                 case "Prepend":
@@ -49,6 +65,7 @@ namespace Pomelo.EntityFrameworkCore.Lolita.Update
                 case "AddYears":
                     throw new NotSupportedException("Relational field setter does not support this operation.");
             }
+
             return string.Empty;
         }
     }

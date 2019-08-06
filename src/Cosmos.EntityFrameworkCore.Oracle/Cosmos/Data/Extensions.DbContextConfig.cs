@@ -8,8 +8,19 @@ using IEfCoreDbContext = Cosmos.EntityFrameworkCore.IDbContext;
 
 namespace Cosmos.Data
 {
+    /// <summary>
+    /// Extensions for Cosmos DbContext
+    /// </summary>
     public static class DbContextConfigExtensions
     {
+        /// <summary>
+        /// Use EntityFramework Core with Oracle
+        /// </summary>
+        /// <param name="config"></param>
+        /// <param name="optAct"></param>
+        /// <typeparam name="TContext"></typeparam>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
         public static IDbContextConfig UseEfCoreWithOracle<TContext>(
             this DbContextConfig config, Action<EfCoreOptions> optAct = null)
             where TContext : DbContext, IEfCoreDbContext
@@ -23,6 +34,15 @@ namespace Cosmos.Data
                 s => s.AddDbContext<TContext>(o => o.UseOracle(options.ConnectionString).UseLolita()));
         }
 
+        /// <summary>
+        /// Use EntityFramework Core with Oracle
+        /// </summary>
+        /// <param name="config"></param>
+        /// <param name="optAct"></param>
+        /// <typeparam name="TCtxtService"></typeparam>
+        /// <typeparam name="TCtxImplementation"></typeparam>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
         public static IDbContextConfig UseEfCoreWithOracle<TCtxtService, TCtxImplementation>(
             this DbContextConfig config, Action<EfCoreOptions> optAct = null)
             where TCtxtService : IEfCoreDbContext

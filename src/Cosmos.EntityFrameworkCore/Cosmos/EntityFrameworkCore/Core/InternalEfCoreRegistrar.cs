@@ -2,8 +2,16 @@ using System;
 
 namespace Cosmos.EntityFrameworkCore.Core
 {
+    /// <summary>
+    /// Internal efcore registrar
+    /// </summary>
     public static class InternalEfCoreRegistrar
     {
+        /// <summary>
+        /// Get options
+        /// </summary>
+        /// <param name="optAct"></param>
+        /// <returns></returns>
         public static EfCoreOptions GetOptions(Action<EfCoreOptions> optAct = null)
         {
             var opt = new EfCoreOptions();
@@ -11,6 +19,11 @@ namespace Cosmos.EntityFrameworkCore.Core
             return opt;
         }
 
+        /// <summary>
+        /// Guard efcore options
+        /// </summary>
+        /// <param name="options"></param>
+        /// <exception cref="ArgumentNullException"></exception>
         public static void GuardEfCoreOptions(EfCoreOptions options)
         {
             if (options == null)

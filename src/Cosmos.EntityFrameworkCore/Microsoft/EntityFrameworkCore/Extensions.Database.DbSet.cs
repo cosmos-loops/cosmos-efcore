@@ -14,31 +14,52 @@ using Pomelo.EntityFrameworkCore.Lolita.Update;
 
 namespace Microsoft.EntityFrameworkCore
 {
+    /// <summary>
+    /// Extensions for <see cref="DbSet{T}"/>
+    /// </summary>
     public static class DbSetExtensions
     {
-        public static LolitaValuing<TEntity, TProperty> SetField<TEntity, TProperty>(this IQueryable<TEntity> self, Expression<Func<TEntity, TProperty>> SetValueExpression)
+        /// <summary>
+        /// Set field
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="setValueExpression"></param>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <typeparam name="TProperty"></typeparam>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        public static LolitaValuing<TEntity, TProperty> SetField<TEntity, TProperty>(this IQueryable<TEntity> self, Expression<Func<TEntity, TProperty>> setValueExpression)
             where TEntity : class, new()
         {
-            if (SetValueExpression == null)
-                throw new ArgumentNullException("SetValueExpression");
+            if (setValueExpression == null)
+                throw new ArgumentNullException("setValueExpression");
 
             var factory = self.GetService<IFieldParser>();
-            var sqlfield = factory.VisitField(SetValueExpression);
+            var sqlField = factory.VisitField(setValueExpression);
 
-            var inner = new LolitaSetting<TEntity> { Query = self, FullTable = factory.ParseFullTable(sqlfield), ShortTable = factory.ParseShortTable(sqlfield)};
-            return new LolitaValuing<TEntity, TProperty> { Inner = inner, CurrentField = factory.ParseField(sqlfield) };
+            var inner = new LolitaSetting<TEntity> {Query = self, FullTable = factory.ParseFullTable(sqlField), ShortTable = factory.ParseShortTable(sqlField)};
+            return new LolitaValuing<TEntity, TProperty> {Inner = inner, CurrentField = factory.ParseField(sqlField)};
         }
 
-        public static LolitaValuing<TEntity, TProperty> SetField<TEntity, TProperty>(this LolitaSetting<TEntity> self, Expression<Func<TEntity, TProperty>> SetValueExpression)
+        /// <summary>
+        /// Set field
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="setValueExpression"></param>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <typeparam name="TProperty"></typeparam>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        public static LolitaValuing<TEntity, TProperty> SetField<TEntity, TProperty>(this LolitaSetting<TEntity> self, Expression<Func<TEntity, TProperty>> setValueExpression)
             where TEntity : class, new()
         {
-            if (SetValueExpression == null)
-                throw new ArgumentNullException("SetValueExpression");
+            if (setValueExpression == null)
+                throw new ArgumentNullException("setValueExpression");
 
             var factory = self.GetService<IFieldParser>();
-            var sqlfield = factory.VisitField(SetValueExpression);
+            var sqlField = factory.VisitField(setValueExpression);
 
-            return new LolitaValuing<TEntity, TProperty> { Inner = self, CurrentField = factory.ParseField(sqlfield) };
+            return new LolitaValuing<TEntity, TProperty> {Inner = self, CurrentField = factory.ParseField(sqlField)};
         }
     }
 }
