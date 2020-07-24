@@ -1,18 +1,19 @@
-﻿using Microsoft.EntityFrameworkCore.Infrastructure;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using Pomelo.EntityFrameworkCore.Lolita.Update;
 
 // ReSharper disable SuspiciousTypeConversion.Global
 
-namespace Microsoft.EntityFrameworkCore
+namespace Cosmos.EntityFrameworkCore
 {
     /// <summary>
-    /// Extensions for Lolita database option for SqlServer
+    /// Extensions for Lolita database option for Sqlite
     /// </summary>
-    public class SqlServerLolitaDbOptionExtension : IDbContextOptionsExtension
+    public class SqliteLolitaDbOptionExtension : IDbContextOptionsExtension
     {
         /// <summary>
-        /// Log Fragment
+        /// Log fragement
         /// </summary>
         public string LogFragment => "Pomelo.EFCore.Lolita";
 
@@ -24,7 +25,7 @@ namespace Microsoft.EntityFrameworkCore
         public bool ApplyServices(IServiceCollection services)
         {
             services
-                .AddScoped<ISetFieldSqlGenerator, SqlServerSetFieldSqlGenerator>();
+               .AddScoped<ISetFieldSqlGenerator, SqliteSetFieldSqlGenerator>();
 
             return true;
         }
@@ -51,52 +52,52 @@ namespace Microsoft.EntityFrameworkCore
     public static class LolitaDbOptionExtensions
     {
         /// <summary>
-        /// Use SqlServer lolita
+        /// Use Sqlite lolita
         /// </summary>
         /// <param name="self"></param>
         /// <returns></returns>
-        public static DbContextOptionsBuilder UseSqlServerLolita(this DbContextOptionsBuilder self)
+        public static DbContextOptionsBuilder UseSqliteLolita(this DbContextOptionsBuilder self)
         {
             ((IDbContextOptionsBuilderInfrastructure) self).AddOrUpdateExtension(new LolitaDbOptionExtension());
-            ((IDbContextOptionsBuilderInfrastructure) self).AddOrUpdateExtension(new SqlServerLolitaDbOptionExtension());
+            ((IDbContextOptionsBuilderInfrastructure) self).AddOrUpdateExtension(new SqliteLolitaDbOptionExtension());
             return self;
         }
 
         /// <summary>
-        /// Use SqlServer lolita
+        /// Use Sqlite lolita
         /// </summary>
         /// <param name="self"></param>
         /// <typeparam name="TContext"></typeparam>
         /// <returns></returns>
-        public static DbContextOptionsBuilder<TContext> UseSqlServerLolita<TContext>(this DbContextOptionsBuilder<TContext> self) where TContext : DbContext
+        public static DbContextOptionsBuilder<TContext> UseSqliteLolita<TContext>(this DbContextOptionsBuilder<TContext> self) where TContext : DbContext
         {
             ((IDbContextOptionsBuilderInfrastructure) self).AddOrUpdateExtension(new LolitaDbOptionExtension());
-            ((IDbContextOptionsBuilderInfrastructure) self).AddOrUpdateExtension(new SqlServerLolitaDbOptionExtension());
+            ((IDbContextOptionsBuilderInfrastructure) self).AddOrUpdateExtension(new SqliteLolitaDbOptionExtension());
             return self;
         }
 
         /// <summary>
-        /// Use SqlServer lolita
+        /// Use Sqlite lolita
         /// </summary>
         /// <param name="self"></param>
         /// <returns></returns>
-        public static DbContextOptions UseSqlServerLolita(this DbContextOptions self)
+        public static DbContextOptions UseSqliteLolita(this DbContextOptions self)
         {
             ((IDbContextOptionsBuilderInfrastructure) self).AddOrUpdateExtension(new LolitaDbOptionExtension());
-            ((IDbContextOptionsBuilderInfrastructure) self).AddOrUpdateExtension(new SqlServerLolitaDbOptionExtension());
+            ((IDbContextOptionsBuilderInfrastructure) self).AddOrUpdateExtension(new SqliteLolitaDbOptionExtension());
             return self;
         }
 
         /// <summary>
-        /// Use SqlServer lolita
+        /// Use Sqlite lolita
         /// </summary>
         /// <param name="self"></param>
         /// <typeparam name="TContext"></typeparam>
         /// <returns></returns>
-        public static DbContextOptions<TContext> UseSqlServerLolita<TContext>(this DbContextOptions<TContext> self) where TContext : DbContext
+        public static DbContextOptions<TContext> UseSqliteLolita<TContext>(this DbContextOptions<TContext> self) where TContext : DbContext
         {
             ((IDbContextOptionsBuilderInfrastructure) self).AddOrUpdateExtension(new LolitaDbOptionExtension());
-            ((IDbContextOptionsBuilderInfrastructure) self).AddOrUpdateExtension(new SqlServerLolitaDbOptionExtension());
+            ((IDbContextOptionsBuilderInfrastructure) self).AddOrUpdateExtension(new SqliteLolitaDbOptionExtension());
             return self;
         }
     }

@@ -5,6 +5,7 @@ using System.Reflection;
 using Microsoft.EntityFrameworkCore.Query;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 using Microsoft.EntityFrameworkCore.Storage;
+using Pomelo.EntityFrameworkCore.Lolita;
 using Pomelo.EntityFrameworkCore.ToSql.Internals;
 using Remotion.Linq;
 using Remotion.Linq.Parsing.Structure;
@@ -56,8 +57,7 @@ namespace Microsoft.EntityFrameworkCore
         /// <returns></returns>
         public static RelationalQueryModelVisitor CompileQuery<TEntity>(this IQueryable<TEntity> self)
         {
-            var q = self as EntityQueryable<TEntity>;
-            if (q == null)
+            if (!(self is EntityQueryable<TEntity> q))
             {
                 return null;
             }

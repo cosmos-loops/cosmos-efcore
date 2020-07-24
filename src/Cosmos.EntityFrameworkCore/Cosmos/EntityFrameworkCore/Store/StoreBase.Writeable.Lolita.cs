@@ -8,7 +8,7 @@ using Pomelo.EntityFrameworkCore.Lolita;
 
 namespace Cosmos.EntityFrameworkCore.Store
 {
-    public abstract partial class StoreBase<TEntity, TKey>
+    public abstract partial class StoreBase<TContext, TEntity, TKey>
     {
         /// <summary>
         /// 执行非安全更新操作，该操作无视工作单元，直接生效于数据库。

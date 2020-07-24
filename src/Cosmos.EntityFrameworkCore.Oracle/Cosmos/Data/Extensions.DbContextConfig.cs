@@ -1,10 +1,9 @@
 using System;
-using Cosmos.Data.Context;
+using Cosmos.Data.Core.Registrars;
 using Cosmos.EntityFrameworkCore;
 using Cosmos.EntityFrameworkCore.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using IEfCoreDbContext = Cosmos.EntityFrameworkCore.IDbContext;
 
 namespace Cosmos.Data
 {
@@ -23,9 +22,9 @@ namespace Cosmos.Data
         /// <exception cref="ArgumentNullException"></exception>
         public static IDbContextConfig UseEfCoreWithOracle<TContext>(
             this DbContextConfig config, Action<EfCoreOptions> optAct = null)
-            where TContext : DbContext, IEfCoreDbContext
+        where TContext : DbContext, IEfContext
         {
-            if (config == null)
+            if (config is null)
                 throw new ArgumentNullException(nameof(config));
 
             var options = InternalEfCoreRegistrar.GetOptions(optAct);
@@ -45,10 +44,10 @@ namespace Cosmos.Data
         /// <exception cref="ArgumentNullException"></exception>
         public static IDbContextConfig UseEfCoreWithOracle<TCtxtService, TCtxImplementation>(
             this DbContextConfig config, Action<EfCoreOptions> optAct = null)
-            where TCtxtService : IEfCoreDbContext
-            where TCtxImplementation : DbContext, TCtxtService
+        where TCtxtService : IEfContext
+        where TCtxImplementation : DbContext, TCtxtService
         {
-            if (config == null)
+            if (config is null)
                 throw new ArgumentNullException(nameof(config));
 
             var options = InternalEfCoreRegistrar.GetOptions(optAct);

@@ -1,117 +1,119 @@
 using System;
 using System.Data;
 
+// ReSharper disable InconsistentNaming
+
 namespace Cosmos.EntityFrameworkCore
 {
     /// <summary>
     /// EfCore exception
     /// </summary>
-    public class EfCoreException : CosmosException
+    public class EfException : CosmosException
     {
         /// <summary>
         /// Default db ctx flag
         /// </summary>
-        protected const string DEFAULT_DBCTX_FLAG = "__EFCORE_DBCTX_FLG";
-        
+        protected const string DEFAULT_DBCTX_FLAG = "__EF_DBCTX_FLG";
+
         /// <summary>
         /// Default db ctx error message
         /// </summary>
-        protected const string DEFAULT_DBCTX_ERROR_MESSAGE = "_DEFAULT_EFCORE_DBCONTEXT_ERROR";
-        
+        protected const string DEFAULT_DBCTX_ERROR_MESSAGE = "_DEFAULT_EF_DBCONTEXT_ERROR";
+
         /// <summary>
         /// Default db ctx error code
         /// </summary>
         protected const long DEFAULT_DBCTX_ERROR_CODE = 200101;
 
         /// <summary>
-        /// Create a new instance of <see cref="EfCoreException"/>
+        /// Create a new instance of <see cref="EfException"/>
         /// </summary>
-        public EfCoreException()
+        public EfException()
             : this(null, DEFAULT_DBCTX_ERROR_CODE, DEFAULT_DBCTX_ERROR_MESSAGE, DEFAULT_DBCTX_FLAG) { }
 
         /// <summary>
-        /// Create a new instance of <see cref="EfCoreException"/>
+        /// Create a new instance of <see cref="EfException"/>
         /// </summary>
         /// <param name="errorMessage"></param>
         /// <param name="innerException"></param>
-        public EfCoreException(string errorMessage, Exception innerException = null)
+        public EfException(string errorMessage, Exception innerException = null)
             : this(null, DEFAULT_DBCTX_ERROR_CODE, errorMessage, DEFAULT_DBCTX_FLAG, innerException) { }
 
         /// <summary>
-        /// Create a new instance of <see cref="EfCoreException"/>
+        /// Create a new instance of <see cref="EfException"/>
         /// </summary>
         /// <param name="errorMessage"></param>
         /// <param name="flag"></param>
         /// <param name="innerException"></param>
-        public EfCoreException(string errorMessage, string flag, Exception innerException = null)
+        public EfException(string errorMessage, string flag, Exception innerException = null)
             : this(null, DEFAULT_DBCTX_ERROR_CODE, errorMessage, flag, innerException) { }
 
         /// <summary>
-        /// Create a new instance of <see cref="EfCoreException"/>
+        /// Create a new instance of <see cref="EfException"/>
         /// </summary>
         /// <param name="errorCode"></param>
         /// <param name="errorMessage"></param>
         /// <param name="innerException"></param>
-        public EfCoreException(long errorCode, string errorMessage, Exception innerException = null)
+        public EfException(long errorCode, string errorMessage, Exception innerException = null)
             : this(null, errorCode, errorMessage, DEFAULT_DBCTX_FLAG, innerException) { }
 
         /// <summary>
-        /// Create a new instance of <see cref="EfCoreException"/>
+        /// Create a new instance of <see cref="EfException"/>
         /// </summary>
         /// <param name="errorCode"></param>
         /// <param name="errorMessage"></param>
         /// <param name="flag"></param>
         /// <param name="innerException"></param>
-        public EfCoreException(long errorCode, string errorMessage, string flag, Exception innerException)
+        public EfException(long errorCode, string errorMessage, string flag, Exception innerException)
             : this(null, errorCode, errorMessage, flag, innerException) { }
 
         /// <summary>
-        /// Create a new instance of <see cref="EfCoreException"/>
+        /// Create a new instance of <see cref="EfException"/>
         /// </summary>
         /// <param name="connection"></param>
-        public EfCoreException(IDbConnection connection)
+        public EfException(IDbConnection connection)
             : this(connection, DEFAULT_DBCTX_ERROR_CODE, DEFAULT_DBCTX_ERROR_MESSAGE, DEFAULT_DBCTX_FLAG) { }
 
         /// <summary>
-        /// Create a new instance of <see cref="EfCoreException"/>
+        /// Create a new instance of <see cref="EfException"/>
         /// </summary>
         /// <param name="connection"></param>
         /// <param name="errorMessage"></param>
         /// <param name="innerException"></param>
-        public EfCoreException(IDbConnection connection, string errorMessage, Exception innerException = null)
+        public EfException(IDbConnection connection, string errorMessage, Exception innerException = null)
             : this(connection, DEFAULT_DBCTX_ERROR_CODE, errorMessage, DEFAULT_DBCTX_FLAG, innerException) { }
 
         /// <summary>
-        /// Create a new instance of <see cref="EfCoreException"/>
+        /// Create a new instance of <see cref="EfException"/>
         /// </summary>
         /// <param name="connection"></param>
         /// <param name="errorMessage"></param>
         /// <param name="flag"></param>
         /// <param name="innerException"></param>
-        public EfCoreException(IDbConnection connection, string errorMessage, string flag,
+        public EfException(IDbConnection connection, string errorMessage, string flag,
             Exception innerException = null)
             : this(connection, DEFAULT_DBCTX_ERROR_CODE, errorMessage, flag, innerException) { }
 
         /// <summary>
-        /// Create a new instance of <see cref="EfCoreException"/>
+        /// Create a new instance of <see cref="EfException"/>
         /// </summary>
         /// <param name="connection"></param>
         /// <param name="errorCode"></param>
         /// <param name="errorMessage"></param>
         /// <param name="innerException"></param>
-        public EfCoreException(IDbConnection connection, long errorCode, string errorMessage,
+        public EfException(IDbConnection connection, long errorCode, string errorMessage,
             Exception innerException = null)
             : this(connection, errorCode, errorMessage, DEFAULT_DBCTX_FLAG, innerException) { }
 
         /// <summary>
-        /// Create a new instance of <see cref="EfCoreException"/>
+        /// Create a new instance of <see cref="EfException"/>
         /// </summary>
         /// <param name="connection"></param>
         /// <param name="errorCode"></param>
         /// <param name="errorMessage"></param>
         /// <param name="flag"></param>
         /// <param name="innerException"></param>
-        public EfCoreException(IDbConnection connection, long errorCode, string errorMessage, string flag,
+        public EfException(IDbConnection connection, long errorCode, string errorMessage, string flag,
             Exception innerException = null)
             : base(errorCode, errorMessage, flag, innerException)
         {

@@ -1,4 +1,4 @@
-using Cosmos.Data.Store;
+using Cosmos.Data.Common;
 using Cosmos.Domain.Core;
 
 namespace Cosmos.EntityFrameworkCore.Store
@@ -9,41 +9,27 @@ namespace Cosmos.EntityFrameworkCore.Store
     /// <typeparam name="TContext"></typeparam>
     /// <typeparam name="TEntity"></typeparam>
     /// <typeparam name="TKey"></typeparam>
-    public abstract class RepositoryBase<TContext, TEntity, TKey> : StoreBase<TEntity, TKey>, IRepository
-        where TContext : DbContextBase, IDbContext
+    public abstract class RepositoryBase<TContext, TEntity, TKey> : StoreBase<TContext, TEntity, TKey>, IRepository
+        where TContext : DbContextBase, IEfContext, IDbContext
         where TEntity : class, IEntity<TKey>, new()
     {
         /// <summary>
         /// Repository base
         /// </summary>
         /// <param name="context"></param>
-        protected RepositoryBase(TContext context) : base(context)
-        {
-            RawTypedContext = context;
-        }
+        protected RepositoryBase(TContext context) : base(context) { }
 
         /// <summary>
         /// Repository base
         /// </summary>
         /// <param name="context"></param>
         /// <param name="includeUnsafeOpt"></param>
-        protected RepositoryBase(TContext context, bool includeUnsafeOpt) : base(context, includeUnsafeOpt)
-        {
-            RawTypedContext = context;
-        }
+        protected RepositoryBase(TContext context, bool includeUnsafeOpt) : base(context, includeUnsafeOpt) { }
 
-        /// <summary>
-        /// Scoped initialize
-        /// </summary>
-        /// <param name="manager"></param>
-        public virtual void ScopedInitialize(IStoreContextManager manager)
-        {
-            manager.Register(typeof(TContext), RawTypedContext);
-        }
+        /// <inheritdoc />
+        public string CurrentTraceId { get; set; }
 
-        /// <summary>
-        /// Raw typed context
-        /// </summary>
-        protected TContext RawTypedContext { get; }
+        /// <inheritdoc />
+        public IUnitOfWorkEntry UnitOfWork { get; set; }
     }
 }

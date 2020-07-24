@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore.Infrastructure;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using Pomelo.EntityFrameworkCore.Lolita.Update;
+
 // ReSharper disable SuspiciousTypeConversion.Global
 
-namespace Microsoft.EntityFrameworkCore
+namespace Cosmos.EntityFrameworkCore
 {
     /// <summary>
     /// Extensions for Lolita database option for MySql
@@ -23,7 +25,7 @@ namespace Microsoft.EntityFrameworkCore
         public bool ApplyServices(IServiceCollection services)
         {
             services
-                .AddScoped<ISetFieldSqlGenerator, MySqlSetFieldSqlGenerator>();
+               .AddScoped<ISetFieldSqlGenerator, MySqlSetFieldSqlGenerator>();
 
             return true;
         }
@@ -41,9 +43,7 @@ namespace Microsoft.EntityFrameworkCore
         /// Validate
         /// </summary>
         /// <param name="options"></param>
-        public void Validate(IDbContextOptions options)
-        {
-        }
+        public void Validate(IDbContextOptions options) { }
     }
 
     /// <summary>
@@ -58,8 +58,8 @@ namespace Microsoft.EntityFrameworkCore
         /// <returns></returns>
         public static DbContextOptionsBuilder UseMySqlLolita(this DbContextOptionsBuilder self)
         {
-            ((IDbContextOptionsBuilderInfrastructure)self).AddOrUpdateExtension(new LolitaDbOptionExtension());
-            ((IDbContextOptionsBuilderInfrastructure)self).AddOrUpdateExtension(new MySqlLolitaDbOptionExtension());
+            ((IDbContextOptionsBuilderInfrastructure) self).AddOrUpdateExtension(new LolitaDbOptionExtension());
+            ((IDbContextOptionsBuilderInfrastructure) self).AddOrUpdateExtension(new MySqlLolitaDbOptionExtension());
             return self;
         }
 
@@ -71,8 +71,8 @@ namespace Microsoft.EntityFrameworkCore
         /// <returns></returns>
         public static DbContextOptionsBuilder<TContext> UseMySqlLolita<TContext>(this DbContextOptionsBuilder<TContext> self) where TContext : DbContext
         {
-            ((IDbContextOptionsBuilderInfrastructure)self).AddOrUpdateExtension(new LolitaDbOptionExtension());
-            ((IDbContextOptionsBuilderInfrastructure)self).AddOrUpdateExtension(new MySqlLolitaDbOptionExtension());
+            ((IDbContextOptionsBuilderInfrastructure) self).AddOrUpdateExtension(new LolitaDbOptionExtension());
+            ((IDbContextOptionsBuilderInfrastructure) self).AddOrUpdateExtension(new MySqlLolitaDbOptionExtension());
             return self;
         }
 
@@ -83,8 +83,8 @@ namespace Microsoft.EntityFrameworkCore
         /// <returns></returns>
         public static DbContextOptions UseMySqlLolita(this DbContextOptions self)
         {
-            ((IDbContextOptionsBuilderInfrastructure)self).AddOrUpdateExtension(new LolitaDbOptionExtension());
-            ((IDbContextOptionsBuilderInfrastructure)self).AddOrUpdateExtension(new MySqlLolitaDbOptionExtension());
+            ((IDbContextOptionsBuilderInfrastructure) self).AddOrUpdateExtension(new LolitaDbOptionExtension());
+            ((IDbContextOptionsBuilderInfrastructure) self).AddOrUpdateExtension(new MySqlLolitaDbOptionExtension());
             return self;
         }
 
@@ -96,8 +96,8 @@ namespace Microsoft.EntityFrameworkCore
         /// <returns></returns>
         public static DbContextOptions<TContext> UseMySqlLolita<TContext>(this DbContextOptions<TContext> self) where TContext : DbContext
         {
-            ((IDbContextOptionsBuilderInfrastructure)self).AddOrUpdateExtension(new LolitaDbOptionExtension());
-            ((IDbContextOptionsBuilderInfrastructure)self).AddOrUpdateExtension(new MySqlLolitaDbOptionExtension());
+            ((IDbContextOptionsBuilderInfrastructure) self).AddOrUpdateExtension(new LolitaDbOptionExtension());
+            ((IDbContextOptionsBuilderInfrastructure) self).AddOrUpdateExtension(new MySqlLolitaDbOptionExtension());
             return self;
         }
     }

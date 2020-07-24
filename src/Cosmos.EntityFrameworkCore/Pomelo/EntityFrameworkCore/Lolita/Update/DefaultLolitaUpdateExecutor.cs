@@ -43,12 +43,12 @@ namespace Pomelo.EntityFrameworkCore.Lolita.Update
         {
             var sb = new StringBuilder("UPDATE ");
             sb.Append(lolita.FullTable)
-                .AppendLine()
-                .Append("SET ")
-                .Append(string.Join($", {Environment.NewLine}    ", lolita.Operations))
-                .AppendLine()
-                .Append(ParseWhere(visitor, lolita.ShortTable))
-                .Append(_sqlGenerationHelper.StatementTerminator);
+               .AppendLine()
+               .Append("SET ")
+               .Append(string.Join($", {Environment.NewLine}    ", lolita.Operations))
+               .AppendLine()
+               .Append(ParseWhere(visitor, lolita.ShortTable))
+               .Append(_sqlGenerationHelper.StatementTerminator);
 
             return sb.ToString();
         }
@@ -68,7 +68,7 @@ namespace Pomelo.EntityFrameworkCore.Lolita.Update
             if (pos < 0)
                 return "";
             return sql.Substring(pos)
-                .Replace(_sqlGenerationHelper.DelimitIdentifier(visitor.CurrentParameter.Name), table);
+               .Replace(_sqlGenerationHelper.DelimitIdentifier(visitor.CurrentParameter.Name), table);
         }
 
         /// <summary>

@@ -14,6 +14,5 @@ namespace Cosmos.EntityFrameworkCore
         /// Connection string
         /// </summary>
         public string ConnectionString { get; set; }
-
     }
 }

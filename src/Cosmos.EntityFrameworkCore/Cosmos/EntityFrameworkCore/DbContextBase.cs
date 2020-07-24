@@ -1,61 +1,57 @@
 using System;
-using System.Data;
 using System.Data.Common;
 using System.Threading;
 using System.Threading.Tasks;
 using Cosmos.Data;
-using Cosmos.Data.Transaction;
+using Cosmos.Data.Common;
 using Microsoft.EntityFrameworkCore;
-using Nito.AsyncEx.Synchronous;
 
 namespace Cosmos.EntityFrameworkCore
 {
     /// <summary>
     /// DbContext base
     /// </summary>
-    public abstract class DbContextBase : DbContext, IDbContext
+    public abstract class DbContextBase : DbContext, IEfContext
     {
         /// <summary>
         /// DbContext base
         /// </summary>
         /// <param name="options"></param>
-        /// <param name="transactionCallingWrapper"></param>
-        protected DbContextBase(DbContextOptions options, ITransactionCallingWrapper transactionCallingWrapper) : base(options)
-        {
-            TransactionCallingWrapper = transactionCallingWrapper ?? NullTransactionCallingWrapper.Instance;
-        }
+        protected DbContextBase(DbContextOptions options) : base(options) { }
 
         #region Database and connection
 
-        /// <summary>
-        /// Transaction calling wrapper
-        /// </summary>
-        protected ITransactionCallingWrapper TransactionCallingWrapper { get; }
+        private ITransactionWrapper _transactionWrapper;
+
+        internal ITransactionWrapper Transaction
+        {
+            get
+            {
+                if (_transactionWrapper is null)
+                    _transactionWrapper = new TransactionWrapper(CurrentConnection);
+                return _transactionWrapper;
+            }
+        }
 
         /// <summary>
         /// Internal connection...
         /// </summary>
         /// <returns></returns>
-        protected IDbConnection InternalConnection() => Database.GetDbConnection();
-
-        private bool IsTransCallingWrapperWorking()
-        {
-            return TransactionCallingWrapper != null && TransactionCallingWrapper.Count > 0;
-        }
+        protected DbConnection CurrentConnection => Database.GetDbConnection();
 
         #endregion
 
-        #region Before save changes
+        #region SaveChanges
 
         /// <summary>
-        /// Save change before
+        /// On saving changes
         /// </summary>
-        // ReSharper disable once VirtualMemberNeverOverridden.Global
-        protected virtual void SaveChangesBefore() { }
+        protected virtual void OnSavingChanges() { }
 
-        #endregion
-
-        #region Save changes
+        /// <summary>
+        /// On saved changes
+        /// </summary>
+        protected virtual void OnSavedChanges() { }
 
         /// <summary>
         /// Save changes
@@ -63,10 +59,10 @@ namespace Cosmos.EntityFrameworkCore
         /// <returns></returns>
         public override int SaveChanges()
         {
-            SaveChangesBefore();
-            if (IsTransCallingWrapperWorking())
-                return TransactionCommit(TransactionCallingWrapper);
-            return base.SaveChanges();
+            OnSavingChanges();
+            var ret = base.SaveChanges();
+            OnSavedChanges();
+            return ret;
         }
 
         /// <summary>
@@ -76,10 +72,10 @@ namespace Cosmos.EntityFrameworkCore
         /// <returns></returns>
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-            SaveChangesBefore();
-            if (IsTransCallingWrapperWorking())
-                return await TransactionCommitAsync(TransactionCallingWrapper, cancellationToken);
-            return await base.SaveChangesAsync(cancellationToken);
+            OnSavingChanges();
+            var ret = await base.SaveChangesAsync(cancellationToken);
+            OnSavedChanges();
+            return ret;
         }
 
         #endregion
@@ -89,10 +85,17 @@ namespace Cosmos.EntityFrameworkCore
         /// <summary>
         /// Commit
         /// </summary>
-        public void Commit()
-        {
-            Commit(null);
-        }
+        public void Commit() => Commit(null);
+
+        /// <summary>
+        /// Commit async
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task CommitAsync(CancellationToken cancellationToken = default) => CommitAsync(null, cancellationToken);
+
+        /// <inheritdoc />
+        public void Rollback() => _transactionWrapper?.Rollback();
 
         /// <summary>
         /// Commit
@@ -103,23 +106,21 @@ namespace Cosmos.EntityFrameworkCore
         {
             try
             {
-                SaveChanges();
+                Database.UseTransaction(Transaction.GetOrBegin());
+                SaveChanges(true);
                 callback?.Invoke();
+                Transaction.Commit();
             }
             catch (DbUpdateConcurrencyException ex)
             {
+                Rollback();
                 throw new ConcurrencyException(ex);
             }
-        }
-
-        /// <summary>
-        /// Commit async
-        /// </summary>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        public Task CommitAsync(CancellationToken cancellationToken = default)
-        {
-            return Task.Run(() => Commit(null), cancellationToken);
+            catch
+            {
+                Rollback();
+                throw;
+            }
         }
 
         /// <summary>
@@ -133,74 +134,23 @@ namespace Cosmos.EntityFrameworkCore
         {
             try
             {
-                await SaveChangesAsync(cancellationToken);
+                Database.UseTransaction(Transaction.GetOrBegin());
+                await SaveChangesAsync(true, cancellationToken);
                 callback?.Invoke();
+                Transaction.Commit();
             }
             catch (DbUpdateConcurrencyException ex)
             {
+                Rollback();
                 throw new ConcurrencyException(ex);
             }
-        }
-
-        private int TransactionCommit(ITransactionCallingWrapper callingWrapper)
-        {
-            int result;
-
-            using (var connection = (DbConnection) InternalConnection())
+            catch
             {
-                var transactionWrapper = new TransactionWrapper(connection);
-
-                using (transactionWrapper.Begin())
-                {
-                    try
-                    {
-                        callingWrapper.CommitAsync(transactionWrapper.CurrentTransaction).WaitAndUnwrapException();
-                        Database.UseTransaction((DbTransaction) transactionWrapper.CurrentTransaction);
-                        result = base.SaveChanges();
-                        transactionWrapper.Commit();
-                    }
-                    catch
-                    {
-                        transactionWrapper.Rollback();
-                        throw;
-                    }
-                }
+                Rollback();
+                throw;
             }
-
-            return result;
-        }
-
-        private async Task<int> TransactionCommitAsync(
-            ITransactionCallingWrapper callingWrapper,
-            CancellationToken cancellationToken = default)
-        {
-            int result;
-
-            using (var connection = (DbConnection) InternalConnection())
-            {
-                var transactionWrapper = new TransactionWrapper(connection);
-
-                using (transactionWrapper.Begin())
-                {
-                    try
-                    {
-                        await callingWrapper.CommitAsync(transactionWrapper.CurrentTransaction);
-                        Database.UseTransaction((DbTransaction) transactionWrapper.CurrentTransaction);
-                        result = await base.SaveChangesAsync(cancellationToken);
-                        transactionWrapper.Commit();
-                    }
-                    catch
-                    {
-                        transactionWrapper.Rollback();
-                        throw;
-                    }
-                }
-            }
-
-            return result;
         }
 
         #endregion
-
     }
 }

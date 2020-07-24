@@ -1,5 +1,5 @@
 using System.Linq;
-using Cosmos.Extensions;
+using Cosmos.Collections;
 using Microsoft.EntityFrameworkCore;
 
 namespace Cosmos.EntityFrameworkCore
@@ -14,7 +14,7 @@ namespace Cosmos.EntityFrameworkCore
         /// </summary>
         /// <param name="context"></param>
         /// <returns></returns>
-        public static int ClearCache(this IDbContext context)
+        public static int ClearCache(this IEfContext context)
         {
             if (context is DbContextBase ctx)
             {

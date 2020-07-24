@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore.Infrastructure;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using Pomelo.EntityFrameworkCore.Lolita.Update;
+
 // ReSharper disable SuspiciousTypeConversion.Global
 
-namespace Microsoft.EntityFrameworkCore
+namespace Cosmos.EntityFrameworkCore
 {
     /// <summary>
     /// Extensions for Lolita database option for PostgreSQL
@@ -24,7 +26,7 @@ namespace Microsoft.EntityFrameworkCore
         public bool ApplyServices(IServiceCollection services)
         {
             services
-                .AddScoped<ISetFieldSqlGenerator, PostgreSQLSetFieldSqlGenerator>();
+               .AddScoped<ISetFieldSqlGenerator, PostgreSQLSetFieldSqlGenerator>();
 
             return true;
         }
@@ -42,9 +44,7 @@ namespace Microsoft.EntityFrameworkCore
         /// Validate
         /// </summary>
         /// <param name="options"></param>
-        public void Validate(IDbContextOptions options)
-        {
-        }
+        public void Validate(IDbContextOptions options) { }
     }
 
     /// <summary>
@@ -60,8 +60,8 @@ namespace Microsoft.EntityFrameworkCore
         // ReSharper disable once InconsistentNaming
         public static DbContextOptionsBuilder UsePostgreSQLLolita(this DbContextOptionsBuilder self)
         {
-            ((IDbContextOptionsBuilderInfrastructure)self).AddOrUpdateExtension(new LolitaDbOptionExtension());
-            ((IDbContextOptionsBuilderInfrastructure)self).AddOrUpdateExtension(new PostgreSQLLolitaDbOptionExtension());
+            ((IDbContextOptionsBuilderInfrastructure) self).AddOrUpdateExtension(new LolitaDbOptionExtension());
+            ((IDbContextOptionsBuilderInfrastructure) self).AddOrUpdateExtension(new PostgreSQLLolitaDbOptionExtension());
             return self;
         }
 
@@ -74,8 +74,8 @@ namespace Microsoft.EntityFrameworkCore
         // ReSharper disable once InconsistentNaming
         public static DbContextOptionsBuilder<TContext> UsePostgreSQLLolita<TContext>(this DbContextOptionsBuilder<TContext> self) where TContext : DbContext
         {
-            ((IDbContextOptionsBuilderInfrastructure)self).AddOrUpdateExtension(new LolitaDbOptionExtension());
-            ((IDbContextOptionsBuilderInfrastructure)self).AddOrUpdateExtension(new PostgreSQLLolitaDbOptionExtension());
+            ((IDbContextOptionsBuilderInfrastructure) self).AddOrUpdateExtension(new LolitaDbOptionExtension());
+            ((IDbContextOptionsBuilderInfrastructure) self).AddOrUpdateExtension(new PostgreSQLLolitaDbOptionExtension());
             return self;
         }
 
@@ -87,8 +87,8 @@ namespace Microsoft.EntityFrameworkCore
         // ReSharper disable once InconsistentNaming
         public static DbContextOptions UsePostgreSQLLolita(this DbContextOptions self)
         {
-            ((IDbContextOptionsBuilderInfrastructure)self).AddOrUpdateExtension(new LolitaDbOptionExtension());
-            ((IDbContextOptionsBuilderInfrastructure)self).AddOrUpdateExtension(new PostgreSQLLolitaDbOptionExtension());
+            ((IDbContextOptionsBuilderInfrastructure) self).AddOrUpdateExtension(new LolitaDbOptionExtension());
+            ((IDbContextOptionsBuilderInfrastructure) self).AddOrUpdateExtension(new PostgreSQLLolitaDbOptionExtension());
             return self;
         }
 
@@ -101,8 +101,8 @@ namespace Microsoft.EntityFrameworkCore
         // ReSharper disable once InconsistentNaming
         public static DbContextOptions<TContext> UsePostgreSQLLolita<TContext>(this DbContextOptions<TContext> self) where TContext : DbContext
         {
-            ((IDbContextOptionsBuilderInfrastructure)self).AddOrUpdateExtension(new LolitaDbOptionExtension());
-            ((IDbContextOptionsBuilderInfrastructure)self).AddOrUpdateExtension(new PostgreSQLLolitaDbOptionExtension());
+            ((IDbContextOptionsBuilderInfrastructure) self).AddOrUpdateExtension(new LolitaDbOptionExtension());
+            ((IDbContextOptionsBuilderInfrastructure) self).AddOrUpdateExtension(new PostgreSQLLolitaDbOptionExtension());
             return self;
         }
     }

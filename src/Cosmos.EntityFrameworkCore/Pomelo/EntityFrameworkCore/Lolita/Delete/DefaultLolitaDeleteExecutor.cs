@@ -57,6 +57,7 @@ namespace Pomelo.EntityFrameworkCore.Lolita.Delete
                 else
                     tableName = type.ClrType.Name;
             }
+
             return tableName;
         }
 
@@ -90,6 +91,7 @@ namespace Pomelo.EntityFrameworkCore.Lolita.Delete
                 if (anno != null)
                     schema = anno.Value.ToString();
             }
+
             // TODO: ideally, switch to `et.Relational().Schema`, covering all cases
             if (schema != null)
                 return $"{_sqlGenerationHelper.DelimitIdentifier(schema)}.{_sqlGenerationHelper.DelimitIdentifier(ParseTableName(et))}";
@@ -109,15 +111,15 @@ namespace Pomelo.EntityFrameworkCore.Lolita.Delete
             var model = lolita.ElementType;
             var visitor = lolita.CompileQuery();
 
-            var entities = (IDictionary<string, EntityType>)EntityTypesField.GetValue(_context.Model);
+            var entities = (IDictionary<string, EntityType>) EntityTypesField.GetValue(_context.Model);
             var et = entities.Where(x => x.Value.ClrType == typeof(TEntity)).Single().Value;
 
             var table = GetTableName(et);
             var fullTable = GetFullTableName(et);
             sb.Append(fullTable)
-                .AppendLine()
-                .Append(ParseWhere(visitor, table))
-                .Append(_sqlGenerationHelper.StatementTerminator);
+               .AppendLine()
+               .Append(ParseWhere(visitor, table))
+               .Append(_sqlGenerationHelper.StatementTerminator);
 
             return sb.ToString();
         }
@@ -137,7 +139,7 @@ namespace Pomelo.EntityFrameworkCore.Lolita.Delete
             if (pos < 0)
                 return "";
             return sql.Substring(pos)
-                .Replace(_sqlGenerationHelper.DelimitIdentifier(visitor.CurrentParameter.Name), Table);
+               .Replace(_sqlGenerationHelper.DelimitIdentifier(visitor.CurrentParameter.Name), Table);
         }
 
         /// <summary>

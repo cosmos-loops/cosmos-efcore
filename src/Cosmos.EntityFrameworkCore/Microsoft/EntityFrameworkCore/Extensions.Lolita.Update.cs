@@ -28,7 +28,7 @@ namespace Microsoft.EntityFrameworkCore
         /// <typeparam name="TEntity"></typeparam>
         /// <returns></returns>
         public static string GenerateBulkUpdateSql<TEntity>(this LolitaSetting<TEntity> self)
-            where TEntity : class, new()
+        where TEntity : class, new()
         {
             var modelVisitor = self.Query.CompileQuery();
             var executor = self.Query.GetService<ILolitaUpdateExecutor>();
@@ -44,7 +44,7 @@ namespace Microsoft.EntityFrameworkCore
         /// <typeparam name="TEntity"></typeparam>
         /// <returns></returns>
         public static int Update<TEntity>(this LolitaSetting<TEntity> self)
-            where TEntity : class, new()
+        where TEntity : class, new()
         {
             var executor = self.Query.GetService<ILolitaUpdateExecutor>();
             var context = self.Query.GetService<ICurrentDbContext>().Context;
@@ -59,7 +59,7 @@ namespace Microsoft.EntityFrameworkCore
         /// <typeparam name="TEntity"></typeparam>
         /// <returns></returns>
         public static Task<int> UpdateAsync<TEntity>(this LolitaSetting<TEntity> self, CancellationToken cancellationToken = default(CancellationToken))
-            where TEntity : class, new()
+        where TEntity : class, new()
         {
             var executor = self.Query.GetService<ILolitaUpdateExecutor>();
             var context = self.Query.GetService<ICurrentDbContext>().Context;

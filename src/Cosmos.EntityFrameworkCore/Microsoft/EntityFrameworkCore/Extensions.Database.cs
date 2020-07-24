@@ -25,7 +25,8 @@ namespace Microsoft.EntityFrameworkCore
         public static EntityQueryModelVisitor CreateVisitor(this Database self, QueryModel qm)
         {
             var databaseTypeInfo = typeof(Database).GetTypeInfo();
-            var queryCompilationContextFactory = (IQueryCompilationContextFactory)databaseTypeInfo.DeclaredFields.Single(x => x.Name == "_queryCompilationContextFactory").GetValue(self);
+            var queryCompilationContextFactory =
+                (IQueryCompilationContextFactory) databaseTypeInfo.DeclaredFields.Single(x => x.Name == "_queryCompilationContextFactory").GetValue(self);
             return queryCompilationContextFactory.Create(async: false).CreateQueryModelVisitor();
         }
     }

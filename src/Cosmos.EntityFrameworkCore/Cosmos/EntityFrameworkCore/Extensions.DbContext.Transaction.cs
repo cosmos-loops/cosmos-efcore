@@ -1,4 +1,4 @@
-using Cosmos.Data.Transaction;
+using Cosmos.Data.Common;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Cosmos.EntityFrameworkCore

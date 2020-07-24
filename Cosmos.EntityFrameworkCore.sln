@@ -11,8 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{A3A637D6
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cosmos.EntityFrameworkCore.MySql", "src\Cosmos.EntityFrameworkCore.MySql\Cosmos.EntityFrameworkCore.MySql.csproj", "{A3F06F42-A08B-4F65-9F3C-480A73A8493D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cosmos.EntityFrameworkCore.MySqlConnector", "src\Cosmos.EntityFrameworkCore.MySqlConnector\Cosmos.EntityFrameworkCore.MySqlConnector.csproj", "{ACB85BD2-8827-4585-B41A-E2BCAAF01717}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cosmos.EntityFrameworkCore.Oracle", "src\Cosmos.EntityFrameworkCore.Oracle\Cosmos.EntityFrameworkCore.Oracle.csproj", "{4CEE63DF-1BF1-4DAD-B122-537BDE3AD813}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cosmos.EntityFrameworkCore.PostgreSql", "src\Cosmos.EntityFrameworkCore.PostgreSql\Cosmos.EntityFrameworkCore.PostgreSql.csproj", "{3C428252-7043-42B8-A411-B9F531FE8FFB}"
@@ -25,16 +23,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{F3A06E12
 ProjectSection(SolutionItems) = preProject
 	build\common.props = build\common.props
 	build\version.props = build\version.props
+	build\misc.props = build\misc.props
+	build\package.props = build\package.props
+EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "core", "core", "{91F9EF0C-662C-4A9C-BA84-4285D53CC358}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "impl", "impl", "{849EC35D-8674-48AF-B432-63940477830F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{49576CAA-13CA-442C-B7B2-BA11E68063E8}"
+ProjectSection(SolutionItems) = preProject
 	LICENSE = LICENSE
 	NuGet.config = NuGet.config
 	Publish.bat = Publish.bat
 	PublishToMyGet.bat = PublishToMyGet.bat
+	README.md = README.md
+	PublishToAlexinea.bat = PublishToAlexinea.bat
 EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{EC3FB9DD-B4AD-4F57-B3EF-F384879969A6}"
-ProjectSection(SolutionItems) = preProject
-	README.md = README.md
-EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cosmos.EntityFrameworkCore.MySqlConnector", "src\Cosmos.EntityFrameworkCore.MySqlConnector\Cosmos.EntityFrameworkCore.MySqlConnector.csproj", "{AC3152FA-E06D-498D-85FF-12F23F591A8D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,10 +57,6 @@ Global
 		{A3F06F42-A08B-4F65-9F3C-480A73A8493D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3F06F42-A08B-4F65-9F3C-480A73A8493D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3F06F42-A08B-4F65-9F3C-480A73A8493D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ACB85BD2-8827-4585-B41A-E2BCAAF01717}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ACB85BD2-8827-4585-B41A-E2BCAAF01717}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ACB85BD2-8827-4585-B41A-E2BCAAF01717}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ACB85BD2-8827-4585-B41A-E2BCAAF01717}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4CEE63DF-1BF1-4DAD-B122-537BDE3AD813}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4CEE63DF-1BF1-4DAD-B122-537BDE3AD813}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CEE63DF-1BF1-4DAD-B122-537BDE3AD813}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -70,6 +73,10 @@ Global
 		{2939193A-C210-4125-B21F-C2C6CF3AE325}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2939193A-C210-4125-B21F-C2C6CF3AE325}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2939193A-C210-4125-B21F-C2C6CF3AE325}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC3152FA-E06D-498D-85FF-12F23F591A8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC3152FA-E06D-498D-85FF-12F23F591A8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC3152FA-E06D-498D-85FF-12F23F591A8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC3152FA-E06D-498D-85FF-12F23F591A8D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,12 +85,15 @@ Global
 		SolutionGuid = {1DE1DBFF-ADAF-4C7A-90AF-97CEE1DC299E}
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{8F7AAD56-AACE-4675-86B6-CFFD62D7EB50} = {FE7E3A01-EB9D-45CA-9BDF-16B5469209DB}
-		{A3F06F42-A08B-4F65-9F3C-480A73A8493D} = {FE7E3A01-EB9D-45CA-9BDF-16B5469209DB}
-		{ACB85BD2-8827-4585-B41A-E2BCAAF01717} = {FE7E3A01-EB9D-45CA-9BDF-16B5469209DB}
-		{4CEE63DF-1BF1-4DAD-B122-537BDE3AD813} = {FE7E3A01-EB9D-45CA-9BDF-16B5469209DB}
-		{3C428252-7043-42B8-A411-B9F531FE8FFB} = {FE7E3A01-EB9D-45CA-9BDF-16B5469209DB}
-		{19D31A7B-B7C8-4E30-90C5-BBEFC1E90708} = {FE7E3A01-EB9D-45CA-9BDF-16B5469209DB}
-		{2939193A-C210-4125-B21F-C2C6CF3AE325} = {FE7E3A01-EB9D-45CA-9BDF-16B5469209DB}
+		{91F9EF0C-662C-4A9C-BA84-4285D53CC358} = {FE7E3A01-EB9D-45CA-9BDF-16B5469209DB}
+		{8F7AAD56-AACE-4675-86B6-CFFD62D7EB50} = {91F9EF0C-662C-4A9C-BA84-4285D53CC358}
+		{849EC35D-8674-48AF-B432-63940477830F} = {FE7E3A01-EB9D-45CA-9BDF-16B5469209DB}
+		{A3F06F42-A08B-4F65-9F3C-480A73A8493D} = {849EC35D-8674-48AF-B432-63940477830F}
+		{4CEE63DF-1BF1-4DAD-B122-537BDE3AD813} = {849EC35D-8674-48AF-B432-63940477830F}
+		{3C428252-7043-42B8-A411-B9F531FE8FFB} = {849EC35D-8674-48AF-B432-63940477830F}
+		{19D31A7B-B7C8-4E30-90C5-BBEFC1E90708} = {849EC35D-8674-48AF-B432-63940477830F}
+		{2939193A-C210-4125-B21F-C2C6CF3AE325} = {849EC35D-8674-48AF-B432-63940477830F}
+		{F3A06E12-E5DC-4B77-81EC-9BDBE92541E8} = {49576CAA-13CA-442C-B7B2-BA11E68063E8}
+		{AC3152FA-E06D-498D-85FF-12F23F591A8D} = {849EC35D-8674-48AF-B432-63940477830F}
 	EndGlobalSection
 EndGlobal

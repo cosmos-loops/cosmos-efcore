@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Cosmos.Domain;
+using Cosmos.Reflection;
 using Microsoft.EntityFrameworkCore;
 
 namespace Cosmos.EntityFrameworkCore.Map
@@ -11,7 +12,7 @@ namespace Cosmos.EntityFrameworkCore.Map
     /// </summary>
     /// <typeparam name="TContext"></typeparam>
     public sealed class EntityMapScanner<TContext> : InstanceScanner<IEntityMap>
-        where TContext : DbContext, IDbContext
+    where TContext : DbContext, IEfContext
     {
         // ReSharper disable once InconsistentNaming
         private const string SKIP_ASSEMBLIES =
@@ -56,10 +57,10 @@ namespace Cosmos.EntityFrameworkCore.Map
         private List<Type> GetDbSetBodyTypes()
         {
             return DbContextType.GetProperties()
-                .Select(t => t.PropertyType)
-                .Where(t => t.IsGenericType)
-                .Select(s => s.GetGenericArguments()[0])
-                .ToList();
+               .Select(t => t.PropertyType)
+               .Where(t => t.IsGenericType)
+               .Select(s => s.GetGenericArguments()[0])
+               .ToList();
         }
 
         /// <summary>
@@ -69,7 +70,7 @@ namespace Cosmos.EntityFrameworkCore.Map
         protected override Func<Type, bool> TypeFilter() =>
             t => t.IsClass && t.IsPublic && !t.IsAbstract &&
                  BaseType.IsAssignableFrom(t) &&
-                 t.IsNotDefined<EntityMapIgnoreScanningAttribute>() &&
+                 !t.IsDefined<EntityMapIgnoreScanningAttribute>() &&
                  t.IsMatchedEntityMappingRule(BindingEntityTypes);
     }
 }

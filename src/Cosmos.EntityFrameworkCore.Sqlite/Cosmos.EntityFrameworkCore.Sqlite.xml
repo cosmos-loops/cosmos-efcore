@@ -30,6 +30,70 @@
             <returns></returns>
             <exception cref="T:System.ArgumentNullException"></exception>
         </member>
+        <member name="T:Cosmos.EntityFrameworkCore.SqliteLolitaDbOptionExtension">
+            <summary>
+            Extensions for Lolita database option for Sqlite
+            </summary>
+        </member>
+        <member name="P:Cosmos.EntityFrameworkCore.SqliteLolitaDbOptionExtension.LogFragment">
+            <summary>
+            Log fragement
+            </summary>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.SqliteLolitaDbOptionExtension.ApplyServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Apply services
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.SqliteLolitaDbOptionExtension.GetServiceProviderHashCode">
+            <summary>
+            Get service provider hashcode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.SqliteLolitaDbOptionExtension.Validate(Microsoft.EntityFrameworkCore.Infrastructure.IDbContextOptions)">
+            <summary>
+            Validate
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="T:Cosmos.EntityFrameworkCore.LolitaDbOptionExtensions">
+            <summary>
+            Extensions for lolita database option
+            </summary>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.LolitaDbOptionExtensions.UseSqliteLolita(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
+            <summary>
+            Use Sqlite lolita
+            </summary>
+            <param name="self"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.LolitaDbOptionExtensions.UseSqliteLolita``1(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder{``0})">
+            <summary>
+            Use Sqlite lolita
+            </summary>
+            <param name="self"></param>
+            <typeparam name="TContext"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.LolitaDbOptionExtensions.UseSqliteLolita(Microsoft.EntityFrameworkCore.DbContextOptions)">
+            <summary>
+            Use Sqlite lolita
+            </summary>
+            <param name="self"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.LolitaDbOptionExtensions.UseSqliteLolita``1(Microsoft.EntityFrameworkCore.DbContextOptions{``0})">
+            <summary>
+            Use Sqlite lolita
+            </summary>
+            <param name="self"></param>
+            <typeparam name="TContext"></typeparam>
+            <returns></returns>
+        </member>
         <member name="T:Cosmos.EntityFrameworkCore.Map.AggregateRootMap`1">
             <summary>
             Mapping config for AggregateRoot
@@ -60,82 +124,17 @@
             </summary>
             <typeparam name="TContext"></typeparam>
         </member>
-        <member name="M:Cosmos.EntityFrameworkCore.SqliteDbContext`1.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{`0},Cosmos.Data.Transaction.ITransactionCallingWrapper)">
+        <member name="M:Cosmos.EntityFrameworkCore.SqliteDbContext`1.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{`0})">
             <summary>
             Create a new instance of <see cref="T:Cosmos.EntityFrameworkCore.SqliteDbContext`1"/>
             </summary>
             <param name="options"></param>
-            <param name="transactionCallingWrapper"></param>
         </member>
         <member name="M:Cosmos.EntityFrameworkCore.SqliteDbContext`1.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <summary>
             On model creating
             </summary>
             <param name="modelBuilder"></param>
-        </member>
-        <member name="T:Microsoft.EntityFrameworkCore.SqliteLolitaDbOptionExtension">
-            <summary>
-            Extensions for Lolita database option for Sqlite
-            </summary>
-        </member>
-        <member name="P:Microsoft.EntityFrameworkCore.SqliteLolitaDbOptionExtension.LogFragment">
-            <summary>
-            Log fragement
-            </summary>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.SqliteLolitaDbOptionExtension.ApplyServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
-            <summary>
-            Apply services
-            </summary>
-            <param name="services"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.SqliteLolitaDbOptionExtension.GetServiceProviderHashCode">
-            <summary>
-            Get service provider hashcode
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.SqliteLolitaDbOptionExtension.Validate(Microsoft.EntityFrameworkCore.Infrastructure.IDbContextOptions)">
-            <summary>
-            Validate
-            </summary>
-            <param name="options"></param>
-        </member>
-        <member name="T:Microsoft.EntityFrameworkCore.LolitaDbOptionExtensions">
-            <summary>
-            Extensions for lolita database option
-            </summary>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.LolitaDbOptionExtensions.UseSqliteLolita(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
-            <summary>
-            Use Sqlite lolita
-            </summary>
-            <param name="self"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.LolitaDbOptionExtensions.UseSqliteLolita``1(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder{``0})">
-            <summary>
-            Use Sqlite lolita
-            </summary>
-            <param name="self"></param>
-            <typeparam name="TContext"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.LolitaDbOptionExtensions.UseSqliteLolita(Microsoft.EntityFrameworkCore.DbContextOptions)">
-            <summary>
-            Use Sqlite lolita
-            </summary>
-            <param name="self"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.LolitaDbOptionExtensions.UseSqliteLolita``1(Microsoft.EntityFrameworkCore.DbContextOptions{``0})">
-            <summary>
-            Use Sqlite lolita
-            </summary>
-            <param name="self"></param>
-            <typeparam name="TContext"></typeparam>
-            <returns></returns>
         </member>
         <member name="T:Pomelo.EntityFrameworkCore.Lolita.Update.SqliteSetFieldSqlGenerator">
             <summary>

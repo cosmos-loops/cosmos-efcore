@@ -47,7 +47,7 @@ namespace Pomelo.EntityFrameworkCore.Lolita.Update
             var sb = new StringBuilder();
             if (!string.IsNullOrEmpty(field.Table))
                 sb.Append(_sqlGenerationHelper.DelimitIdentifier(field.Table))
-                    .Append(".");
+                   .Append(".");
             sb.Append(_sqlGenerationHelper.DelimitIdentifier(field.Column));
             return sb.ToString();
         }
@@ -62,10 +62,10 @@ namespace Pomelo.EntityFrameworkCore.Lolita.Update
             var sb = new StringBuilder();
             if (!string.IsNullOrEmpty(field.Database))
                 sb.Append(_sqlGenerationHelper.DelimitIdentifier(field.Database))
-                    .Append(".");
+                   .Append(".");
             if (!string.IsNullOrEmpty(field.Schema))
                 sb.Append(_sqlGenerationHelper.DelimitIdentifier(field.Schema))
-                    .Append(".");
+                   .Append(".");
             sb.Append(_sqlGenerationHelper.DelimitIdentifier(field.Table));
             return sb.ToString();
         }
@@ -140,7 +140,7 @@ namespace Pomelo.EntityFrameworkCore.Lolita.Update
         /// <exception cref="ArgumentException"></exception>
         /// <exception cref="NotSupportedException"></exception>
         public virtual SqlFieldInfo VisitField<TEntity, TProperty>(Expression<Func<TEntity, TProperty>> exp)
-            where TEntity : class, new()
+        where TEntity : class, new()
         {
             var ret = new SqlFieldInfo();
 

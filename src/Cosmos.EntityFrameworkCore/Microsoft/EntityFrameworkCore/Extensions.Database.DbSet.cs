@@ -29,7 +29,7 @@ namespace Microsoft.EntityFrameworkCore
         /// <returns></returns>
         /// <exception cref="ArgumentNullException"></exception>
         public static LolitaValuing<TEntity, TProperty> SetField<TEntity, TProperty>(this IQueryable<TEntity> self, Expression<Func<TEntity, TProperty>> setValueExpression)
-            where TEntity : class, new()
+        where TEntity : class, new()
         {
             if (setValueExpression == null)
                 throw new ArgumentNullException("setValueExpression");
@@ -51,7 +51,7 @@ namespace Microsoft.EntityFrameworkCore
         /// <returns></returns>
         /// <exception cref="ArgumentNullException"></exception>
         public static LolitaValuing<TEntity, TProperty> SetField<TEntity, TProperty>(this LolitaSetting<TEntity> self, Expression<Func<TEntity, TProperty>> setValueExpression)
-            where TEntity : class, new()
+        where TEntity : class, new()
         {
             if (setValueExpression == null)
                 throw new ArgumentNullException("setValueExpression");

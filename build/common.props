@@ -1,20 +1,17 @@
 <Project>
 
-	<Import Project="version.props" />
+	<Import Project="version.props"/>
 
-	<PropertyGroup Label="Build">
-		<TargetFramework>netstandard2.0</TargetFramework>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<DocumentationFile>$(AssemblyName).xml</DocumentationFile>
 	</PropertyGroup>
 
-	<PropertyGroup Label="Package">
-		<Product>Cosmos.EntityFrameworkCore</Product>
-		<Authors>AlexLEWIS;dotnetcore;StarrySky;Cosmos</Authors>
-		<RepositoryUrl>https://github.com/cosmos-loops/Data.EntityFrameworkCore</RepositoryUrl>
-		<RepositoryType>git</RepositoryType>
-		<PackageProjectUrl>https://github.com/cosmos-loops/Data.EntityFrameworkCore</PackageProjectUrl>
-		<PackageIconUrl>https://avatars2.githubusercontent.com/u/25580633?s=200</PackageIconUrl>
-		<PackageLicenseUrl>https://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
-		<PackageTags>StarrySky;Cosmos;Data;EntityFrameworkCore;Framework</PackageTags>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+		<DocumentationFile>$(AssemblyName).xml</DocumentationFile>
 	</PropertyGroup>
+
+	<Import Project="package.props"/>
+
+	<Import Project="misc.props"/>
 
 </Project>

@@ -3,8 +3,8 @@
     <Import Project="..\..\build\common.props" />
 
     <PropertyGroup>
-        <TargetFramework>netstandard2.0</TargetFramework>
-        <LangVersion>7.2</LangVersion>
+        <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
+        <LangVersion>8</LangVersion>
         <RootNamespace />
     </PropertyGroup>
 
@@ -13,17 +13,9 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Cosmos.Data.Extensions.DependencyInjection" Version="0.1.1-alpha1-107380" />
-        <PackageReference Include="Cosmos.Data.Extensions.SqlServer" Version="0.1.1-alpha1-107380" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.4" />
+        <PackageReference Include="Cosmos.Data.Extensions.DependencyInjection" Version="0.1.4.4-alpha2-201030" />
+        <PackageReference Include="Cosmos.Data.Extensions.SqlServer" Version="0.1.4.4-alpha2-201040" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.6" />
     </ItemGroup>
-
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-        <DocumentationFile>Cosmos.EntityFrameworkCore.SqlServer.xml</DocumentationFile>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-        <DocumentationFile>Cosmos.EntityFrameworkCore.SqlServer.xml</DocumentationFile>
-    </PropertyGroup>
 
 </Project>

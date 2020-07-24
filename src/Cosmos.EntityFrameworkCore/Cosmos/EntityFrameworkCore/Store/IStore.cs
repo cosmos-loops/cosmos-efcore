@@ -10,6 +10,7 @@ namespace Cosmos.EntityFrameworkCore.Store
     /// <typeparam name="TKey"></typeparam>
     public interface IStore<TEntity, in TKey> :
         IQueryableStore<TEntity, TKey>,
+        IQueryableStoreAppend<TEntity, TKey>,
         IWriteableStore<TEntity, TKey>,
         ILolitaWriteableStore<TEntity, TKey>
         where TEntity : class, IEntity<TKey>, new() { }

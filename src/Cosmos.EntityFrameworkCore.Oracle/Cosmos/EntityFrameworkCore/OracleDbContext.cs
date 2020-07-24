@@ -1,5 +1,4 @@
 using System;
-using Cosmos.Data.Transaction;
 using Cosmos.EntityFrameworkCore.Map;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,7 +8,7 @@ namespace Cosmos.EntityFrameworkCore
     /// Cosmos DbContext for Oracle
     /// </summary>
     /// <typeparam name="TContext"></typeparam>
-    public abstract class OracleDbContext<TContext> : DbContextBase where TContext : DbContext, IDbContext
+    public abstract class OracleDbContext<TContext> : DbContextBase where TContext : DbContext, IEfContext
     {
         // ReSharper disable once StaticMemberInGenericType
         // ReSharper disable once InconsistentNaming
@@ -19,9 +18,7 @@ namespace Cosmos.EntityFrameworkCore
         /// Create a new instance of <see cref="OracleDbContext{TContext}"/>
         /// </summary>
         /// <param name="options"></param>
-        /// <param name="transactionCallingWrapper"></param>
-        protected OracleDbContext(DbContextOptions<TContext> options, ITransactionCallingWrapper transactionCallingWrapper)
-            : base(options, transactionCallingWrapper) { }
+        protected OracleDbContext(DbContextOptions<TContext> options) : base(options) { }
 
         /// <summary>
         /// On model creating

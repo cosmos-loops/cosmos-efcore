@@ -1,15 +1,16 @@
-﻿using Microsoft.EntityFrameworkCore.Infrastructure;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using Pomelo.EntityFrameworkCore.Lolita.Update;
 
 // ReSharper disable SuspiciousTypeConversion.Global
 
-namespace Microsoft.EntityFrameworkCore
+namespace Cosmos.EntityFrameworkCore
 {
     /// <summary>
-    /// Extensions for Lolita database option for MySql
+    /// Extensions for Lolita database option for Oracle
     /// </summary>
-    public class MySqlLolitaDbOptionExtension : IDbContextOptionsExtension
+    public class OracleLolitaDbOptionExtension : IDbContextOptionsExtension
     {
         /// <summary>
         /// Log Fragment
@@ -24,18 +25,18 @@ namespace Microsoft.EntityFrameworkCore
         public bool ApplyServices(IServiceCollection services)
         {
             services
-                .AddScoped<ISetFieldSqlGenerator, MySqlSetFieldSqlGenerator>();
+               .AddScoped<ISetFieldSqlGenerator, OracleSetFieldSqlGenerator>();
 
             return true;
         }
 
-       /// <summary>
-       /// Get service provider hashcode
-       /// </summary>
-       /// <returns></returns>
-       public long GetServiceProviderHashCode()
+        /// <summary>
+        /// Get service provider hashcode
+        /// </summary>
+        /// <returns></returns>
+        public long GetServiceProviderHashCode()
         {
-            return 86216188623902;
+            return 86216188623904;
         }
 
         /// <summary>
@@ -51,52 +52,52 @@ namespace Microsoft.EntityFrameworkCore
     public static class LolitaDbOptionExtensions
     {
         /// <summary>
-        /// Use MySql lolita
+        /// Use Oracle lolita
         /// </summary>
         /// <param name="self"></param>
         /// <returns></returns>
-        public static DbContextOptionsBuilder UseMySqlLolita(this DbContextOptionsBuilder self)
+        public static DbContextOptionsBuilder UseOracleLolita(this DbContextOptionsBuilder self)
         {
             ((IDbContextOptionsBuilderInfrastructure) self).AddOrUpdateExtension(new LolitaDbOptionExtension());
-            ((IDbContextOptionsBuilderInfrastructure) self).AddOrUpdateExtension(new MySqlLolitaDbOptionExtension());
+            ((IDbContextOptionsBuilderInfrastructure) self).AddOrUpdateExtension(new OracleLolitaDbOptionExtension());
             return self;
         }
 
         /// <summary>
-        /// Use MySql lolita
+        /// Use Oracle lolita
         /// </summary>
         /// <param name="self"></param>
         /// <typeparam name="TContext"></typeparam>
         /// <returns></returns>
-        public static DbContextOptionsBuilder<TContext> UseMySqlLolita<TContext>(this DbContextOptionsBuilder<TContext> self) where TContext : DbContext
+        public static DbContextOptionsBuilder<TContext> UseOracleLolita<TContext>(this DbContextOptionsBuilder<TContext> self) where TContext : DbContext
         {
             ((IDbContextOptionsBuilderInfrastructure) self).AddOrUpdateExtension(new LolitaDbOptionExtension());
-            ((IDbContextOptionsBuilderInfrastructure) self).AddOrUpdateExtension(new MySqlLolitaDbOptionExtension());
+            ((IDbContextOptionsBuilderInfrastructure) self).AddOrUpdateExtension(new OracleLolitaDbOptionExtension());
             return self;
         }
 
         /// <summary>
-        /// Use MySql lolita
+        /// Use Oracle lolita
         /// </summary>
         /// <param name="self"></param>
         /// <returns></returns>
-        public static DbContextOptions UseMySqlLolita(this DbContextOptions self)
+        public static DbContextOptions UseOracleLolita(this DbContextOptions self)
         {
             ((IDbContextOptionsBuilderInfrastructure) self).AddOrUpdateExtension(new LolitaDbOptionExtension());
-            ((IDbContextOptionsBuilderInfrastructure) self).AddOrUpdateExtension(new MySqlLolitaDbOptionExtension());
+            ((IDbContextOptionsBuilderInfrastructure) self).AddOrUpdateExtension(new OracleLolitaDbOptionExtension());
             return self;
         }
 
         /// <summary>
-        /// Use MySql lolita
+        /// Use Oracle lolita
         /// </summary>
         /// <param name="self"></param>
         /// <typeparam name="TContext"></typeparam>
         /// <returns></returns>
-        public static DbContextOptions<TContext> UseMySqlLolita<TContext>(this DbContextOptions<TContext> self) where TContext : DbContext
+        public static DbContextOptions<TContext> UseOracleLolita<TContext>(this DbContextOptions<TContext> self) where TContext : DbContext
         {
             ((IDbContextOptionsBuilderInfrastructure) self).AddOrUpdateExtension(new LolitaDbOptionExtension());
-            ((IDbContextOptionsBuilderInfrastructure) self).AddOrUpdateExtension(new MySqlLolitaDbOptionExtension());
+            ((IDbContextOptionsBuilderInfrastructure) self).AddOrUpdateExtension(new OracleLolitaDbOptionExtension());
             return self;
         }
     }

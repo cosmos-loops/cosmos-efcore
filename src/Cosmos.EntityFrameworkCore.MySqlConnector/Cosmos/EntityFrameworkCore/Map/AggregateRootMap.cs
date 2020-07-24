@@ -11,7 +11,7 @@ namespace Cosmos.EntityFrameworkCore.Map
     /// </summary>
     /// <typeparam name="TEntity">实体类型</typeparam>
     public abstract class AggregateRootMap<TEntity> : VersionableRootMapBase<TEntity>, IMySqlEntityMap
-        where TEntity : class, IEntity, IVersionable, new()
+    where TEntity : class, IEntity, IVersionable, new()
     {
         /// <summary>
         /// 映射乐观离线锁

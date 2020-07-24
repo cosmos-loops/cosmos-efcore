@@ -27,7 +27,7 @@ namespace Microsoft.EntityFrameworkCore
         /// <typeparam name="TEntity"></typeparam>
         /// <returns></returns>
         public static string GenerateBulkDeleteSql<TEntity>(this IQueryable<TEntity> self)
-            where TEntity : class, new()
+        where TEntity : class, new()
         {
             var executor = self.GetService<ILolitaDeleteExecutor>();
             var sql = executor.GenerateSql(self);
@@ -42,7 +42,7 @@ namespace Microsoft.EntityFrameworkCore
         /// <typeparam name="TEntity"></typeparam>
         /// <returns></returns>
         public static int Delete<TEntity>(this IQueryable<TEntity> self)
-            where TEntity : class, new()
+        where TEntity : class, new()
         {
             var executor = self.GetService<ILolitaDeleteExecutor>();
             var context = self.GetService<ICurrentDbContext>().Context;
@@ -57,7 +57,7 @@ namespace Microsoft.EntityFrameworkCore
         /// <typeparam name="TEntity"></typeparam>
         /// <returns></returns>
         public static Task<int> DeleteAsync<TEntity>(this IQueryable<TEntity> self, CancellationToken cancellationToken = default(CancellationToken))
-            where TEntity : class, new()
+        where TEntity : class, new()
         {
             var executor = self.GetService<ILolitaDeleteExecutor>();
             var context = self.GetService<ICurrentDbContext>().Context;

@@ -23,19 +23,19 @@ namespace Pomelo.EntityFrameworkCore.Lolita.Update
             switch (operation.Type)
             {
                 case "WithSQL":
-                    return $"{ operation.Field } = { operation.Value }";
+                    return $"{operation.Field} = {operation.Value}";
                 case "WithValue":
-                    return $"{operation.Field} = {{{ operation.Index }}}";
+                    return $"{operation.Field} = {{{operation.Index}}}";
                 case "Plus":
-                    return $"{operation.Field} = {operation.Field} + {{{ operation.Index }}}";
+                    return $"{operation.Field} = {operation.Field} + {{{operation.Index}}}";
                 case "Subtract":
-                    return $"{operation.Field} = {operation.Field} - {{{ operation.Index }}}";
+                    return $"{operation.Field} = {operation.Field} - {{{operation.Index}}}";
                 case "Multiply":
-                    return $"{operation.Field} = {operation.Field} * {{{ operation.Index }}}";
+                    return $"{operation.Field} = {operation.Field} * {{{operation.Index}}}";
                 case "Divide":
-                    return $"{operation.Field} = {operation.Field} / {{{ operation.Index }}}";
+                    return $"{operation.Field} = {operation.Field} / {{{operation.Index}}}";
                 case "Mod":
-                    return $"{operation.Field} = {operation.Field} % {{{ operation.Index }}}";
+                    return $"{operation.Field} = {operation.Field} % {{{operation.Index}}}";
                 case "Append":
                     return $"{operation.Field} = CONCAT({operation.Field}, {{{operation.Index}}})";
                 case "Prepend":
@@ -55,6 +55,7 @@ namespace Pomelo.EntityFrameworkCore.Lolita.Update
                 case "AddYears":
                     return $"{operation.Field} = DATE_ADD({operation.Field}, INTERVAL {{{operation.Index}}} year)";
             }
+
             return string.Empty;
         }
     }

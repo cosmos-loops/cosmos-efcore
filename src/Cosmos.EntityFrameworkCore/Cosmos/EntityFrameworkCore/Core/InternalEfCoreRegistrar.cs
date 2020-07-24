@@ -26,7 +26,7 @@ namespace Cosmos.EntityFrameworkCore.Core
         /// <exception cref="ArgumentNullException"></exception>
         public static void GuardEfCoreOptions(EfCoreOptions options)
         {
-            if (options == null)
+            if (options is null)
                 throw new ArgumentNullException(nameof(options));
 
             if (string.IsNullOrWhiteSpace(options.ConnectionString))

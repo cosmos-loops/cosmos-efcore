@@ -2,6 +2,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using Cosmos.Reflection;
 
 namespace Cosmos.EntityFrameworkCore.Map
 {
@@ -20,10 +21,10 @@ namespace Cosmos.EntityFrameworkCore.Map
         /// <returns></returns>
         public static bool IsMatchedEntityMappingRule(this Type type, List<Type> bodyTypes)
         {
-            if (type == null)
+            if (type is null)
                 return false;
 
-            if (bodyTypes == null || !bodyTypes.Any())
+            if (bodyTypes is null || !bodyTypes.Any())
                 return false;
 
             if (CheckCache(type, bodyTypes, out var ret))
@@ -34,7 +35,7 @@ namespace Cosmos.EntityFrameworkCore.Map
 
             var bodyType = Types.GetRawTypeFromGenericClass(type, typeof(MapBase<>));
 
-            if (bodyType == null)
+            if (bodyType is null)
                 return CacheAndReturn(type, bodyTypes, false);
 
             return CacheAndReturn(type, bodyTypes, bodyTypes.Contains(bodyType));

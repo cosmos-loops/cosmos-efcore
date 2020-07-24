@@ -8,5 +8,5 @@ namespace Cosmos.EntityFrameworkCore.Map
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
     public abstract class VersionableRootMapBase<TEntity> : MapBase<TEntity>
-        where TEntity : class, IEntity, IVersionable, new() { }
+    where TEntity : class, IEntity, IVersionable, new() { }
 }

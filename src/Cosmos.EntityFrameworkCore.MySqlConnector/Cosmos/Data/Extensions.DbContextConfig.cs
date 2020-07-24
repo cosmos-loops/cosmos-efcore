@@ -1,5 +1,5 @@
 using System;
-using Cosmos.Data.Context;
+using Cosmos.Data.Core.Registrars;
 using Cosmos.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -22,9 +22,9 @@ namespace Cosmos.Data
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="InvalidOperationException"></exception>
         public static IDbContextConfig UseEfCoreWithMySql<TContext>(this DbContextConfig context, Action<EfCoreOptions> optAct = null)
-            where TContext : DbContext, EntityFrameworkCore.IDbContext
+            where TContext : DbContext, IEfContext
         {
-            if (context == null)
+            if (context is null)
                 throw new ArgumentNullException(nameof(context));
 
             var opt = new EfCoreOptions();
@@ -62,10 +62,10 @@ namespace Cosmos.Data
         /// <exception cref="InvalidOperationException"></exception>
         public static IDbContextConfig UseEfCoreWithMySql<TContextService, TContextImplementation>(
             this DbContextConfig context, Action<EfCoreOptions> optAct = null)
-            where TContextService : EntityFrameworkCore.IDbContext
+            where TContextService : IEfContext
             where TContextImplementation : DbContext, TContextService
         {
-            if (context == null)
+            if (context is null)
                 throw new ArgumentNullException(nameof(context));
 
             var opt = new EfCoreOptions();

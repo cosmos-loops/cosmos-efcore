@@ -8,7 +8,7 @@ namespace Pomelo.EntityFrameworkCore.Lolita
     /// <typeparam name="TEntity"></typeparam>
     /// <typeparam name="TProperty"></typeparam>
     public class LolitaValuing<TEntity, TProperty>
-        where TEntity : class, new()
+    where TEntity : class, new()
     {
         /// <summary>
         /// Inner setting
