@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 
 namespace Cosmos.EntityFrameworkCore.Store
 {
-    public abstract partial class StoreBase<TEntity, TKey>
+    public abstract partial class StoreBase<TContext, TEntity, TKey>
     {
+        #region Remove unsafe # in base IStore.WriteableStore
+
         /// <summary>
         /// Unsafe remove
         /// </summary>
@@ -23,21 +25,9 @@ namespace Cosmos.EntityFrameworkCore.Store
         /// <param name="entity"></param>
         public virtual void UnsafeRemove(TEntity entity)
         {
-            if (entity == null)
+            if (entity is null)
                 return;
             UnsafeRemove(entity.Id);
-        }
-
-        /// <summary>
-        /// Unsafe remove
-        /// </summary>
-        /// <param name="ids"></param>
-        public virtual void UnsafeRemove(IEnumerable<TKey> ids)
-        {
-            if (ids == null)
-                return;
-            var entities = FindByIds(ids);
-            UnsafeRemove(entities);
         }
 
         /// <summary>
@@ -46,10 +36,10 @@ namespace Cosmos.EntityFrameworkCore.Store
         /// <param name="entities"></param>
         public virtual void UnsafeRemove(IEnumerable<TEntity> entities)
         {
-            if (entities == null)
+            if (entities is null)
                 return;
-            var entities2 = FindByIds(entities.Select(x => x.Id));
-            InternalDelete(entities2, true);
+            var retouchedEntities = FindByIds(entities.Select(x => x.Id));
+            InternalDelete(retouchedEntities, true);
         }
 
         /// <summary>
@@ -72,23 +62,9 @@ namespace Cosmos.EntityFrameworkCore.Store
         /// <returns></returns>
         public virtual async Task UnsafeRemoveAsync(TEntity entity, CancellationToken cancellationToken = default)
         {
-            if (entity == null)
+            if (entity is null)
                 return;
             await UnsafeRemoveAsync(entity.Id, cancellationToken);
-        }
-
-        /// <summary>
-        /// Unsafe remove async
-        /// </summary>
-        /// <param name="ids"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        public virtual async Task UnsafeRemoveAsync(IEnumerable<TKey> ids, CancellationToken cancellationToken = default)
-        {
-            if (ids == null)
-                return;
-            var entities = await FindByIdsAsync(ids, cancellationToken);
-            InternalDelete(entities, true);
         }
 
         /// <summary>
@@ -99,10 +75,42 @@ namespace Cosmos.EntityFrameworkCore.Store
         /// <returns></returns>
         public virtual async Task UnsafeRemoveAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default)
         {
-            if (entities == null)
+            if (entities is null)
                 return;
-            var entities2 = await FindByIdsAsync(entities.Select(x => x.Id), cancellationToken);
-            InternalDelete(entities2, true);
+            var retouchedEntities = await FindByIdsAsync(entities.Select(x => x.Id), cancellationToken);
+            InternalDelete(retouchedEntities, true);
         }
+
+        #endregion
+
+        #region Remove unsafe # in IStore.WriteableStore
+
+        /// <summary>
+        /// Unsafe remove
+        /// </summary>
+        /// <param name="ids"></param>
+        public virtual void UnsafeRemove(IEnumerable<TKey> ids)
+        {
+            if (ids is null)
+                return;
+            var entities = FindByIds(ids);
+            InternalDelete(entities, true);
+        }
+
+        /// <summary>
+        /// Unsafe remove async
+        /// </summary>
+        /// <param name="ids"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public virtual async Task UnsafeRemoveAsync(IEnumerable<TKey> ids, CancellationToken cancellationToken = default)
+        {
+            if (ids is null)
+                return;
+            var entities = await FindByIdsAsync(ids, cancellationToken);
+            InternalDelete(entities, true);
+        }
+
+        #endregion
     }
 }

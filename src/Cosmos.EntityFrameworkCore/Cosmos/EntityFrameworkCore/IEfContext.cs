@@ -1,17 +1,15 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Cosmos.Data.Store;
-using IRootDbContext = Cosmos.Data.Context.IDbContext;
+using Cosmos.Data.Common;
 
 namespace Cosmos.EntityFrameworkCore
 {
     /// <summary>
     /// Interface for DbContext
     /// </summary>
-    public interface IDbContext : IRootDbContext, IStoreContext, IDisposable
+    public interface IEfContext : IStoreContext, IDisposable
     {
-
         #region Save changes
 
         /// <summary>
@@ -28,6 +26,5 @@ namespace Cosmos.EntityFrameworkCore
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 
         #endregion
-
     }
 }
