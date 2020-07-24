@@ -10,14 +10,16 @@ for /R "nuget_pub" %%s in (*) do (
     del %%s
 )
 
+set /p key=input key:
+
 ::Extensions for EntityFrameworkCore
-dotnet pack src/Cosmos.EntityFrameworkCore -c Release -o ../../nuget_pub
-dotnet pack src/Cosmos.EntityFrameworkCore.MySql -c Release -o ../../nuget_pub
-dotnet pack src/Cosmos.EntityFrameworkCore.MySqlConnector -c Release -o ../../nuget_pub
-dotnet pack src/Cosmos.EntityFrameworkCore.Oracle -c Release -o ../../nuget_pub
-dotnet pack src/Cosmos.EntityFrameworkCore.PostgreSql -c Release -o ../../nuget_pub
-dotnet pack src/Cosmos.EntityFrameworkCore.SqlServer -c Release -o ../../nuget_pub
-dotnet pack src/Cosmos.EntityFrameworkCore.Sqlite -c Release -o ../../nuget_pub
+dotnet pack src/Cosmos.EntityFrameworkCore -c Release -o nuget_pub
+dotnet pack src/Cosmos.EntityFrameworkCore.MySql -c Release -o nuget_pub
+dotnet pack src/Cosmos.EntityFrameworkCore.MySqlConnector -c Release -o nuget_pub
+dotnet pack src/Cosmos.EntityFrameworkCore.Oracle -c Release -o nuget_pub
+dotnet pack src/Cosmos.EntityFrameworkCore.PostgreSql -c Release -o nuget_pub
+dotnet pack src/Cosmos.EntityFrameworkCore.SqlServer -c Release -o nuget_pub
+dotnet pack src/Cosmos.EntityFrameworkCore.Sqlite -c Release -o nuget_pub
 
 for /R "nuget_pub" %%s in (*symbols.nupkg) do (
     del %%s
@@ -26,7 +28,6 @@ for /R "nuget_pub" %%s in (*symbols.nupkg) do (
 echo.
 echo.
 
-set /p key=input key:
 set source=https://www.myget.org/F/alexinea/api/v2/package
 
 for /R "nuget_pub" %%s in (*.nupkg) do ( 
