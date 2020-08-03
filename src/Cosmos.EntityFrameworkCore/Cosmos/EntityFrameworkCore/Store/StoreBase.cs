@@ -8,6 +8,7 @@ using Cosmos.Disposables;
 using Cosmos.Domain.Core;
 using Cosmos.Domain.EntityDescriptors;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Cosmos.EntityFrameworkCore.Store
 {
@@ -23,6 +24,7 @@ namespace Cosmos.EntityFrameworkCore.Store
         where TEntity : class, IEntity<TKey>, new()
     {
         private readonly bool _includeUnsafeOpt;
+        private readonly IEntityType _type;
 
         /// <summary>
         /// Store base
@@ -34,6 +36,7 @@ namespace Cosmos.EntityFrameworkCore.Store
 
             _includeUnsafeOpt = false;
             EntityType = typeof(TEntity);
+            _type = RawTypedContext.Model.FindEntityType(EntityType);
             DeletableEntity = EntityType.GetTypeInfo().ImplementedInterfaces.Any(x => x == typeof(IDeletable));
         }
 
@@ -45,9 +48,9 @@ namespace Cosmos.EntityFrameworkCore.Store
         protected StoreBase(TContext context, bool includeUnsafeOpt)
         {
             RawTypedContext = context ?? throw new ArgumentNullException(nameof(context));
-
             _includeUnsafeOpt = includeUnsafeOpt;
             EntityType = typeof(TEntity);
+            _type = RawTypedContext.Model.FindEntityType(EntityType);
             DeletableEntity = EntityType.GetTypeInfo().ImplementedInterfaces.Any(x => x == typeof(IDeletable));
         }
 
@@ -61,6 +64,35 @@ namespace Cosmos.EntityFrameworkCore.Store
         /// </summary>
         // ReSharper disable once UnusedAutoPropertyAccessor.Global
         public Type EntityType { get; }
+
+        /// <summary>
+        /// Table name
+        /// </summary>
+        public string TableName
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(_tableName))
+                    _tableName = _type.GetTableName();
+                return _tableName;
+            }
+        }
+
+        /// <summary>
+        /// Schema
+        /// </summary>
+        public string Schema
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(_schema))
+                    _schema = _type.GetSchema();
+                return _schema;
+            }
+        }
+
+        private string _tableName;
+        private string _schema;
 
         /// <summary>
         /// To flag this entity type has impl IDelete interface or not.

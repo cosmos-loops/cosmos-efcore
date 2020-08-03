@@ -1,5 +1,6 @@
 using System;
 using Cosmos.Data.Common;
+using Cosmos.EntityFrameworkCore.Core;
 using Cosmos.EntityFrameworkCore.Map;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,7 +20,10 @@ namespace Cosmos.EntityFrameworkCore
         /// Create a new instance of <see cref="SqliteDbContext{TContext}"/>
         /// </summary>
         /// <param name="options"></param>
-        protected SqliteDbContext(DbContextOptions<TContext> options) : base(options) { }
+        protected SqliteDbContext(DbContextOptions<TContext> options)
+            : base(options, EfCoreOptionsRegistrar.Get<TContext>())
+        {
+        }
 
         /// <summary>
         /// On model creating
@@ -33,6 +37,12 @@ namespace Cosmos.EntityFrameworkCore
                 {
                     map?.Map(modelBuilder);
                 }
+            }
+
+            //if AutoHistory 
+            if (OwnEfCoreOptions.AutoHistory.Enable)
+            {
+                modelBuilder.EnableAutoHistory<AutoHistory>(OwnEfCoreOptions.AutoHistory.ToConfigure());
             }
         }
     }

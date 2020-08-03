@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Cosmos.Domain;
 using Cosmos.Reflection;
 using Microsoft.EntityFrameworkCore;
@@ -70,7 +71,7 @@ namespace Cosmos.EntityFrameworkCore.Map
         protected override Func<Type, bool> TypeFilter() =>
             t => t.IsClass && t.IsPublic && !t.IsAbstract &&
                  BaseType.IsAssignableFrom(t) &&
-                 !t.IsDefined<EntityMapIgnoreScanningAttribute>() &&
+                 t.IsNotDefined<EntityMapIgnoreScanningAttribute>() &&
                  t.IsMatchedEntityMappingRule(BindingEntityTypes);
     }
 }

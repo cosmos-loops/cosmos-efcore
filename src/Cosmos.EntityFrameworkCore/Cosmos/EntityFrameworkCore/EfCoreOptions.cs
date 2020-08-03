@@ -14,5 +14,10 @@ namespace Cosmos.EntityFrameworkCore
         /// Connection string
         /// </summary>
         public string ConnectionString { get; set; }
+
+        /// <summary>
+        /// Options of AutoHistory
+        /// </summary>
+        public EfCoreAutoHistoryOptions AutoHistory { get; set; } = new EfCoreAutoHistoryOptions();
     }
 }

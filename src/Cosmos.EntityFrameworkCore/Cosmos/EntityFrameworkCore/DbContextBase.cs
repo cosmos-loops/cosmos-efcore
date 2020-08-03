@@ -17,7 +17,12 @@ namespace Cosmos.EntityFrameworkCore
         /// DbContext base
         /// </summary>
         /// <param name="options"></param>
-        protected DbContextBase(DbContextOptions options) : base(options) { }
+        /// <param name="ownOptions"></param>
+        protected DbContextBase(DbContextOptions options, EfCoreOptions ownOptions) : base(options)
+        {
+            OwnEfCoreOptions = ownOptions ?? throw new ArgumentNullException(nameof(ownOptions));
+            EnableAutoHistory = ownOptions.AutoHistory.Enable;
+        }
 
         #region Database and connection
 
@@ -39,6 +44,17 @@ namespace Cosmos.EntityFrameworkCore
         /// <returns></returns>
         protected DbConnection CurrentConnection => Database.GetDbConnection();
 
+        protected EfCoreOptions OwnEfCoreOptions { get; }
+
+        #endregion
+
+        #region AutoHistory
+
+        /// <summary>
+        /// Enable auto history
+        /// </summary>
+        public bool EnableAutoHistory { get; }
+
         #endregion
 
         #region SaveChanges
@@ -46,12 +62,20 @@ namespace Cosmos.EntityFrameworkCore
         /// <summary>
         /// On saving changes
         /// </summary>
-        protected virtual void OnSavingChanges() { }
+        protected virtual void OnSavingChanges()
+        {
+            if (EnableAutoHistory)
+            {
+                this.EnsureAutoHistory();
+            }
+        }
 
         /// <summary>
         /// On saved changes
         /// </summary>
-        protected virtual void OnSavedChanges() { }
+        protected virtual void OnSavedChanges()
+        {
+        }
 
         /// <summary>
         /// Save changes
