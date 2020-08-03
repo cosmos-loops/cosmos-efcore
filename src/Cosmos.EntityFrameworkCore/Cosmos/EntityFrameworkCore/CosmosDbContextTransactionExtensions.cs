@@ -6,7 +6,7 @@ namespace Cosmos.EntityFrameworkCore
     /// <summary>
     /// Extensions fot DbContext transaction
     /// </summary>
-    public static class DbContextTransactionExtensions
+    public static class CosmosDbContextTransactionExtensions
     {
         /// <summary>
         /// To traction wrapper

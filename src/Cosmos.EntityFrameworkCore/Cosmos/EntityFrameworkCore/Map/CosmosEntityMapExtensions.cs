@@ -7,9 +7,9 @@ using Cosmos.Reflection;
 namespace Cosmos.EntityFrameworkCore.Map
 {
     /// <summary>
-    /// Extensions for <see cref="MapBase{T}"/>
+    /// Cosmos entity map extensions.
     /// </summary>
-    public static class MapBaseExtension
+    public static class CosmosEntityMapExtensions
     {
         private static readonly ConcurrentDictionary<(Type, int), bool> MatchedCached = new ConcurrentDictionary<(Type, int), bool>();
 
