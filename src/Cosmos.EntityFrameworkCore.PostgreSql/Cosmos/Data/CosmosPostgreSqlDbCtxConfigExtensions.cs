@@ -1,6 +1,7 @@
 using System;
 using Cosmos.Data.Core.Registrars;
 using Cosmos.EntityFrameworkCore;
+using Cosmos.EntityFrameworkCore.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,38 +9,40 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Cosmos.Data
 {
     /// <summary>
-    /// Extensions for Cosmos DbContext
+    /// Cosmos PostgreSql DbContext configuration extensions
     /// </summary>
-    public static class DbContextConfigExtensions
+    public static class CosmosPostgreSqlDbContextConfigExtensions
     {
         /// <summary>
-        /// Use EntityFramework Core with MySql
+        /// Use EntityFramework Core with PostgreSql
         /// </summary>
         /// <param name="context"></param>
         /// <param name="optAct"></param>
         /// <typeparam name="TContext"></typeparam>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException"></exception>
-        /// <exception cref="InvalidOperationException"></exception>
-        public static IDbContextConfig UseEfCoreWithMySql<TContext>(this DbContextConfig context, Action<EfCoreOptions> optAct = null)
+        public static IDbContextConfig UseEfCoreWithPostgreSql<TContext>(
+            this DbContextConfig context, Action<EfCoreOptions> optAct = null)
             where TContext : DbContext, IEfContext
         {
             if (context is null)
                 throw new ArgumentNullException(nameof(context));
 
-            var opt = new EfCoreOptions();
-            optAct?.Invoke(opt);
+            var opt = EfCoreOptionsHelper.CreateOptions(optAct);
+
+            EfCoreOptionsHelper.GuardOptions(opt);
 
             context.RegisterDbContext(services =>
             {
                 if (!string.IsNullOrWhiteSpace(opt.ConnectionString))
                 {
-                    services.AddDbContext<TContext>(o => o.UseMySQL(opt.ConnectionString).UseLolita());
+                    EfCoreOptionsRegistrar.Register<TContext>(opt);
+                    services.AddDbContext<TContext>(builder => builder.UseNpgsql(opt.ConnectionString));
                 }
                 else if (!string.IsNullOrWhiteSpace(opt.ConnectionName))
                 {
-                    services.AddDbContext<TContext>((p, o) =>
-                        o.UseMySQL(p.GetService<IConfigurationRoot>().GetConnectionString(opt.ConnectionName)).UseLolita());
+                    EfCoreOptionsRegistrar.Register<TContext>(opt);
+                    services.AddDbContext<TContext>((provider, builder) => builder.UseNpgsql(provider.GetService<IConfigurationRoot>().GetConnectionString(opt.ConnectionName)));
                 }
                 else
                 {
@@ -51,7 +54,7 @@ namespace Cosmos.Data
         }
 
         /// <summary>
-        /// Use EntityFramework Core with MySql
+        /// Use EntityFramework Core with PostgreSql
         /// </summary>
         /// <param name="context"></param>
         /// <param name="optAct"></param>
@@ -59,8 +62,7 @@ namespace Cosmos.Data
         /// <typeparam name="TContextImplementation"></typeparam>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException"></exception>
-        /// <exception cref="InvalidOperationException"></exception>
-        public static IDbContextConfig UseEfCoreWithMySql<TContextService, TContextImplementation>(
+        public static IDbContextConfig UseEfCoreWithPostgreSql<TContextService, TContextImplementation>(
             this DbContextConfig context, Action<EfCoreOptions> optAct = null)
             where TContextService : IEfContext
             where TContextImplementation : DbContext, TContextService
@@ -68,19 +70,23 @@ namespace Cosmos.Data
             if (context is null)
                 throw new ArgumentNullException(nameof(context));
 
-            var opt = new EfCoreOptions();
-            optAct?.Invoke(opt);
+            var opt = EfCoreOptionsHelper.CreateOptions(optAct);
+
+            EfCoreOptionsHelper.GuardOptions(opt);
 
             context.RegisterDbContext(services =>
             {
                 if (!string.IsNullOrWhiteSpace(opt.ConnectionString))
                 {
-                    services.AddDbContext<TContextService, TContextImplementation>(o => o.UseMySQL(opt.ConnectionString).UseLolita());
+                    EfCoreOptionsRegistrar.Register<TContextImplementation>(opt);
+                    services.AddDbContext<TContextService, TContextImplementation>(
+                        builder => builder.UseNpgsql(opt.ConnectionString));
                 }
                 else if (!string.IsNullOrWhiteSpace(opt.ConnectionName))
                 {
-                    services.AddDbContext<TContextService, TContextImplementation>((p, o) =>
-                        o.UseMySQL(p.GetService<IConfigurationRoot>().GetConnectionString(opt.ConnectionName)).UseLolita());
+                    EfCoreOptionsRegistrar.Register<TContextImplementation>(opt);
+                    services.AddDbContext<TContextService, TContextImplementation>(
+                        (provider, builder) => builder.UseNpgsql(provider.GetService<IConfigurationRoot>().GetConnectionString(opt.ConnectionName)));
                 }
                 else
                 {
