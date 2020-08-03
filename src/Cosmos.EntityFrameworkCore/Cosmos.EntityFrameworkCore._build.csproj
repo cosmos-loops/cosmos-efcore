@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <Import Project="Cosmos.EntityFrameworkCore._shared.props" />
+
+    <Import Project="..\..\common.props" />
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\cosmos-data\src\Cosmos.Data\Cosmos.Data._build.csproj" />
+        <ProjectReference Include="..\..\..\cosmos-serialization\src\Cosmos.Serialization.NewtonsoftJson\Cosmos.Serialization.NewtonsoftJson._build.csproj" />
+    </ItemGroup>
+
+</Project>

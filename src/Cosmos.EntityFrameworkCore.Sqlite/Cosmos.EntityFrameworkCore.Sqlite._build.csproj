@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <Import Project="Cosmos.EntityFrameworkCore.Sqlite._shared.props"/>
+
+    <Import Project="..\..\common.props" />
+
+    <ItemGroup>
+        <ProjectReference Include="..\Cosmos.EntityFrameworkCore\Cosmos.EntityFrameworkCore._build.csproj" />
+        <ProjectReference Include="..\..\..\cosmos-data\src\Cosmos.Data.Extensions.DependencyInjection\Cosmos.Data.Extensions.DependencyInjection._build.csproj" />
+        <ProjectReference Include="..\..\..\cosmos-data\src\Cosmos.Data.Extensions.Sqlite\Cosmos.Data.Extensions.Sqlite._build.csproj" />
+    </ItemGroup>
+
+</Project>

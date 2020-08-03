@@ -4,35 +4,145 @@
         <name>Cosmos.EntityFrameworkCore</name>
     </assembly>
     <members>
-        <member name="T:Cosmos.EntityFrameworkCore.Core.InternalEfCoreRegistrar">
+        <member name="T:Cosmos.EntityFrameworkCore.Core.ColumnInfo">
             <summary>
-            Internal efcore registrar
+            Column information
             </summary>
         </member>
-        <member name="M:Cosmos.EntityFrameworkCore.Core.InternalEfCoreRegistrar.GetOptions(System.Action{Cosmos.EntityFrameworkCore.EfCoreOptions})">
+        <member name="P:Cosmos.EntityFrameworkCore.Core.ColumnInfo.Name">
             <summary>
-            Get options
+            Column name
+            </summary>
+        </member>
+        <member name="P:Cosmos.EntityFrameworkCore.Core.ColumnInfo.Order">
+            <summary>
+            Order
+            </summary>
+        </member>
+        <member name="P:Cosmos.EntityFrameworkCore.Core.ColumnInfo.Property">
+            <summary>
+            Binding to
+            </summary>
+        </member>
+        <member name="T:Cosmos.EntityFrameworkCore.Core.EfCoreOptionsHelper">
+            <summary>
+            Microsoft EntityFramework Core options helper/
+            </summary>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.Core.EfCoreOptionsHelper.CreateOptions(System.Action{Cosmos.EntityFrameworkCore.EfCoreOptions})">
+            <summary>
+            Get Microsoft EntityFramework Core options
             </summary>
             <param name="optAct"></param>
             <returns></returns>
         </member>
-        <member name="M:Cosmos.EntityFrameworkCore.Core.InternalEfCoreRegistrar.GuardEfCoreOptions(Cosmos.EntityFrameworkCore.EfCoreOptions)">
+        <member name="M:Cosmos.EntityFrameworkCore.Core.EfCoreOptionsHelper.GuardOptions(Cosmos.EntityFrameworkCore.EfCoreOptions)">
             <summary>
-            Guard efcore options
+            Guard Microsoft EntityFramework Core options options
             </summary>
             <param name="options"></param>
             <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="T:Cosmos.EntityFrameworkCore.Core.EfCoreOptionsRegistrar">
+            <summary>
+            EntityFramework Core Options registrar.
+            </summary>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.Core.EfCoreOptionsRegistrar.Register``1(Cosmos.EntityFrameworkCore.EfCoreOptions)">
+            <summary>
+            Register
+            </summary>
+            <param name="options"></param>
+            <typeparam name="TContext"></typeparam>
+            <exception cref="T:System.ArgumentException"></exception>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.Core.EfCoreOptionsRegistrar.Get``1">
+            <summary>
+            Get
+            </summary>
+            <typeparam name="TContext"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.Core.EfCoreOptionsRegistrar.TryGet``1(Cosmos.EntityFrameworkCore.EfCoreOptions@)">
+            <summary>
+            Try get
+            </summary>
+            <param name="options"></param>
+            <typeparam name="TContext"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:Cosmos.EntityFrameworkCore.CosmosDatabaseFacadeExtensions">
+            <summary>
+            Cosmos database facade extensions
+            </summary>
+        </member>
+        <member name="T:Cosmos.EntityFrameworkCore.CosmosDbContextExtensions">
+            <summary>
+            Cosmos DbContext extensions
+            </summary>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.CosmosDbContextExtensions.ClearCache(Cosmos.EntityFrameworkCore.IEfContext)">
+            <summary>
+            Clear cache
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.CosmosDbContextExtensions.EnsureAutoHistory(Microsoft.EntityFrameworkCore.DbContext)">
+            <summary>
+            Ensures the automatic history.
+            </summary>
+            <param name="context">The context.</param>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.CosmosDbContextExtensions.EnsureAutoHistory``1(Microsoft.EntityFrameworkCore.DbContext,System.Func{``0})">
+            <summary>
+            Ensures the automatic history.
+            </summary>
+            <param name="context"></param>
+            <param name="createHistoryFactory"></param>
+            <typeparam name="TAutoHistory"></typeparam>
+        </member>
+        <member name="T:Cosmos.EntityFrameworkCore.CosmosDbContextTransactionExtensions">
+            <summary>
+            Extensions fot DbContext transaction
+            </summary>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.CosmosDbContextTransactionExtensions.ToTransactionWrapper(Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction)">
+            <summary>
+            To traction wrapper
+            </summary>
+            <param name="transaction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.CosmosDbContextTransactionExtensions.ToTransactionWrapper(Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction,Cosmos.Data.Common.TransactionAppendOperator)">
+            <summary>
+            To traction wrapper
+            </summary>
+            <param name="transaction"></param>
+            <param name="operator"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Cosmos.EntityFrameworkCore.CosmosDbReaderExtensions">
+            <summary>
+            Cosmos DbReader extensions
+            </summary>
+        </member>
+        <member name="T:Cosmos.EntityFrameworkCore.CosmosRawSqlExtensions">
+            <summary>
+            Cosmos raw sql extensions
+            </summary>
         </member>
         <member name="T:Cosmos.EntityFrameworkCore.DbContextBase">
             <summary>
             DbContext base
             </summary>
         </member>
-        <member name="M:Cosmos.EntityFrameworkCore.DbContextBase.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions)">
+        <member name="M:Cosmos.EntityFrameworkCore.DbContextBase.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions,Cosmos.EntityFrameworkCore.EfCoreOptions)">
             <summary>
             DbContext base
             </summary>
             <param name="options"></param>
+            <param name="ownOptions"></param>
         </member>
         <member name="P:Cosmos.EntityFrameworkCore.DbContextBase.CurrentConnection">
             <summary>
@@ -94,6 +204,28 @@
             <returns></returns>
             <exception cref="T:Cosmos.Data.ConcurrencyException"></exception>
         </member>
+        <member name="P:Cosmos.EntityFrameworkCore.EfCoreAutoHistoryOptions.ChangedMaxLength">
+            <summary>
+            The maximum length of the 'Changed' column. <c>null</c> will use default setting 2048 unless ChangedVarcharMax is true
+            in which case the column will be varchar(max). Default: null.
+            </summary>
+        </member>
+        <member name="P:Cosmos.EntityFrameworkCore.EfCoreAutoHistoryOptions.LimitChangedLength">
+            <summary>
+            Set this to true to enforce ChangedMaxLength. If this is false, ChangedMaxLength will be ignored.
+            Default: true.
+            </summary>
+        </member>
+        <member name="P:Cosmos.EntityFrameworkCore.EfCoreAutoHistoryOptions.RowIdMaxLength">
+            <summary>
+            The max length for the row id column. Default: 50.
+            </summary>
+        </member>
+        <member name="P:Cosmos.EntityFrameworkCore.EfCoreAutoHistoryOptions.TableMaxLength">
+            <summary>
+            The max length for the table column. Default: 128.
+            </summary>
+        </member>
         <member name="T:Cosmos.EntityFrameworkCore.EfCoreOptions">
             <summary>
             EfCore options
@@ -107,6 +239,11 @@
         <member name="P:Cosmos.EntityFrameworkCore.EfCoreOptions.ConnectionString">
             <summary>
             Connection string
+            </summary>
+        </member>
+        <member name="P:Cosmos.EntityFrameworkCore.EfCoreOptions.AutoHistory">
+            <summary>
+            Options of AutoHistory
             </summary>
         </member>
         <member name="T:Cosmos.EntityFrameworkCore.EfException">
@@ -223,38 +360,6 @@
             Gets connection state
             </summary>
         </member>
-        <member name="T:Cosmos.EntityFrameworkCore.DbContextCacheExtensions">
-            <summary>
-            Extensions for DbContext cache
-            </summary>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.DbContextCacheExtensions.ClearCache(Cosmos.EntityFrameworkCore.IEfContext)">
-            <summary>
-            Clear cache
-            </summary>
-            <param name="context"></param>
-            <returns></returns>
-        </member>
-        <member name="T:Cosmos.EntityFrameworkCore.DbContextTransactionExtensions">
-            <summary>
-            Extensions fot DbContext transaction
-            </summary>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.DbContextTransactionExtensions.ToTransactionWrapper(Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction)">
-            <summary>
-            To traction wrapper
-            </summary>
-            <param name="transaction"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.DbContextTransactionExtensions.ToTransactionWrapper(Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction,Cosmos.Data.Common.TransactionAppendOperator)">
-            <summary>
-            To traction wrapper
-            </summary>
-            <param name="transaction"></param>
-            <param name="operator"></param>
-            <returns></returns>
-        </member>
         <member name="T:Cosmos.EntityFrameworkCore.IEfContext">
             <summary>
             Interface for DbContext
@@ -272,6 +377,32 @@
             </summary>
             <param name="cancellationToken"></param>
             <returns></returns>
+        </member>
+        <member name="T:Cosmos.EntityFrameworkCore.Map.CosmosEntityMapExtensions">
+            <summary>
+            Cosmos entity map extensions.
+            </summary>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.Map.CosmosEntityMapExtensions.IsMatchedEntityMappingRule(System.Type,System.Collections.Generic.List{System.Type})">
+            <summary>
+            Is matched entity mapping rule
+            </summary>
+            <param name="type"></param>
+            <param name="bodyTypes"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Cosmos.EntityFrameworkCore.Map.CosmosModelBuilderExtensions">
+            <summary>
+            Cosmos <see cref="T:Microsoft.EntityFrameworkCore.ModelBuilder"/> extensions.
+            </summary>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.Map.CosmosModelBuilderExtensions.EnableAutoHistory(Microsoft.EntityFrameworkCore.ModelBuilder,System.Nullable{System.Int32})">
+            <summary>
+            Enables the automatic recording change history.
+            </summary>
+            <param name="modelBuilder">The <see cref="T:Microsoft.EntityFrameworkCore.ModelBuilder"/> to enable auto history feature.</param>
+            <param name="changedMaxLength">The maximum length of the 'Changed' column. <c>null</c> will use default setting 2048.</param>
+            <returns>The <see cref="T:Microsoft.EntityFrameworkCore.ModelBuilder"/> had enabled auto history feature.</returns>
         </member>
         <member name="T:Cosmos.EntityFrameworkCore.Map.EntityMapScanner`1">
             <summary>
@@ -308,19 +439,6 @@
             <summary>
             Type filter
             </summary>
-            <returns></returns>
-        </member>
-        <member name="T:Cosmos.EntityFrameworkCore.Map.MapBaseExtension">
-            <summary>
-            Extensions for <see cref="T:Cosmos.EntityFrameworkCore.Map.MapBase`1"/>
-            </summary>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.Map.MapBaseExtension.IsMatchedEntityMappingRule(System.Type,System.Collections.Generic.List{System.Type})">
-            <summary>
-            Is matched entity mapping rule
-            </summary>
-            <param name="type"></param>
-            <param name="bodyTypes"></param>
             <returns></returns>
         </member>
         <member name="T:Cosmos.EntityFrameworkCore.Map.IEntityMap">
@@ -530,47 +648,6 @@
             <param name="cancellationToken"></param>
             <returns></returns>
         </member>
-        <member name="T:Cosmos.EntityFrameworkCore.Store.ILolitaWriteableStore`2">
-            <summary>
-            Interface for Lolita writeable store
-            </summary>
-            <typeparam name="TEntity"></typeparam>
-            <typeparam name="TKey"></typeparam>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.Store.ILolitaWriteableStore`2.ExecuteUnsafeUpdate(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Func{System.Linq.IQueryable{`0},Pomelo.EntityFrameworkCore.Lolita.LolitaSetting{`0}},System.Func{Pomelo.EntityFrameworkCore.Lolita.LolitaSetting{`0},Pomelo.EntityFrameworkCore.Lolita.LolitaSetting{`0}}[])">
-            <summary>
-            Execute unsafe update
-            </summary>
-            <param name="predicate"></param>
-            <param name="updateFunc"></param>
-            <param name="updateFunc2"></param>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.Store.ILolitaWriteableStore`2.ExecuteUnsafeUpdateAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Func{System.Linq.IQueryable{`0},Pomelo.EntityFrameworkCore.Lolita.LolitaSetting{`0}},System.Threading.CancellationToken,System.Func{Pomelo.EntityFrameworkCore.Lolita.LolitaSetting{`0},Pomelo.EntityFrameworkCore.Lolita.LolitaSetting{`0}}[])">
-            <summary>
-            Execute unsafe update async
-            </summary>
-            <param name="predicate"></param>
-            <param name="updateFunc"></param>
-            <param name="cancellationToken"></param>
-            <param name="updateFunc2"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.Store.ILolitaWriteableStore`2.ExecuteUnsafeDelete(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}}[])">
-            <summary>
-            Execute unsafe delete
-            </summary>
-            <param name="predicate"></param>
-            <param name="predicate2"></param>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.Store.ILolitaWriteableStore`2.ExecuteUnsafeDeleteAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Threading.CancellationToken,System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}}[])">
-            <summary>
-            Execute unsafe delete async
-            </summary>
-            <param name="predicate"></param>
-            <param name="cancellationToken"></param>
-            <param name="predicate2"></param>
-            <returns></returns>
-        </member>
         <member name="T:Cosmos.EntityFrameworkCore.Store.RepositoryBase`3">
             <summary>
             Repository base
@@ -655,39 +732,6 @@
             </summary>
             <param name="predicate"></param>
             <returns></returns>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.Store.StoreBase`3.ExecuteUnsafeUpdate(System.Linq.Expressions.Expression{System.Func{`1,System.Boolean}},System.Func{System.Linq.IQueryable{`1},Pomelo.EntityFrameworkCore.Lolita.LolitaSetting{`1}},System.Func{Pomelo.EntityFrameworkCore.Lolita.LolitaSetting{`1},Pomelo.EntityFrameworkCore.Lolita.LolitaSetting{`1}}[])">
-            <summary>
-            执行非安全更新操作，该操作无视工作单元，直接生效于数据库。
-            </summary>
-            <param name="predicate"></param>
-            <param name="updateFunc"></param>
-            <param name="updateFunc2"></param>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.Store.StoreBase`3.ExecuteUnsafeUpdateAsync(System.Linq.Expressions.Expression{System.Func{`1,System.Boolean}},System.Func{System.Linq.IQueryable{`1},Pomelo.EntityFrameworkCore.Lolita.LolitaSetting{`1}},System.Threading.CancellationToken,System.Func{Pomelo.EntityFrameworkCore.Lolita.LolitaSetting{`1},Pomelo.EntityFrameworkCore.Lolita.LolitaSetting{`1}}[])">
-            <summary>
-            执行非安全更新操作，该操作无视工作单元，直接生效于数据库。
-            </summary>
-            <param name="predicate"></param>
-            <param name="updateFunc"></param>
-            <param name="cancellationToken"></param>
-            <param name="updateFunc2"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.Store.StoreBase`3.ExecuteUnsafeDelete(System.Linq.Expressions.Expression{System.Func{`1,System.Boolean}},System.Linq.Expressions.Expression{System.Func{`1,System.Boolean}}[])">
-            <summary>
-            执行非安全删除操作，该操作无视工作单元，直接生效于数据库。
-            </summary>
-            <param name="predicate"></param>
-            <param name="predicate2"></param>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.Store.StoreBase`3.ExecuteUnsafeDeleteAsync(System.Linq.Expressions.Expression{System.Func{`1,System.Boolean}},System.Threading.CancellationToken,System.Linq.Expressions.Expression{System.Func{`1,System.Boolean}}[])">
-            <summary>
-            执行非安全删除操作，该操作无视工作单元，直接生效于数据库。
-            </summary>
-            <param name="predicate"></param>
-            <param name="cancellationToken"></param>
-            <param name="predicate2"></param>
         </member>
         <member name="M:Cosmos.EntityFrameworkCore.Store.StoreBase`3.Add(`1)">
             <summary>
@@ -1119,6 +1163,74 @@
             <returns></returns>
             <exception cref="T:System.ArgumentNullException"></exception>
         </member>
+        <member name="T:Microsoft.EntityFrameworkCore.AutoHistory">
+            <summary>
+            Represents the entity change history.
+            </summary>
+        </member>
+        <member name="P:Microsoft.EntityFrameworkCore.AutoHistory.Id">
+            <summary>
+            Gets or sets the primary key.
+            </summary>
+            <value>The id.</value>
+        </member>
+        <member name="P:Microsoft.EntityFrameworkCore.AutoHistory.RowId">
+            <summary>
+            Gets or sets the source row id.
+            </summary>
+            <value>The source row id.</value>
+        </member>
+        <member name="P:Microsoft.EntityFrameworkCore.AutoHistory.TableName">
+            <summary>
+            Gets or sets the name of the table.
+            </summary>
+            <value>The name of the table.</value>
+        </member>
+        <member name="P:Microsoft.EntityFrameworkCore.AutoHistory.Changed">
+            <summary>
+            Gets or sets the json about the changing.
+            </summary>
+            <value>The json about the changing.</value>
+        </member>
+        <member name="P:Microsoft.EntityFrameworkCore.AutoHistory.Kind">
+            <summary>
+            Gets or sets the change kind.
+            </summary>
+            <value>The change kind.</value>
+        </member>
+        <member name="P:Microsoft.EntityFrameworkCore.AutoHistory.Created">
+            <summary>
+            Gets or sets the create time.
+            </summary>
+            <value>The create time.</value>
+        </member>
+        <member name="T:Microsoft.EntityFrameworkCore.CosmosIncludeExtensions">
+            <summary>
+            Execute for include
+            </summary>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.CosmosIncludeExtensions.IncludeIfNeed``2(System.Linq.IQueryable{``0},System.Boolean,System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Include if need...
+            </summary>
+            <param name="source"></param>
+            <param name="condition"></param>
+            <param name="property"></param>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TProperty"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.CosmosIncludeExtensions.IncludeIfNeed``2(System.Linq.IQueryable{``0},System.Func{System.Boolean},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Include if need...
+            </summary>
+            <param name="source"></param>
+            <param name="condition"></param>
+            <param name="property"></param>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TProperty"></typeparam>
+            <returns></returns>
+        </member>
         <member name="T:Microsoft.EntityFrameworkCore.DbContextUtils">
             <summary>
             Utils for <see cref="T:Microsoft.EntityFrameworkCore.DbContext"/>
@@ -1132,1128 +1244,56 @@
             <typeparam name="TEntity"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:Microsoft.EntityFrameworkCore.DatabaseExtensions.CreateVisitor(Microsoft.EntityFrameworkCore.Storage.Database,Remotion.Linq.QueryModel)">
+        <member name="T:Microsoft.EntityFrameworkCore.Internal.AutoHistoryOptions">
             <summary>
-            Create visitor
+            This class provides options for setting up auto history.
             </summary>
-            <param name="self"></param>
-            <param name="qm"></param>
-            <returns></returns>
         </member>
-        <member name="T:Microsoft.EntityFrameworkCore.DbSetExtensions">
+        <member name="P:Microsoft.EntityFrameworkCore.Internal.AutoHistoryOptions.Instance">
             <summary>
-            Extensions for <see cref="T:Microsoft.EntityFrameworkCore.DbSet`1"/>
+            The shared instance of the AutoHistoryOptions.
             </summary>
         </member>
-        <member name="M:Microsoft.EntityFrameworkCore.DbSetExtensions.SetField``2(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+        <member name="M:Microsoft.EntityFrameworkCore.Internal.AutoHistoryOptions.#ctor">
             <summary>
-            Set field
+            Prevent constructor from being called eternally.
             </summary>
-            <param name="self"></param>
-            <param name="setValueExpression"></param>
-            <typeparam name="TEntity"></typeparam>
-            <typeparam name="TProperty"></typeparam>
-            <returns></returns>
-            <exception cref="T:System.ArgumentNullException"></exception>
         </member>
-        <member name="M:Microsoft.EntityFrameworkCore.DbSetExtensions.SetField``2(Pomelo.EntityFrameworkCore.Lolita.LolitaSetting{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+        <member name="P:Microsoft.EntityFrameworkCore.Internal.AutoHistoryOptions.ChangedMaxLength">
             <summary>
-            Set field
+            The maximum length of the 'Changed' column. <c>null</c> will use default setting 2048 unless ChangedVarcharMax is true
+            in which case the column will be varchar(max). Default: null.
             </summary>
-            <param name="self"></param>
-            <param name="setValueExpression"></param>
-            <typeparam name="TEntity"></typeparam>
-            <typeparam name="TProperty"></typeparam>
-            <returns></returns>
-            <exception cref="T:System.ArgumentNullException"></exception>
         </member>
-        <member name="T:Microsoft.EntityFrameworkCore.LolitaDbOptionExtension">
+        <member name="P:Microsoft.EntityFrameworkCore.Internal.AutoHistoryOptions.LimitChangedLength">
             <summary>
-            Extensions for Lolita DbOption
+            Set this to true to enforce ChangedMaxLength. If this is false, ChangedMaxLength will be ignored.
+            Default: true.
             </summary>
         </member>
-        <member name="P:Microsoft.EntityFrameworkCore.LolitaDbOptionExtension.LogFragment">
+        <member name="P:Microsoft.EntityFrameworkCore.Internal.AutoHistoryOptions.RowIdMaxLength">
             <summary>
-            Log fragment
+            The max length for the row id column. Default: 50.
             </summary>
         </member>
-        <member name="M:Microsoft.EntityFrameworkCore.LolitaDbOptionExtension.ApplyServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="P:Microsoft.EntityFrameworkCore.Internal.AutoHistoryOptions.TableMaxLength">
             <summary>
-            Apply services
+            The max length for the table column. Default: 128.
             </summary>
-            <param name="services"></param>
-            <returns></returns>
         </member>
-        <member name="M:Microsoft.EntityFrameworkCore.LolitaDbOptionExtension.GetServiceProviderHashCode">
+        <member name="P:Microsoft.EntityFrameworkCore.Internal.AutoHistoryOptions.JsonSerializerSettings">
             <summary>
-            Get service provider hashcode
+            The JsonSerializerSettings for the changed column.
             </summary>
-            <returns></returns>
         </member>
-        <member name="M:Microsoft.EntityFrameworkCore.LolitaDbOptionExtension.Validate(Microsoft.EntityFrameworkCore.Infrastructure.IDbContextOptions)">
+        <member name="P:Microsoft.EntityFrameworkCore.Internal.AutoHistoryOptions.JsonSerializer">
             <summary>
-            Validate
+            The json serializer to use when writing changes. Created internally.
             </summary>
-            <param name="options"></param>
         </member>
-        <member name="T:Microsoft.EntityFrameworkCore.LolitaDbOptionExtensions">
+        <member name="T:System.Reflection.CosmosTypeExtensions">
             <summary>
-            Extensions for lolita DbOption
-            </summary>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.LolitaDbOptionExtensions.UseLolita(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
-            <summary>
-            Use lolita
-            </summary>
-            <param name="self"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.LolitaDbOptionExtensions.UseLolita``1(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder{``0})">
-            <summary>
-            Use lolita
-            </summary>
-            <param name="self"></param>
-            <typeparam name="TContext"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.LolitaDbOptionExtensions.UseLolita(Microsoft.EntityFrameworkCore.DbContextOptions)">
-            <summary>
-            Use lolita
-            </summary>
-            <param name="self"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.LolitaDbOptionExtensions.UseLolita``1(Microsoft.EntityFrameworkCore.DbContextOptions{``0})">
-            <summary>
-            Use lolita
-            </summary>
-            <param name="self"></param>
-            <typeparam name="TContext"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="T:Microsoft.EntityFrameworkCore.DeleteExtensions">
-            <summary>
-            Extensions for delete
-            </summary>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.DeleteExtensions.GenerateBulkDeleteSql``1(System.Linq.IQueryable{``0})">
-            <summary>
-            Generate bulk delete sql
-            </summary>
-            <param name="self"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.DeleteExtensions.Delete``1(System.Linq.IQueryable{``0})">
-            <summary>
-            Delete
-            </summary>
-            <param name="self"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.DeleteExtensions.DeleteAsync``1(System.Linq.IQueryable{``0},System.Threading.CancellationToken)">
-            <summary>
-            Delete async
-            </summary>
-            <param name="self"></param>
-            <param name="cancellationToken"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="T:Microsoft.EntityFrameworkCore.UpdateExtensions">
-            <summary>
-            Extensions for update
-            </summary>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.UpdateExtensions.GenerateBulkUpdateSql``1(Pomelo.EntityFrameworkCore.Lolita.LolitaSetting{``0})">
-            <summary>
-            Generate bulk update sql
-            </summary>
-            <param name="self"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.UpdateExtensions.Update``1(Pomelo.EntityFrameworkCore.Lolita.LolitaSetting{``0})">
-            <summary>
-            Update
-            </summary>
-            <param name="self"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.UpdateExtensions.UpdateAsync``1(Pomelo.EntityFrameworkCore.Lolita.LolitaSetting{``0},System.Threading.CancellationToken)">
-            <summary>
-            Update async
-            </summary>
-            <param name="self"></param>
-            <param name="cancellationToken"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="T:Microsoft.EntityFrameworkCore.ValuingExtensions">
-            <summary>
-            Extensions for Valuing
-            </summary>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.WithSQL``2(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,``1},System.Func{System.String,Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper,System.String},System.Object[])">
-            <summary>
-            With sql
-            </summary>
-            <param name="self"></param>
-            <param name="sql"></param>
-            <param name="parameters"></param>
-            <typeparam name="TEntity"></typeparam>
-            <typeparam name="TProperty"></typeparam>
-            <returns></returns>
-            <exception cref="T:System.ArgumentNullException"></exception>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.WithSQL``2(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,``1},System.Func{System.String,System.String},System.Object[])">
-            <summary>
-            With SQL
-            </summary>
-            <param name="self"></param>
-            <param name="sql"></param>
-            <param name="parameters"></param>
-            <typeparam name="TEntity"></typeparam>
-            <typeparam name="TProperty"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.WithValue``2(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,``1},System.Object)">
-            <summary>
-            With value
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <typeparam name="TProperty"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Plus``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.Int64},System.Object)">
-            <summary>
-            Plus
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Subtract``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.Int64},System.Object)">
-            <summary>
-            Subtract
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Multiply``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.Int64},System.Object)">
-            <summary>
-            Multiply
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Divide``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.Int64},System.Object)">
-            <summary>
-            Divide
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Mod``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.Int64},System.Object)">
-            <summary>
-            Mod
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Plus``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.Int32},System.Object)">
-            <summary>
-            Plus
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Subtract``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.Int32},System.Object)">
-            <summary>
-            Subtract
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Multiply``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.Int32},System.Object)">
-            <summary>
-            Multiply
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Divide``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.Int32},System.Object)">
-            <summary>
-            Divide
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Mod``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.Int32},System.Object)">
-            <summary>
-            Mod
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Plus``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.Int16},System.Object)">
-            <summary>
-            Plus
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Subtract``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.Int16},System.Object)">
-            <summary>
-            Subtract
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Multiply``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.Int16},System.Object)">
-            <summary>
-            Multiply
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Divide``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.Int16},System.Object)">
-            <summary>
-            Divide
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Mod``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.Int16},System.Object)">
-            <summary>
-            Mod
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Plus``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.UInt64},System.Object)">
-            <summary>
-            Plus
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Subtract``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.UInt64},System.Object)">
-            <summary>
-            Subtract
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Multiply``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.UInt64},System.Object)">
-            <summary>
-            Multiply
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Divide``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.UInt64},System.Object)">
-            <summary>
-            Divide
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Mod``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.UInt64},System.Object)">
-            <summary>
-            Mod
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Plus``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.UInt32},System.Object)">
-            <summary>
-            Plus
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Subtract``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.UInt32},System.Object)">
-            <summary>
-            Subtract
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Multiply``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.UInt32},System.Object)">
-            <summary>
-            Multiply
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Divide``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.UInt32},System.Object)">
-            <summary>
-            Divide
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Mod``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.UInt32},System.Object)">
-            <summary>
-            Mod
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Plus``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.UInt16},System.Object)">
-            <summary>
-            Plus
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Subtract``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.UInt16},System.Object)">
-            <summary>
-            Subtract
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Multiply``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.UInt16},System.Object)">
-            <summary>
-            Multiply
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Divide``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.UInt16},System.Object)">
-            <summary>
-            Divide
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Mod``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.UInt16},System.Object)">
-            <summary>
-            Mod
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Plus``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.Double},System.Object)">
-            <summary>
-            Plus
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Subtract``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.Double},System.Object)">
-            <summary>
-            Subtract
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Multiply``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.Double},System.Object)">
-            <summary>
-            Multiply
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Divide``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.Double},System.Object)">
-            <summary>
-            Divide
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Mod``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.Double},System.Object)">
-            <summary>
-            Mod
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Plus``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.Single},System.Object)">
-            <summary>
-            Plus
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Subtract``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.Single},System.Object)">
-            <summary>
-            Subtract
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Multiply``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.Single},System.Object)">
-            <summary>
-            Multiply
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Divide``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.Single},System.Object)">
-            <summary>
-            Divid
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Mod``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.Single},System.Object)">
-            <summary>
-            Mod
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Append``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.String},System.String)">
-            <summary>
-            Append
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.Prepend``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.String},System.String)">
-            <summary>
-            Prepend
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.AddMilliseconds``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.DateTime},System.Int32)">
-            <summary>
-            Add milliseconds
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.AddSeconds``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.DateTime},System.Int32)">
-            <summary>
-            Add seconds
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.AddMinutes``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.DateTime},System.Int32)">
-            <summary>
-            Add minutes
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.AddHours``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.DateTime},System.Int32)">
-            <summary>
-            Add hours
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.AddDays``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.DateTime},System.Int32)">
-            <summary>
-            Add days
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.AddMonths``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.DateTime},System.Int32)">
-            <summary>
-            Add months
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.ValuingExtensions.AddYears``1(Pomelo.EntityFrameworkCore.Lolita.LolitaValuing{``0,System.DateTime},System.Int32)">
-            <summary>
-            Add years
-            </summary>
-            <param name="self"></param>
-            <param name="value"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="T:Microsoft.EntityFrameworkCore.IncludeExtensions">
-            <summary>
-            Execute for include
-            </summary>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.IncludeExtensions.IncludeIfNeed``2(System.Linq.IQueryable{``0},System.Boolean,System.Linq.Expressions.Expression{System.Func{``0,``1}})">
-            <summary>
-            Include if need...
-            </summary>
-            <param name="source"></param>
-            <param name="condition"></param>
-            <param name="property"></param>
-            <typeparam name="TEntity"></typeparam>
-            <typeparam name="TProperty"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.IncludeExtensions.IncludeIfNeed``2(System.Linq.IQueryable{``0},System.Func{System.Boolean},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
-            <summary>
-            Include if need...
-            </summary>
-            <param name="source"></param>
-            <param name="condition"></param>
-            <param name="property"></param>
-            <typeparam name="TEntity"></typeparam>
-            <typeparam name="TProperty"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="T:Microsoft.EntityFrameworkCore.QueryToSqlExtensions">
-            <summary>
-            Extensions for QueryToSql
-            </summary>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.QueryToSqlExtensions.ToSql``1(System.Linq.IQueryable{``0})">
-            <summary>
-            To sql
-            </summary>
-            <param name="self"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.QueryToSqlExtensions.ToUnevaluated``1(System.Linq.IQueryable{``0})">
-            <summary>
-            To Unevaluated
-            </summary>
-            <param name="self"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.QueryToSqlExtensions.CompileQuery``1(System.Linq.IQueryable{``0})">
-            <summary>
-            Compile query
-            </summary>
-            <param name="self"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.QueryToSqlExtensions.CreateVisitor(Microsoft.EntityFrameworkCore.Storage.Database,Microsoft.EntityFrameworkCore.Query.IQueryCompilationContextFactory,Remotion.Linq.QueryModel)">
-            <summary>
-            Create visitor
-            </summary>
-            <param name="self"></param>
-            <param name="factory"></param>
-            <param name="qm"></param>
-            <returns></returns>
-        </member>
-        <member name="T:Pomelo.EntityFrameworkCore.Lolita.Delete.DefaultLolitaDeleteExecutor">
-            <summary>
-            Default Lolita Delete Executor
-            </summary>
-        </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Delete.DefaultLolitaDeleteExecutor.#ctor(Microsoft.EntityFrameworkCore.Internal.ICurrentDbContext,Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper,Microsoft.EntityFrameworkCore.Internal.IDbSetFinder)">
-            <summary>
-            Create a new instance of <see cref="T:Pomelo.EntityFrameworkCore.Lolita.Delete.DefaultLolitaDeleteExecutor"/>
-            </summary>
-            <param name="currentDbContext"></param>
-            <param name="sqlGenerationHelper"></param>
-            <param name="dbSetFinder"></param>
-        </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Delete.DefaultLolitaDeleteExecutor.ParseTableName(Microsoft.EntityFrameworkCore.Metadata.Internal.EntityType)">
-            <summary>
-            Parse table name
-            </summary>
-            <param name="type"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Delete.DefaultLolitaDeleteExecutor.GetTableName(Microsoft.EntityFrameworkCore.Metadata.Internal.EntityType)">
-            <summary>
-            Get table name
-            </summary>
-            <param name="et"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Delete.DefaultLolitaDeleteExecutor.GetFullTableName(Microsoft.EntityFrameworkCore.Metadata.Internal.EntityType)">
-            <summary>
-            Get full table name
-            </summary>
-            <param name="et"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Delete.DefaultLolitaDeleteExecutor.GenerateSql``1(System.Linq.IQueryable{``0})">
-            <summary>
-            Generate sql
-            </summary>
-            <param name="lolita"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Delete.DefaultLolitaDeleteExecutor.ParseWhere(Microsoft.EntityFrameworkCore.Query.RelationalQueryModelVisitor,System.String)">
-            <summary>
-            Parse where
-            </summary>
-            <param name="visitor"></param>
-            <param name="Table"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Delete.DefaultLolitaDeleteExecutor.Execute(Microsoft.EntityFrameworkCore.DbContext,System.String)">
-            <summary>
-            Execute
-            </summary>
-            <param name="db"></param>
-            <param name="sql"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Delete.DefaultLolitaDeleteExecutor.ExecuteAsync(Microsoft.EntityFrameworkCore.DbContext,System.String,System.Threading.CancellationToken)">
-            <summary>
-            Execute async
-            </summary>
-            <param name="db"></param>
-            <param name="sql"></param>
-            <param name="cancellationToken"></param>
-            <returns></returns>
-        </member>
-        <member name="T:Pomelo.EntityFrameworkCore.Lolita.Delete.ILolitaDeleteExecutor">
-            <summary>
-            Interface for lolita delete executor
-            </summary>
-        </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Delete.ILolitaDeleteExecutor.GenerateSql``1(System.Linq.IQueryable{``0})">
-            <summary>
-            Generate sql
-            </summary>
-            <param name="lolita"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Delete.ILolitaDeleteExecutor.Execute(Microsoft.EntityFrameworkCore.DbContext,System.String)">
-            <summary>
-            Execute
-            </summary>
-            <param name="db"></param>
-            <param name="sql"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Delete.ILolitaDeleteExecutor.ExecuteAsync(Microsoft.EntityFrameworkCore.DbContext,System.String,System.Threading.CancellationToken)">
-            <summary>
-            Execute async
-            </summary>
-            <param name="db"></param>
-            <param name="sql"></param>
-            <param name="cancellationToken"></param>
-            <returns></returns>
-        </member>
-        <member name="T:Pomelo.EntityFrameworkCore.Lolita.LolitaSetting`1">
-            <summary>
-            Lolita setting
-            </summary>
-            <typeparam name="TEntity"></typeparam>
-        </member>
-        <member name="P:Pomelo.EntityFrameworkCore.Lolita.LolitaSetting`1.Query">
-            <summary>
-            Query
-            </summary>
-        </member>
-        <member name="P:Pomelo.EntityFrameworkCore.Lolita.LolitaSetting`1.FullTable">
-            <summary>
-            Full table
-            </summary>
-        </member>
-        <member name="P:Pomelo.EntityFrameworkCore.Lolita.LolitaSetting`1.ShortTable">
-            <summary>
-            Short table
-            </summary>
-        </member>
-        <member name="P:Pomelo.EntityFrameworkCore.Lolita.LolitaSetting`1.Operations">
-            <summary>
-            operations
-            </summary>
-        </member>
-        <member name="P:Pomelo.EntityFrameworkCore.Lolita.LolitaSetting`1.Parameters">
-            <summary>
-            Parameters
-            </summary>
-        </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.LolitaSetting`1.GetService``1">
-            <summary>
-            Get services
-            </summary>
-            <typeparam name="TService"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="T:Pomelo.EntityFrameworkCore.Lolita.LolitaValuing`2">
-            <summary>
-            Lolita valuing
-            </summary>
-            <typeparam name="TEntity"></typeparam>
-            <typeparam name="TProperty"></typeparam>
-        </member>
-        <member name="P:Pomelo.EntityFrameworkCore.Lolita.LolitaValuing`2.Inner">
-            <summary>
-            Inner setting
-            </summary>
-        </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.LolitaValuing`2.GetService``1">
-            <summary>
-            Get servce
-            </summary>
-            <typeparam name="TService"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="P:Pomelo.EntityFrameworkCore.Lolita.LolitaValuing`2.CurrentField">
-            <summary>
-            Gets or sets current field
-            </summary>
-        </member>
-        <member name="T:Pomelo.EntityFrameworkCore.Lolita.Update.DefaultFieldParser">
-            <summary>
-            Default field parser
-            </summary>
-        </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Update.DefaultFieldParser.#ctor(Microsoft.EntityFrameworkCore.Internal.ICurrentDbContext,Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper,Microsoft.EntityFrameworkCore.Internal.IDbSetFinder)">
-            <summary>
-            Create a new instance of <see cref="T:Pomelo.EntityFrameworkCore.Lolita.Update.DefaultFieldParser"/>
-            </summary>
-            <param name="currentDbContext"></param>
-            <param name="sqlGenerationHelper"></param>
-            <param name="dbSetFinder"></param>
-        </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Update.DefaultFieldParser.ParseField(Pomelo.EntityFrameworkCore.Lolita.Update.SqlFieldInfo)">
-            <summary>
-            Parse field
-            </summary>
-            <param name="field"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Update.DefaultFieldParser.ParseFullTable(Pomelo.EntityFrameworkCore.Lolita.Update.SqlFieldInfo)">
-            <summary>
-            Parse full table
-            </summary>
-            <param name="field"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Update.DefaultFieldParser.ParseShortTable(Pomelo.EntityFrameworkCore.Lolita.Update.SqlFieldInfo)">
-            <summary>
-            Parse short table
-            </summary>
-            <param name="field"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Update.DefaultFieldParser.GetTableName(Microsoft.EntityFrameworkCore.Metadata.Internal.EntityType)">
-            <summary>
-            Get table name
-            </summary>
-            <param name="type"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Update.DefaultFieldParser.GetSchemaName(Microsoft.EntityFrameworkCore.Metadata.Internal.EntityType)">
-            <summary>
-            Get schema name
-            </summary>
-            <param name="type"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Update.DefaultFieldParser.VisitField``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})">
-            <summary>
-            Visit field
-            </summary>
-            <param name="exp"></param>
-            <typeparam name="TEntity"></typeparam>
-            <typeparam name="TProperty"></typeparam>
-            <returns></returns>
-            <exception cref="T:System.ArgumentException"></exception>
-            <exception cref="T:System.NotSupportedException"></exception>
-        </member>
-        <member name="T:Pomelo.EntityFrameworkCore.Lolita.Update.DefaultLolitaUpdateExecutor">
-            <summary>
-            Default Lolita Update Executor
-            </summary>
-        </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Update.DefaultLolitaUpdateExecutor.#ctor(Microsoft.EntityFrameworkCore.Internal.ICurrentDbContext,Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper,Microsoft.EntityFrameworkCore.Internal.IDbSetFinder)">
-            <summary>
-            Create a new instance of <see cref="T:Pomelo.EntityFrameworkCore.Lolita.Update.DefaultLolitaUpdateExecutor"/>
-            </summary>
-            <param name="currentDbContext"></param>
-            <param name="sqlGenerationHelper"></param>
-            <param name="dbSetFinder"></param>
-        </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Update.DefaultLolitaUpdateExecutor.GenerateSql``1(Pomelo.EntityFrameworkCore.Lolita.LolitaSetting{``0},Microsoft.EntityFrameworkCore.Query.RelationalQueryModelVisitor)">
-            <summary>
-            Generate sql
-            </summary>
-            <param name="lolita"></param>
-            <param name="visitor"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Update.DefaultLolitaUpdateExecutor.ParseWhere(Microsoft.EntityFrameworkCore.Query.RelationalQueryModelVisitor,System.String)">
-            <summary>
-            Parse where
-            </summary>
-            <param name="visitor"></param>
-            <param name="table"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Update.DefaultLolitaUpdateExecutor.Execute(Microsoft.EntityFrameworkCore.DbContext,System.String,System.Object[])">
-            <summary>
-            Execute
-            </summary>
-            <param name="db"></param>
-            <param name="sql"></param>
-            <param name="param"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Update.DefaultLolitaUpdateExecutor.ExecuteAsync(Microsoft.EntityFrameworkCore.DbContext,System.String,System.Threading.CancellationToken,System.Object[])">
-            <summary>
-            Execute async
-            </summary>
-            <param name="db"></param>
-            <param name="sql"></param>
-            <param name="cancellationToken"></param>
-            <param name="param"></param>
-            <returns></returns>
-        </member>
-        <member name="T:Pomelo.EntityFrameworkCore.Lolita.Update.DefaultSetFieldSqlGenerator">
-            <summary>
-            Default set field sql generator
-            </summary>
-        </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Update.DefaultSetFieldSqlGenerator.#ctor(Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper)">
-            <summary>
-            Create a new instance of <see cref="T:Pomelo.EntityFrameworkCore.Lolita.Update.DefaultSetFieldSqlGenerator"/>
-            </summary>
-            <param name="sqlGenerationHelper"></param>
-        </member>
-        <member name="F:Pomelo.EntityFrameworkCore.Lolita.Update.DefaultSetFieldSqlGenerator.SqlGenerationHelper">
-            <summary>
-            Sql generation helper
-            </summary>
-        </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Update.DefaultSetFieldSqlGenerator.TranslateToSql(Pomelo.EntityFrameworkCore.Lolita.Update.SetFieldInfo)">
-            <summary>
-            Translate to sql
-            </summary>
-            <param name="operation"></param>
-            <returns></returns>
-            <exception cref="T:System.NotSupportedException"></exception>
-        </member>
-        <member name="T:Pomelo.EntityFrameworkCore.Lolita.Update.IFieldParser">
-            <summary>
-            Interface for field paeser
-            </summary>
-        </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Update.IFieldParser.VisitField``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})">
-            <summary>
-            Visit field
-            </summary>
-            <param name="exp"></param>
-            <typeparam name="TEntity"></typeparam>
-            <typeparam name="TProperty"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Update.IFieldParser.ParseField(Pomelo.EntityFrameworkCore.Lolita.Update.SqlFieldInfo)">
-            <summary>
-            Parser field
-            </summary>
-            <param name="field"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Update.IFieldParser.ParseFullTable(Pomelo.EntityFrameworkCore.Lolita.Update.SqlFieldInfo)">
-            <summary>
-            Parser full table
-            </summary>
-            <param name="field"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Update.IFieldParser.ParseShortTable(Pomelo.EntityFrameworkCore.Lolita.Update.SqlFieldInfo)">
-            <summary>
-            Parser short table
-            </summary>
-            <param name="field"></param>
-            <returns></returns>
-        </member>
-        <member name="T:Pomelo.EntityFrameworkCore.Lolita.Update.ILolitaUpdateExecutor">
-            <summary>
-            Interface for Lolita Update executor
-            </summary>
-        </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Update.ILolitaUpdateExecutor.GenerateSql``1(Pomelo.EntityFrameworkCore.Lolita.LolitaSetting{``0},Microsoft.EntityFrameworkCore.Query.RelationalQueryModelVisitor)">
-            <summary>
-            Generate sql
-            </summary>
-            <param name="lolita"></param>
-            <param name="visitor"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Update.ILolitaUpdateExecutor.Execute(Microsoft.EntityFrameworkCore.DbContext,System.String,System.Object[])">
-            <summary>
-            Execute
-            </summary>
-            <param name="db"></param>
-            <param name="sql"></param>
-            <param name="param"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Update.ILolitaUpdateExecutor.ExecuteAsync(Microsoft.EntityFrameworkCore.DbContext,System.String,System.Threading.CancellationToken,System.Object[])">
-            <summary>
-            Execute async
-            </summary>
-            <param name="db"></param>
-            <param name="sql"></param>
-            <param name="cancellationToken"></param>
-            <param name="param"></param>
-            <returns></returns>
-        </member>
-        <member name="T:Pomelo.EntityFrameworkCore.Lolita.Update.ISetFieldSqlGenerator">
-            <summary>
-            Interface for set field sql generator
-            </summary>
-        </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Update.ISetFieldSqlGenerator.TranslateToSql(Pomelo.EntityFrameworkCore.Lolita.Update.SetFieldInfo)">
-            <summary>
-            Translate to sql
-            </summary>
-            <param name="operation"></param>
-            <returns></returns>
-        </member>
-        <member name="T:Pomelo.EntityFrameworkCore.Lolita.Update.SetFieldInfo">
-            <summary>
-            Set field info
-            </summary>
-        </member>
-        <member name="P:Pomelo.EntityFrameworkCore.Lolita.Update.SetFieldInfo.Field">
-            <summary>
-            FIeld
-            </summary>
-        </member>
-        <member name="P:Pomelo.EntityFrameworkCore.Lolita.Update.SetFieldInfo.Type">
-            <summary>
-            Type
-            </summary>
-        </member>
-        <member name="P:Pomelo.EntityFrameworkCore.Lolita.Update.SetFieldInfo.Value">
-            <summary>
-            Value
-            </summary>
-        </member>
-        <member name="P:Pomelo.EntityFrameworkCore.Lolita.Update.SetFieldInfo.Index">
-            <summary>
-            Index
-            </summary>
-        </member>
-        <member name="T:Pomelo.EntityFrameworkCore.Lolita.Update.SqlFieldInfo">
-            <summary>
-            Sql field info
-            </summary>
-        </member>
-        <member name="P:Pomelo.EntityFrameworkCore.Lolita.Update.SqlFieldInfo.Database">
-            <summary>
-            Database
-            </summary>
-        </member>
-        <member name="P:Pomelo.EntityFrameworkCore.Lolita.Update.SqlFieldInfo.Schema">
-            <summary>
-            Schema
-            </summary>
-        </member>
-        <member name="P:Pomelo.EntityFrameworkCore.Lolita.Update.SqlFieldInfo.Table">
-            <summary>
-            Table
-            </summary>
-        </member>
-        <member name="P:Pomelo.EntityFrameworkCore.Lolita.Update.SqlFieldInfo.Column">
-            <summary>
-            Column
+            Cosmos type extensions (temp)
             </summary>
         </member>
     </members>

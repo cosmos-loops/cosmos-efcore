@@ -4,95 +4,31 @@
         <name>Cosmos.EntityFrameworkCore.PostgreSql</name>
     </assembly>
     <members>
-        <member name="T:Cosmos.Data.DbContextConfigExtensions">
+        <member name="T:Cosmos.Data.CosmosPostgreSqlDbContextConfigExtensions">
             <summary>
-            Extensions for Cosmos DbContext
+            Cosmos PostgreSql DbContext configuration extensions
             </summary>
         </member>
-        <member name="M:Cosmos.Data.DbContextConfigExtensions.UseEfCoreWithPostgreSql``1(Cosmos.Data.DbContextConfig,System.Action{Cosmos.EntityFrameworkCore.EfCoreOptions})">
+        <member name="M:Cosmos.Data.CosmosPostgreSqlDbContextConfigExtensions.UseEfCoreWithPostgreSql``1(Cosmos.Data.DbContextConfig,System.Action{Cosmos.EntityFrameworkCore.EfCoreOptions})">
             <summary>
             Use EntityFramework Core with PostgreSql
             </summary>
-            <param name="config"></param>
+            <param name="context"></param>
             <param name="optAct"></param>
             <typeparam name="TContext"></typeparam>
             <returns></returns>
             <exception cref="T:System.ArgumentNullException"></exception>
         </member>
-        <member name="M:Cosmos.Data.DbContextConfigExtensions.UseEfCoreWithPostgreSql``2(Cosmos.Data.DbContextConfig,System.Action{Cosmos.EntityFrameworkCore.EfCoreOptions})">
+        <member name="M:Cosmos.Data.CosmosPostgreSqlDbContextConfigExtensions.UseEfCoreWithPostgreSql``2(Cosmos.Data.DbContextConfig,System.Action{Cosmos.EntityFrameworkCore.EfCoreOptions})">
             <summary>
             Use EntityFramework Core with PostgreSql
             </summary>
-            <param name="config"></param>
+            <param name="context"></param>
             <param name="optAct"></param>
-            <typeparam name="TCtxtService"></typeparam>
-            <typeparam name="TCtxImplementation"></typeparam>
+            <typeparam name="TContextService"></typeparam>
+            <typeparam name="TContextImplementation"></typeparam>
             <returns></returns>
             <exception cref="T:System.ArgumentNullException"></exception>
-        </member>
-        <member name="T:Cosmos.EntityFrameworkCore.PostgreSQLLolitaDbOptionExtension">
-            <summary>
-            Extensions for Lolita database option for PostgreSQL
-            </summary>
-        </member>
-        <member name="P:Cosmos.EntityFrameworkCore.PostgreSQLLolitaDbOptionExtension.LogFragment">
-            <summary>
-            Log Fragment
-            </summary>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.PostgreSQLLolitaDbOptionExtension.ApplyServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
-            <summary>
-            Apply services
-            </summary>
-            <param name="services"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.PostgreSQLLolitaDbOptionExtension.GetServiceProviderHashCode">
-            <summary>
-            Get service provider hashcode
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.PostgreSQLLolitaDbOptionExtension.Validate(Microsoft.EntityFrameworkCore.Infrastructure.IDbContextOptions)">
-            <summary>
-            Validate
-            </summary>
-            <param name="options"></param>
-        </member>
-        <member name="T:Cosmos.EntityFrameworkCore.LolitaDbOptionExtensions">
-            <summary>
-            Extensions for lolita database option
-            </summary>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.LolitaDbOptionExtensions.UsePostgreSQLLolita(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
-            <summary>
-            Use PostgreSql lolita
-            </summary>
-            <param name="self"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.LolitaDbOptionExtensions.UsePostgreSQLLolita``1(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder{``0})">
-            <summary>
-            Use PostgreSql lolita
-            </summary>
-            <param name="self"></param>
-            <typeparam name="TContext"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.LolitaDbOptionExtensions.UsePostgreSQLLolita(Microsoft.EntityFrameworkCore.DbContextOptions)">
-            <summary>
-            Use PostgreSql lolita
-            </summary>
-            <param name="self"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.LolitaDbOptionExtensions.UsePostgreSQLLolita``1(Microsoft.EntityFrameworkCore.DbContextOptions{``0})">
-            <summary>
-            Use PostgreSql lolita
-            </summary>
-            <param name="self"></param>
-            <typeparam name="TContext"></typeparam>
-            <returns></returns>
         </member>
         <member name="T:Cosmos.EntityFrameworkCore.Map.AggregateRootMap`1">
             <summary>
@@ -135,25 +71,6 @@
             On model creating
             </summary>
             <param name="modelBuilder"></param>
-        </member>
-        <member name="T:Pomelo.EntityFrameworkCore.Lolita.Update.PostgreSQLSetFieldSqlGenerator">
-            <summary>
-            Sql generator for PostgreSql setting field 
-            </summary>
-        </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Update.PostgreSQLSetFieldSqlGenerator.#ctor(Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper)">
-            <summary>
-            Create a new instance of <see cref="T:Pomelo.EntityFrameworkCore.Lolita.Update.PostgreSQLSetFieldSqlGenerator"/>
-            </summary>
-            <param name="x"></param>
-        </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Update.PostgreSQLSetFieldSqlGenerator.TranslateToSql(Pomelo.EntityFrameworkCore.Lolita.Update.SetFieldInfo)">
-            <summary>
-            Translate to sql
-            </summary>
-            <param name="operation"></param>
-            <returns></returns>
-            <exception cref="T:System.NotImplementedException"></exception>
         </member>
     </members>
 </doc>

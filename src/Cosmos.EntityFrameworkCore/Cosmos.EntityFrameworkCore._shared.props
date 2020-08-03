@@ -1,0 +1,15 @@
+﻿<Project>
+
+    <PropertyGroup>
+        <AssemblyName>Cosmos.EntityFrameworkCore</AssemblyName>
+        <PackageId>Cosmos.EntityFrameworkCore</PackageId>
+        <Description>Core package of Cosmos data.</Description>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="DotNetCore.Collections.Paginable.EntityFrameworkCore" Version="3.3.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.6" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.6" />
+    </ItemGroup>
+
+</Project>

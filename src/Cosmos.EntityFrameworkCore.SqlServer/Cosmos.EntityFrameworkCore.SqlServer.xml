@@ -4,95 +4,31 @@
         <name>Cosmos.EntityFrameworkCore.SqlServer</name>
     </assembly>
     <members>
-        <member name="T:Cosmos.Data.DbContextConfigExtensions">
+        <member name="T:Cosmos.Data.CosmosSqlServerDbContextConfigExtensions">
             <summary>
-            Extensions for Cosmos DbContext
+            Cosmos Microsoft SQL Server DbContext configuration extensions.
             </summary>
         </member>
-        <member name="M:Cosmos.Data.DbContextConfigExtensions.UseEfCoreWithSqlServer``1(Cosmos.Data.DbContextConfig,System.Action{Cosmos.EntityFrameworkCore.EfCoreOptions})">
+        <member name="M:Cosmos.Data.CosmosSqlServerDbContextConfigExtensions.UseEfCoreWithSqlServer``1(Cosmos.Data.DbContextConfig,System.Action{Cosmos.EntityFrameworkCore.EfCoreOptions})">
             <summary>
             Use EntityFramework Core with Microsoft SQL Server
             </summary>
-            <param name="config"></param>
+            <param name="context"></param>
             <param name="optAct"></param>
             <typeparam name="TContext"></typeparam>
             <returns></returns>
             <exception cref="T:System.ArgumentNullException"></exception>
         </member>
-        <member name="M:Cosmos.Data.DbContextConfigExtensions.UseEfCoreWithSqlServer``2(Cosmos.Data.DbContextConfig,System.Action{Cosmos.EntityFrameworkCore.EfCoreOptions})">
+        <member name="M:Cosmos.Data.CosmosSqlServerDbContextConfigExtensions.UseEfCoreWithSqlServer``2(Cosmos.Data.DbContextConfig,System.Action{Cosmos.EntityFrameworkCore.EfCoreOptions})">
             <summary>
             Use EntityFramework Core with Microsoft SQL Server
             </summary>
-            <param name="config"></param>
+            <param name="context"></param>
             <param name="optAct"></param>
-            <typeparam name="TCtxtService"></typeparam>
-            <typeparam name="TCtxImplementation"></typeparam>
+            <typeparam name="TContextService"></typeparam>
+            <typeparam name="TContextImplementation"></typeparam>
             <returns></returns>
             <exception cref="T:System.ArgumentNullException"></exception>
-        </member>
-        <member name="T:Cosmos.EntityFrameworkCore.SqlServerLolitaDbOptionExtension">
-            <summary>
-            Extensions for Lolita database option for SqlServer
-            </summary>
-        </member>
-        <member name="P:Cosmos.EntityFrameworkCore.SqlServerLolitaDbOptionExtension.LogFragment">
-            <summary>
-            Log Fragment
-            </summary>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.SqlServerLolitaDbOptionExtension.ApplyServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
-            <summary>
-            Apply services
-            </summary>
-            <param name="services"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.SqlServerLolitaDbOptionExtension.GetServiceProviderHashCode">
-            <summary>
-            Get service provider hashcode
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.SqlServerLolitaDbOptionExtension.Validate(Microsoft.EntityFrameworkCore.Infrastructure.IDbContextOptions)">
-            <summary>
-            Validate
-            </summary>
-            <param name="options"></param>
-        </member>
-        <member name="T:Cosmos.EntityFrameworkCore.LolitaDbOptionExtensions">
-            <summary>
-            Extensions for lolita database option
-            </summary>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.LolitaDbOptionExtensions.UseSqlServerLolita(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
-            <summary>
-            Use SqlServer lolita
-            </summary>
-            <param name="self"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.LolitaDbOptionExtensions.UseSqlServerLolita``1(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder{``0})">
-            <summary>
-            Use SqlServer lolita
-            </summary>
-            <param name="self"></param>
-            <typeparam name="TContext"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.LolitaDbOptionExtensions.UseSqlServerLolita(Microsoft.EntityFrameworkCore.DbContextOptions)">
-            <summary>
-            Use SqlServer lolita
-            </summary>
-            <param name="self"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.LolitaDbOptionExtensions.UseSqlServerLolita``1(Microsoft.EntityFrameworkCore.DbContextOptions{``0})">
-            <summary>
-            Use SqlServer lolita
-            </summary>
-            <param name="self"></param>
-            <typeparam name="TContext"></typeparam>
-            <returns></returns>
         </member>
         <member name="T:Cosmos.EntityFrameworkCore.Map.AggregateRootMap`1">
             <summary>
@@ -135,24 +71,6 @@
             On model creating
             </summary>
             <param name="modelBuilder"></param>
-        </member>
-        <member name="T:Pomelo.EntityFrameworkCore.Lolita.Update.SqlServerSetFieldSqlGenerator">
-            <summary>
-            Sql generator for SqlServer setting field 
-            </summary>
-        </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Update.SqlServerSetFieldSqlGenerator.#ctor(Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper)">
-            <summary>
-            Create a new instance of <see cref="T:Pomelo.EntityFrameworkCore.Lolita.Update.SqlServerSetFieldSqlGenerator"/>
-            </summary>
-            <param name="x"></param>
-        </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Update.SqlServerSetFieldSqlGenerator.TranslateToSql(Pomelo.EntityFrameworkCore.Lolita.Update.SetFieldInfo)">
-            <summary>
-            Translate to sql
-            </summary>
-            <param name="operation"></param>
-            <returns></returns>
         </member>
     </members>
 </doc>

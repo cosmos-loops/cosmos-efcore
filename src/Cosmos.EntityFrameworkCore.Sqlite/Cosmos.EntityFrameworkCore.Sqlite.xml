@@ -4,95 +4,31 @@
         <name>Cosmos.EntityFrameworkCore.Sqlite</name>
     </assembly>
     <members>
-        <member name="T:Cosmos.Data.DbContextConfigExtensions">
+        <member name="T:Cosmos.Data.CoosSqliteDbContextConfigExtensions">
             <summary>
-            Extensions for Cosmos DbContext
+            Cosmos SQLite DbContext configuration extensions
             </summary>
         </member>
-        <member name="M:Cosmos.Data.DbContextConfigExtensions.UseEfCoreWithSqlite``1(Cosmos.Data.DbContextConfig,System.Action{Cosmos.EntityFrameworkCore.EfCoreOptions})">
+        <member name="M:Cosmos.Data.CoosSqliteDbContextConfigExtensions.UseEfCoreWithSqlite``1(Cosmos.Data.DbContextConfig,System.Action{Cosmos.EntityFrameworkCore.EfCoreOptions})">
             <summary>
             Use EntityFramework Core with Sqlite
             </summary>
-            <param name="config"></param>
+            <param name="context"></param>
             <param name="optAct"></param>
             <typeparam name="TContext"></typeparam>
             <returns></returns>
             <exception cref="T:System.ArgumentNullException"></exception>
         </member>
-        <member name="M:Cosmos.Data.DbContextConfigExtensions.UseEfCoreWithSqlite``2(Cosmos.Data.DbContextConfig,System.Action{Cosmos.EntityFrameworkCore.EfCoreOptions})">
+        <member name="M:Cosmos.Data.CoosSqliteDbContextConfigExtensions.UseEfCoreWithSqlite``2(Cosmos.Data.DbContextConfig,System.Action{Cosmos.EntityFrameworkCore.EfCoreOptions})">
             <summary>
             Use EntityFramework Core with Sqlite
             </summary>
-            <param name="config"></param>
+            <param name="context"></param>
             <param name="optAct"></param>
-            <typeparam name="TCtxtService"></typeparam>
-            <typeparam name="TCtxImplementation"></typeparam>
+            <typeparam name="TContextService"></typeparam>
+            <typeparam name="TContextImplementation"></typeparam>
             <returns></returns>
             <exception cref="T:System.ArgumentNullException"></exception>
-        </member>
-        <member name="T:Cosmos.EntityFrameworkCore.SqliteLolitaDbOptionExtension">
-            <summary>
-            Extensions for Lolita database option for Sqlite
-            </summary>
-        </member>
-        <member name="P:Cosmos.EntityFrameworkCore.SqliteLolitaDbOptionExtension.LogFragment">
-            <summary>
-            Log fragement
-            </summary>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.SqliteLolitaDbOptionExtension.ApplyServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
-            <summary>
-            Apply services
-            </summary>
-            <param name="services"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.SqliteLolitaDbOptionExtension.GetServiceProviderHashCode">
-            <summary>
-            Get service provider hashcode
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.SqliteLolitaDbOptionExtension.Validate(Microsoft.EntityFrameworkCore.Infrastructure.IDbContextOptions)">
-            <summary>
-            Validate
-            </summary>
-            <param name="options"></param>
-        </member>
-        <member name="T:Cosmos.EntityFrameworkCore.LolitaDbOptionExtensions">
-            <summary>
-            Extensions for lolita database option
-            </summary>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.LolitaDbOptionExtensions.UseSqliteLolita(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
-            <summary>
-            Use Sqlite lolita
-            </summary>
-            <param name="self"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.LolitaDbOptionExtensions.UseSqliteLolita``1(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder{``0})">
-            <summary>
-            Use Sqlite lolita
-            </summary>
-            <param name="self"></param>
-            <typeparam name="TContext"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.LolitaDbOptionExtensions.UseSqliteLolita(Microsoft.EntityFrameworkCore.DbContextOptions)">
-            <summary>
-            Use Sqlite lolita
-            </summary>
-            <param name="self"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.LolitaDbOptionExtensions.UseSqliteLolita``1(Microsoft.EntityFrameworkCore.DbContextOptions{``0})">
-            <summary>
-            Use Sqlite lolita
-            </summary>
-            <param name="self"></param>
-            <typeparam name="TContext"></typeparam>
-            <returns></returns>
         </member>
         <member name="T:Cosmos.EntityFrameworkCore.Map.AggregateRootMap`1">
             <summary>
@@ -135,25 +71,6 @@
             On model creating
             </summary>
             <param name="modelBuilder"></param>
-        </member>
-        <member name="T:Pomelo.EntityFrameworkCore.Lolita.Update.SqliteSetFieldSqlGenerator">
-            <summary>
-            Sql generator for Sqlite setting field 
-            </summary>
-        </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Update.SqliteSetFieldSqlGenerator.#ctor(Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper)">
-            <summary>
-            Create a new instance of <see cref="T:Pomelo.EntityFrameworkCore.Lolita.Update.SqliteSetFieldSqlGenerator"/>
-            </summary>
-            <param name="x"></param>
-        </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Update.SqliteSetFieldSqlGenerator.TranslateToSql(Pomelo.EntityFrameworkCore.Lolita.Update.SetFieldInfo)">
-            <summary>
-            Translate to sql
-            </summary>
-            <param name="operation"></param>
-            <returns></returns>
-            <exception cref="T:System.NotSupportedException"></exception>
         </member>
     </members>
 </doc>

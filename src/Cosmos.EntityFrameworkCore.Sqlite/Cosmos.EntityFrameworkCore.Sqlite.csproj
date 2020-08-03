@@ -1,21 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="..\..\build\common.props" />
+    <Import Project="Cosmos.EntityFrameworkCore.Sqlite._shared.props" />
 
-    <PropertyGroup>
-        <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
-        <LangVersion>8</LangVersion>
-        <RootNamespace />
-    </PropertyGroup>
+    <Import Project="..\..\common.props" />
 
     <ItemGroup>
         <ProjectReference Include="..\Cosmos.EntityFrameworkCore\Cosmos.EntityFrameworkCore.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Cosmos.Data.Extensions.DependencyInjection" Version="0.1.4.4-alpha2-201030" />
-        <PackageReference Include="Cosmos.Data.Extensions.Sqlite" Version="0.1.4.4-alpha2-201040" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.6" />
+        <PackageReference Include="Cosmos.Data.Extensions.DependencyInjection" Version="$(TargetPkgVersion)" />
+        <PackageReference Include="Cosmos.Data.Extensions.Sqlite" Version="$(TargetPkgVersion)" />
     </ItemGroup>
 
 </Project>

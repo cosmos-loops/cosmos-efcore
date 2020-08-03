@@ -19,29 +19,41 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cosmos.EntityFrameworkCore.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cosmos.EntityFrameworkCore.SqlServer", "src\Cosmos.EntityFrameworkCore.SqlServer\Cosmos.EntityFrameworkCore.SqlServer.csproj", "{2939193A-C210-4125-B21F-C2C6CF3AE325}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{F3A06E12-E5DC-4B77-81EC-9BDBE92541E8}"
-ProjectSection(SolutionItems) = preProject
-	build\common.props = build\common.props
-	build\version.props = build\version.props
-	build\misc.props = build\misc.props
-	build\package.props = build\package.props
-EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "core", "core", "{91F9EF0C-662C-4A9C-BA84-4285D53CC358}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "impl", "impl", "{849EC35D-8674-48AF-B432-63940477830F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{49576CAA-13CA-442C-B7B2-BA11E68063E8}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution", "solution", "{49576CAA-13CA-442C-B7B2-BA11E68063E8}"
 ProjectSection(SolutionItems) = preProject
 	LICENSE = LICENSE
-	NuGet.config = NuGet.config
-	Publish.bat = Publish.bat
-	PublishToMyGet.bat = PublishToMyGet.bat
 	README.md = README.md
-	PublishToAlexinea.bat = PublishToAlexinea.bat
+	.gitignore = .gitignore
+	common.props = common.props
+	common.tests.props = common.tests.props
 EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cosmos.EntityFrameworkCore.MySqlConnector", "src\Cosmos.EntityFrameworkCore.MySqlConnector\Cosmos.EntityFrameworkCore.MySqlConnector.csproj", "{AC3152FA-E06D-498D-85FF-12F23F591A8D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "asset", "asset", "{09413441-E9D4-4D3C-BB9D-87C75BA65426}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "props", "props", "{9DD87C55-C709-40E8-819B-45FC0D927A8E}"
+ProjectSection(SolutionItems) = preProject
+	asset\props\misc.props = asset\props\misc.props
+	asset\props\package.props = asset\props\package.props
+EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{566D3B38-7465-4D39-9822-51AA437469FD}"
+ProjectSection(SolutionItems) = preProject
+	asset\images\icon.back.png = asset\images\icon.back.png
+	asset\images\icon.png = asset\images\icon.png
+EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{84D1122E-E3DB-44A9-AE73-B852AA5D93FA}"
+ProjectSection(SolutionItems) = preProject
+	build\PublishBetaVersion_Script.bat = build\PublishBetaVersion_Script.bat
+	build\PublishNightlyVersion_Script.bat = build\PublishNightlyVersion_Script.bat
+	build\PublishReleaseVersion_Script.bat = build\PublishReleaseVersion_Script.bat
+EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,7 +105,8 @@ Global
 		{3C428252-7043-42B8-A411-B9F531FE8FFB} = {849EC35D-8674-48AF-B432-63940477830F}
 		{19D31A7B-B7C8-4E30-90C5-BBEFC1E90708} = {849EC35D-8674-48AF-B432-63940477830F}
 		{2939193A-C210-4125-B21F-C2C6CF3AE325} = {849EC35D-8674-48AF-B432-63940477830F}
-		{F3A06E12-E5DC-4B77-81EC-9BDBE92541E8} = {49576CAA-13CA-442C-B7B2-BA11E68063E8}
 		{AC3152FA-E06D-498D-85FF-12F23F591A8D} = {849EC35D-8674-48AF-B432-63940477830F}
+		{9DD87C55-C709-40E8-819B-45FC0D927A8E} = {09413441-E9D4-4D3C-BB9D-87C75BA65426}
+		{566D3B38-7465-4D39-9822-51AA437469FD} = {09413441-E9D4-4D3C-BB9D-87C75BA65426}
 	EndGlobalSection
 EndGlobal

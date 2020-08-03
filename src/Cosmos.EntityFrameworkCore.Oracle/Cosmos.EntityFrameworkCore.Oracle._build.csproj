@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <Import Project="Cosmos.EntityFrameworkCore.Oracle._shared.props"/>
+
+    <Import Project="..\..\common.props" />
+
+    <ItemGroup>
+        <ProjectReference Include="..\Cosmos.EntityFrameworkCore\Cosmos.EntityFrameworkCore._build.csproj" />
+        <ProjectReference Include="..\..\..\cosmos-data\src\Cosmos.Data.Extensions.DependencyInjection\Cosmos.Data.Extensions.DependencyInjection._build.csproj" />
+        <ProjectReference Include="..\..\..\cosmos-data\src\Cosmos.Data.Extensions.Oracle\Cosmos.Data.Extensions.Oracle._build.csproj" />
+    </ItemGroup>
+
+</Project>
