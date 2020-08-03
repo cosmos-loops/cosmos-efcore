@@ -34,12 +34,12 @@ namespace Cosmos.Data
             {
                 if (!string.IsNullOrWhiteSpace(opt.ConnectionString))
                 {
-                    services.AddDbContext<TContext>(o => o.UseMySql(opt.ConnectionString).UseLolita());
+                    services.AddDbContext<TContext>(o => o.UseMySql(opt.ConnectionString));
                 }
                 else if (!string.IsNullOrWhiteSpace(opt.ConnectionName))
                 {
                     services.AddDbContext<TContext>((p, o) =>
-                        o.UseMySql(p.GetService<IConfigurationRoot>().GetConnectionString(opt.ConnectionName)).UseLolita());
+                        o.UseMySql(p.GetService<IConfigurationRoot>().GetConnectionString(opt.ConnectionName)));
                 }
                 else
                 {
@@ -75,12 +75,12 @@ namespace Cosmos.Data
             {
                 if (!string.IsNullOrWhiteSpace(opt.ConnectionString))
                 {
-                    services.AddDbContext<TContextService, TContextImplementation>(o => o.UseMySql(opt.ConnectionString).UseLolita());
+                    services.AddDbContext<TContextService, TContextImplementation>(o => o.UseMySql(opt.ConnectionString));
                 }
                 else if (!string.IsNullOrWhiteSpace(opt.ConnectionName))
                 {
                     services.AddDbContext<TContextService, TContextImplementation>((p, o) =>
-                        o.UseMySql(p.GetService<IConfigurationRoot>().GetConnectionString(opt.ConnectionName)).UseLolita());
+                        o.UseMySql(p.GetService<IConfigurationRoot>().GetConnectionString(opt.ConnectionName)));
                 }
                 else
                 {

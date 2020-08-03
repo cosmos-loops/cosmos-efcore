@@ -56,7 +56,7 @@ namespace Cosmos.EntityFrameworkCore.Store
         /// <returns></returns>
         public virtual Task<TEntity> FindByIdAsync(TKey id, CancellationToken cancellationToken = default)
         {
-            return Set.FindAsync(new object[] {id}, cancellationToken);
+            return Set.FindAsync(new object[] {id}, cancellationToken).AsTask();
         }
 
         #endregion
