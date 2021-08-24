@@ -1,0 +1,13 @@
+<Project>
+
+    <ItemGroup>
+        <PackageReference Include="Cosmos.Data.Extensions.DependencyInjection" Version="$(Data-PkgVersion)" />
+        <PackageReference Include="Cosmos.Data.Extensions.Sqlite" Version="$(Data-PkgVersion)" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.7" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Cosmos.EntityFrameworkCore\Cosmos.EntityFrameworkCore.csproj" />
+    </ItemGroup>
+
+</Project>

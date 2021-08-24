@@ -1,0 +1,9 @@
+<Project>
+
+    <PropertyGroup>
+        <AssemblyName>Cosmos.EntityFrameworkCore.SqlServer</AssemblyName>
+        <PackageId>Cosmos.EntityFrameworkCore.SqlServer</PackageId>
+        <Description>EntityFrameworkCore extensions for Cosmos data.</Description>
+    </PropertyGroup>
+
+</Project>
