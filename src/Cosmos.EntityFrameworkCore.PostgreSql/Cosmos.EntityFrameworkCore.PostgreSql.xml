@@ -4,12 +4,12 @@
         <name>Cosmos.EntityFrameworkCore.PostgreSql</name>
     </assembly>
     <members>
-        <member name="T:Cosmos.Data.CosmosPostgreSqlDbContextConfigExtensions">
+        <member name="T:Cosmos.Dependency.CosmosPostgreSqlDbContextConfigExtensions">
             <summary>
             Cosmos PostgreSql DbContext configuration extensions
             </summary>
         </member>
-        <member name="M:Cosmos.Data.CosmosPostgreSqlDbContextConfigExtensions.UseEfCoreWithPostgreSql``1(Cosmos.Data.DbContextConfig,System.Action{Cosmos.EntityFrameworkCore.EfCoreOptions})">
+        <member name="M:Cosmos.Dependency.CosmosPostgreSqlDbContextConfigExtensions.UseEfCoreWithPostgreSql``1(Cosmos.Dependency.DbContextConfig{Cosmos.Dependency.MicrosoftProxyRegister},System.Action{Cosmos.EntityFrameworkCore.EfCoreOptions})">
             <summary>
             Use EntityFramework Core with PostgreSql
             </summary>
@@ -19,7 +19,7 @@
             <returns></returns>
             <exception cref="T:System.ArgumentNullException"></exception>
         </member>
-        <member name="M:Cosmos.Data.CosmosPostgreSqlDbContextConfigExtensions.UseEfCoreWithPostgreSql``2(Cosmos.Data.DbContextConfig,System.Action{Cosmos.EntityFrameworkCore.EfCoreOptions})">
+        <member name="M:Cosmos.Dependency.CosmosPostgreSqlDbContextConfigExtensions.UseEfCoreWithPostgreSql``2(Cosmos.Dependency.DbContextConfig{Cosmos.Dependency.MicrosoftProxyRegister},System.Action{Cosmos.EntityFrameworkCore.EfCoreOptions})">
             <summary>
             Use EntityFramework Core with PostgreSql
             </summary>
@@ -30,7 +30,7 @@
             <returns></returns>
             <exception cref="T:System.ArgumentNullException"></exception>
         </member>
-        <member name="T:Cosmos.EntityFrameworkCore.Map.AggregateRootMap`1">
+        <member name="T:Cosmos.EntityFrameworkCore.EntityMapping.AggregateRootMap`1">
             <summary>
             Mapping config for AggregateRoot
             <br />
@@ -38,18 +38,18 @@
             </summary>
             <typeparam name="TEntity">实体类型</typeparam>
         </member>
-        <member name="M:Cosmos.EntityFrameworkCore.Map.AggregateRootMap`1.MapVersion(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{`0})">
+        <member name="M:Cosmos.EntityFrameworkCore.EntityMapping.AggregateRootMap`1.MapVersion(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{`0})">
             <summary>
             映射乐观离线锁
             </summary>
         </member>
-        <member name="T:Cosmos.EntityFrameworkCore.Map.EntityMap`1">
+        <member name="T:Cosmos.EntityFrameworkCore.EntityMapping.EntityMap`1">
             <summary>
             Entity map
             </summary>
             <typeparam name="TEntity"></typeparam>
         </member>
-        <member name="T:Cosmos.EntityFrameworkCore.Map.IPostgreSqlEntityMap">
+        <member name="T:Cosmos.EntityFrameworkCore.EntityMapping.IPostgreSqlEntityMap">
             <summary>
             Interface for PostgreSql entity map
             </summary>
@@ -71,6 +71,43 @@
             On model creating
             </summary>
             <param name="modelBuilder"></param>
+        </member>
+        <member name="P:Cosmos.EntityFrameworkCore.SqlRaw.NpgSqlRawQueryGenerator.EnableRangeOperation">
+            <summary>
+            if IsForSingleTable=true, ZackQuerySqlGenerator will change the default behavior to capture PredicateSql and so on.
+            if IsForSingleTable=false, ZackQuerySqlGenerator will use all the implementations of base class
+            </summary>
+        </member>
+        <member name="P:Cosmos.EntityFrameworkCore.SqlRaw.NpgSqlRawQueryGenerator.ProjectionSql">
+            <summary>
+            columns of the select statement
+            </summary>
+        </member>
+        <member name="P:Cosmos.EntityFrameworkCore.SqlRaw.NpgSqlRawQueryGenerator.PredicateSql">
+            <summary>
+            the where clause
+            </summary>
+        </member>
+        <member name="P:Cosmos.EntityFrameworkCore.SqlRaw.NpgSqlRawQueryGenerator.LocalSql">
+            <inheritdoc />
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.SqlRaw.NpgSqlRawQueryGenerator.LocalGenerateSetOperation(Microsoft.EntityFrameworkCore.Query.SqlExpressions.SetOperationBase)">
+            <inheritdoc />
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.SqlRaw.NpgSqlRawQueryGenerator.LocalGenerateTop(Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression)">
+            <inheritdoc />
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.SqlRaw.NpgSqlRawQueryGenerator.LocalGeneratePseudoFromClause">
+            <inheritdoc />
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.SqlRaw.NpgSqlRawQueryGenerator.LocalGenerateOrderings(Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression)">
+            <inheritdoc />
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.SqlRaw.NpgSqlRawQueryGenerator.LocalGenerateLimitOffset(Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression)">
+            <inheritdoc />
+        </member>
+        <member name="P:Cosmos.EntityFrameworkCore.SqlRaw.NpgSqlRawQueryGenerator.LocalAliasSeparator">
+            <inheritdoc />
         </member>
     </members>
 </doc>

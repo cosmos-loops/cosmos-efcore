@@ -4,12 +4,12 @@
         <name>Cosmos.EntityFrameworkCore.MySqlConnector</name>
     </assembly>
     <members>
-        <member name="T:Cosmos.Data.DbContextConfigExtensions">
+        <member name="T:Cosmos.Dependency.CosmosMySqlDbContextConfigExtensions">
             <summary>
-            Extensions for Cosmos DbContext
+            Cosmos MySQL DbContext configuration extensions.
             </summary>
         </member>
-        <member name="M:Cosmos.Data.DbContextConfigExtensions.UseEfCoreWithMySql``1(Cosmos.Data.DbContextConfig,System.Action{Cosmos.EntityFrameworkCore.EfCoreOptions})">
+        <member name="M:Cosmos.Dependency.CosmosMySqlDbContextConfigExtensions.UseEfCoreWithMySql``1(Cosmos.Dependency.DbContextConfig{Cosmos.Dependency.MicrosoftProxyRegister},System.Action{Cosmos.EntityFrameworkCore.EfCoreOptions})">
             <summary>
             Use EntityFramework Core with MySql
             </summary>
@@ -20,7 +20,19 @@
             <exception cref="T:System.ArgumentNullException"></exception>
             <exception cref="T:System.InvalidOperationException"></exception>
         </member>
-        <member name="M:Cosmos.Data.DbContextConfigExtensions.UseEfCoreWithMySql``2(Cosmos.Data.DbContextConfig,System.Action{Cosmos.EntityFrameworkCore.EfCoreOptions})">
+        <member name="M:Cosmos.Dependency.CosmosMySqlDbContextConfigExtensions.UseEfCoreWithMySql``1(Cosmos.Dependency.DbContextConfig{Cosmos.Dependency.MicrosoftProxyRegister},System.Func{Microsoft.EntityFrameworkCore.ServerVersion},System.Action{Cosmos.EntityFrameworkCore.EfCoreOptions})">
+            <summary>
+            Use EntityFramework Core with MySql
+            </summary>
+            <param name="context"></param>
+            <param name="optAct"></param>
+            <param name="versionProvider"></param>
+            <typeparam name="TContext"></typeparam>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.InvalidOperationException"></exception>
+        </member>
+        <member name="M:Cosmos.Dependency.CosmosMySqlDbContextConfigExtensions.UseEfCoreWithMySql``2(Cosmos.Dependency.DbContextConfig{Cosmos.Dependency.MicrosoftProxyRegister},System.Action{Cosmos.EntityFrameworkCore.EfCoreOptions})">
             <summary>
             Use EntityFramework Core with MySql
             </summary>
@@ -32,71 +44,20 @@
             <exception cref="T:System.ArgumentNullException"></exception>
             <exception cref="T:System.InvalidOperationException"></exception>
         </member>
-        <member name="T:Cosmos.EntityFrameworkCore.MySqlLolitaDbOptionExtension">
+        <member name="M:Cosmos.Dependency.CosmosMySqlDbContextConfigExtensions.UseEfCoreWithMySql``2(Cosmos.Dependency.DbContextConfig{Cosmos.Dependency.MicrosoftProxyRegister},System.Func{Microsoft.EntityFrameworkCore.ServerVersion},System.Action{Cosmos.EntityFrameworkCore.EfCoreOptions})">
             <summary>
-            Extensions for Lolita database option for MySql
+            Use EntityFramework Core with MySql
             </summary>
-        </member>
-        <member name="P:Cosmos.EntityFrameworkCore.MySqlLolitaDbOptionExtension.LogFragment">
-            <summary>
-            Log Fragment
-            </summary>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.MySqlLolitaDbOptionExtension.ApplyServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
-            <summary>
-            Apply services
-            </summary>
-            <param name="services"></param>
+            <param name="context"></param>
+            <param name="versionProvider"></param>
+            <param name="optAct"></param>
+            <typeparam name="TContextService"></typeparam>
+            <typeparam name="TContextImplementation"></typeparam>
             <returns></returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.InvalidOperationException"></exception>
         </member>
-        <member name="M:Cosmos.EntityFrameworkCore.MySqlLolitaDbOptionExtension.GetServiceProviderHashCode">
-            <summary>
-            Get service provider hashcode
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.MySqlLolitaDbOptionExtension.Validate(Microsoft.EntityFrameworkCore.Infrastructure.IDbContextOptions)">
-            <summary>
-            Validate
-            </summary>
-            <param name="options"></param>
-        </member>
-        <member name="T:Cosmos.EntityFrameworkCore.LolitaDbOptionExtensions">
-            <summary>
-            Extensions for lolita database option
-            </summary>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.LolitaDbOptionExtensions.UseMySqlLolita(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
-            <summary>
-            Use MySql lolita
-            </summary>
-            <param name="self"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.LolitaDbOptionExtensions.UseMySqlLolita``1(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder{``0})">
-            <summary>
-            Use MySql lolita
-            </summary>
-            <param name="self"></param>
-            <typeparam name="TContext"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.LolitaDbOptionExtensions.UseMySqlLolita(Microsoft.EntityFrameworkCore.DbContextOptions)">
-            <summary>
-            Use MySql lolita
-            </summary>
-            <param name="self"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.LolitaDbOptionExtensions.UseMySqlLolita``1(Microsoft.EntityFrameworkCore.DbContextOptions{``0})">
-            <summary>
-            Use MySql lolita
-            </summary>
-            <param name="self"></param>
-            <typeparam name="TContext"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="T:Cosmos.EntityFrameworkCore.Map.AggregateRootMap`1">
+        <member name="T:Cosmos.EntityFrameworkCore.EntityMapping.AggregateRootMap`1">
             <summary>
             Mapping config for AggregateRoot
             <br />
@@ -104,18 +65,18 @@
             </summary>
             <typeparam name="TEntity">实体类型</typeparam>
         </member>
-        <member name="M:Cosmos.EntityFrameworkCore.Map.AggregateRootMap`1.MapVersion(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{`0})">
+        <member name="M:Cosmos.EntityFrameworkCore.EntityMapping.AggregateRootMap`1.MapVersion(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{`0})">
             <summary>
             映射乐观离线锁
             </summary>
         </member>
-        <member name="T:Cosmos.EntityFrameworkCore.Map.EntityMap`1">
+        <member name="T:Cosmos.EntityFrameworkCore.EntityMapping.EntityMap`1">
             <summary>
             Entity map
             </summary>
             <typeparam name="TEntity"></typeparam>
         </member>
-        <member name="T:Cosmos.EntityFrameworkCore.Map.IMySqlEntityMap">
+        <member name="T:Cosmos.EntityFrameworkCore.EntityMapping.IMySqlEntityMap">
             <summary>
             Interface for MySql entity map
             </summary>
@@ -135,23 +96,42 @@
         <member name="M:Cosmos.EntityFrameworkCore.MySqlDbContext`1.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
-        <member name="T:Pomelo.EntityFrameworkCore.Lolita.Update.MySqlSetFieldSqlGenerator">
+        <member name="F:Cosmos.EntityFrameworkCore.SqlRaw.MySqlRawQueryGenerator._projectSql">
             <summary>
-            Sql generator for MySql setting field 
+            columns of the select statement
             </summary>
         </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Update.MySqlSetFieldSqlGenerator.#ctor(Microsoft.EntityFrameworkCore.Storage.ISqlGenerationHelper)">
+        <member name="P:Cosmos.EntityFrameworkCore.SqlRaw.MySqlRawQueryGenerator.EnableRangeOperation">
             <summary>
-            Create a new instance of <see cref="T:Pomelo.EntityFrameworkCore.Lolita.Update.MySqlSetFieldSqlGenerator"/>
+            if IsForSingleTable=true, ZackQuerySqlGenerator will change the default behavior to capture PredicateSQL and so on.
+            if IsForSingleTable=false, ZackQuerySqlGenerator will use all the implementations of base class
             </summary>
-            <param name="x"></param>
         </member>
-        <member name="M:Pomelo.EntityFrameworkCore.Lolita.Update.MySqlSetFieldSqlGenerator.TranslateToSql(Pomelo.EntityFrameworkCore.Lolita.Update.SetFieldInfo)">
+        <member name="P:Cosmos.EntityFrameworkCore.SqlRaw.MySqlRawQueryGenerator.PredicateSql">
             <summary>
-            Translate to sql
+            the where clause
             </summary>
-            <param name="operation"></param>
-            <returns></returns>
+        </member>
+        <member name="P:Cosmos.EntityFrameworkCore.SqlRaw.MySqlRawQueryGenerator.LocalSql">
+            <inheritdoc />
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.SqlRaw.MySqlRawQueryGenerator.LocalGenerateSetOperation(Microsoft.EntityFrameworkCore.Query.SqlExpressions.SetOperationBase)">
+            <inheritdoc />
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.SqlRaw.MySqlRawQueryGenerator.LocalGenerateTop(Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression)">
+            <inheritdoc />
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.SqlRaw.MySqlRawQueryGenerator.LocalGeneratePseudoFromClause">
+            <inheritdoc />
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.SqlRaw.MySqlRawQueryGenerator.LocalGenerateOrderings(Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression)">
+            <inheritdoc />
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.SqlRaw.MySqlRawQueryGenerator.LocalGenerateLimitOffset(Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression)">
+            <inheritdoc />
+        </member>
+        <member name="P:Cosmos.EntityFrameworkCore.SqlRaw.MySqlRawQueryGenerator.LocalAliasSeparator">
+            <inheritdoc />
         </member>
     </members>
 </doc>
