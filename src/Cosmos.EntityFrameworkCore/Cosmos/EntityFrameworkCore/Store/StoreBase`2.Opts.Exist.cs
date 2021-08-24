@@ -50,7 +50,7 @@ namespace Cosmos.EntityFrameworkCore.Store
         /// <returns></returns>
         public virtual bool Exist(TKey id)
         {
-            if (id.SafeString().IsNullOrWhiteSpace())
+            if (id.SafeStringValue().IsNullOrWhiteSpace())
                 return false;
             return Exist(entity => Equals(id, entity.Id));
         }
@@ -87,7 +87,7 @@ namespace Cosmos.EntityFrameworkCore.Store
         /// <returns></returns>
         public virtual async Task<bool> ExistAsync(TKey id, CancellationToken cancellationToken = default)
         {
-            if (id.SafeString().IsNullOrWhiteSpace())
+            if (id.SafeStringValue().IsNullOrWhiteSpace())
                 return false;
             return await ExistAsync(entity => Equals(id, entity.Id), cancellationToken);
         }

@@ -1,7 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
+using Cosmos.EntityFrameworkCore.SqlRaw;
 
 namespace Cosmos.EntityFrameworkCore.Store
 {
@@ -98,6 +101,18 @@ namespace Cosmos.EntityFrameworkCore.Store
         }
 
         /// <summary>
+        /// Unsafe remove range
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <param name="ignoreQueryFilters"></param>
+        /// <returns></returns>
+        public virtual int UnsafeRemove(Expression<Func<TEntity, bool>> predicate = null, bool ignoreQueryFilters = false)
+        {
+            var sql = SqlRawDeleteCommandGenerator.Generate(RawTypedContext, Set, predicate, ignoreQueryFilters, out var parameters);
+            return SqlRawWorker.Execute(RawTypedContext, sql, parameters);
+        }
+
+        /// <summary>
         /// Unsafe remove async
         /// </summary>
         /// <param name="ids"></param>
@@ -109,6 +124,19 @@ namespace Cosmos.EntityFrameworkCore.Store
                 return;
             var entities = await FindByIdsAsync(ids, cancellationToken);
             InternalDelete(entities, true);
+        }
+
+        /// <summary>
+        /// Unsafe remove range async
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <param name="ignoreQueryFilters"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public virtual async Task<int> UnsafeRemoveAsync(Expression<Func<TEntity, bool>> predicate = null, bool ignoreQueryFilters = false, CancellationToken cancellationToken = default)
+        {
+            var sql = SqlRawDeleteCommandGenerator.Generate(RawTypedContext, Set, predicate, ignoreQueryFilters, out var parameters);
+            return await SqlRawWorker.ExecuteAsync(RawTypedContext, sql, parameters, cancellationToken);
         }
 
         #endregion

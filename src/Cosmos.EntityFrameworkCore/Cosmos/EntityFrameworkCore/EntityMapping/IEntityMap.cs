@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace Cosmos.EntityFrameworkCore.Map
+namespace Cosmos.EntityFrameworkCore.EntityMapping
 {
     /// <summary>
     /// Interface for Entity Map

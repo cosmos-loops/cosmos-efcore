@@ -5,8 +5,8 @@ using System.Reflection;
 using Cosmos.Data.Common;
 using Cosmos.Data.Store;
 using Cosmos.Disposables;
-using Cosmos.Domain.Core;
-using Cosmos.Domain.EntityDescriptors;
+using Cosmos.Models;
+using Cosmos.Models.Descriptors.EntityDescriptors;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 

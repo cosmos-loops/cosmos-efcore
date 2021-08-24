@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Cosmos.Data;
 using Cosmos.Data.Common;
+using Cosmos.Models.Audits;
 using Microsoft.EntityFrameworkCore;
 
 namespace Cosmos.EntityFrameworkCore
@@ -21,7 +22,7 @@ namespace Cosmos.EntityFrameworkCore
         protected DbContextBase(DbContextOptions options, EfCoreOptions ownOptions) : base(options)
         {
             OwnEfCoreOptions = ownOptions ?? throw new ArgumentNullException(nameof(ownOptions));
-            EnableAutoHistory = ownOptions.AutoHistory.Enable;
+            EnableAudit = ownOptions.EnableAudit;
         }
 
         #region Database and connection
@@ -48,12 +49,18 @@ namespace Cosmos.EntityFrameworkCore
 
         #endregion
 
-        #region AutoHistory
+        #region AuditHistory
 
         /// <summary>
         /// Enable auto history
         /// </summary>
-        public bool EnableAutoHistory { get; }
+        public bool EnableAudit { get; }
+
+        protected virtual void EnsureAuditHistoryIfNeed()
+        {
+            if (EnableAudit)
+                this.EnsureAuditHistory(OwnEfCoreOptions.AuditHistoryOptions);
+        }
 
         #endregion
 
@@ -64,18 +71,13 @@ namespace Cosmos.EntityFrameworkCore
         /// </summary>
         protected virtual void OnSavingChanges()
         {
-            if (EnableAutoHistory)
-            {
-                this.EnsureAutoHistory();
-            }
+            EnsureAuditHistoryIfNeed();
         }
 
         /// <summary>
         /// On saved changes
         /// </summary>
-        protected virtual void OnSavedChanges()
-        {
-        }
+        protected virtual void OnSavedChanges() { }
 
         /// <summary>
         /// Save changes
@@ -158,7 +160,7 @@ namespace Cosmos.EntityFrameworkCore
         {
             try
             {
-                Database.UseTransaction(Transaction.GetOrBegin());
+                await Database.UseTransactionAsync(Transaction.GetOrBegin(), cancellationToken);
                 await SaveChangesAsync(true, cancellationToken);
                 callback?.Invoke();
                 Transaction.Commit();

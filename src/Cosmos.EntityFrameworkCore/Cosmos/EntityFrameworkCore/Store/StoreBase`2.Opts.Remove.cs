@@ -4,8 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
-using Cosmos.Collections;
-using Cosmos.Domain.EntityDescriptors;
+using Cosmos.Models.Descriptors.EntityDescriptors;
 
 namespace Cosmos.EntityFrameworkCore.Store
 {
@@ -180,7 +179,8 @@ namespace Cosmos.EntityFrameworkCore.Store
             // ReSharper disable once SuspiciousTypeConversion.Global
             if (entities is IEnumerable<IDeletable> models)
             {
-                models.ForEach(model => model.IsDeleted = true);
+                foreach (var model in models)
+                    model.IsDeleted = true;
             }
         }
     }

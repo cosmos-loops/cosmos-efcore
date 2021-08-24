@@ -1,0 +1,9 @@
+<Project>
+
+    <PropertyGroup>
+        <AssemblyName>Cosmos.EntityFrameworkCore</AssemblyName>
+        <PackageId>Cosmos.EntityFrameworkCore</PackageId>
+        <Description>Core package of Cosmos data.</Description>
+    </PropertyGroup>
+
+</Project>

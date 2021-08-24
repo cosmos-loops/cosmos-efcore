@@ -1,0 +1,10 @@
+<Project>
+
+    <ItemGroup>
+        <PackageReference Include="Cosmos.Data" Version="$(Data-PkgVersion)" />
+        <PackageReference Include="Cosmos.Serialization.MicrosoftJson" Version="$(Serialization-PkgVersion)" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.7" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.7" />
+    </ItemGroup>
+
+</Project>

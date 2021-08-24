@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
-using Cosmos.Domain.Core;
-using Cosmos.Validations.Parameters;
+using Cosmos.Models;
+using Cosmos.Validation.Annotations;
 
 namespace Cosmos.EntityFrameworkCore.Store
 {
@@ -13,6 +15,80 @@ namespace Cosmos.EntityFrameworkCore.Store
     /// <typeparam name="TKey"></typeparam>
     public interface IWriteableStoreAppend<TEntity, in TKey> where TEntity : class, IEntity<TKey>, new()
     {
+        #region UpdateWith/UpdateWithout
+
+        /// <summary>
+        /// Update a entity with property names.
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="propNames"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        void UpdateWith(TEntity entity, params string[] propNames);
+
+        /// <summary>
+        /// Update a entity with property names.
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="propertyExpressions"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        void UpdateWith(TEntity entity, params Expression<Func<TEntity, object>>[] propertyExpressions);
+
+        /// <summary>
+        /// Update a entity without property names.
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="propNames"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        void UpdateWithout(TEntity entity, params string[] propNames);
+
+        /// <summary>
+        /// Update a entity without property names.
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="propertyExpressions"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        void UpdateWithout(TEntity entity, params Expression<Func<TEntity, object>>[] propertyExpressions);
+
+        /// <summary>
+        /// Update a entity with property names.
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="propNames"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        Task UpdateWithAsync(TEntity entity, params string[] propNames);
+
+        /// <summary>
+        /// Update a entity with property names.
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="propertyExpressions"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        Task UpdateWithAsync(TEntity entity, params Expression<Func<TEntity, object>>[] propertyExpressions);
+
+        /// <summary>
+        /// Update a entity without property names.
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="propNames"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        Task UpdateWithoutAsync(TEntity entity, params string[] propNames);
+
+        /// <summary>
+        /// Update a entity without property names.
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="propertyExpressions"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        Task UpdateWithoutAsync(TEntity entity, params Expression<Func<TEntity, object>>[] propertyExpressions);
+
+        #endregion
+
+        #region Update Unsafe
+
+        FluentUpdateBuilder<TEntity> UnsafeUpdate();
+
+        #endregion
+
         #region Remove
 
         /// <summary>
@@ -32,12 +108,20 @@ namespace Cosmos.EntityFrameworkCore.Store
         #endregion
 
         #region Remove Unsafe
-        
+
         /// <summary>
         /// Unsafe remove by a set of id
         /// </summary>
         /// <param name="ids"></param>
         void UnsafeRemove([NotNull] IEnumerable<TKey> ids);
+
+        /// <summary>
+        /// Unsafe remove range
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <param name="ignoreQueryFilters"></param>
+        /// <returns></returns>
+        int UnsafeRemove(Expression<Func<TEntity, bool>> predicate = null, bool ignoreQueryFilters = false);
 
         /// <summary>
         /// Unsafe remove by a set of id async
@@ -46,6 +130,15 @@ namespace Cosmos.EntityFrameworkCore.Store
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         Task UnsafeRemoveAsync([NotNull] IEnumerable<TKey> ids, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Unsafe remove range async
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <param name="ignoreQueryFilters"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        Task<int> UnsafeRemoveAsync(Expression<Func<TEntity, bool>> predicate = null, bool ignoreQueryFilters = false, CancellationToken cancellationToken = default);
 
         #endregion
     }

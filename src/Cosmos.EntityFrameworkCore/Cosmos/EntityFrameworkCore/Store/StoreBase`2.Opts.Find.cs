@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
-using DotNetCore.Collections.Paginable;
+using Cosmos.Collections.Pagination;
 using Microsoft.EntityFrameworkCore;
 
 namespace Cosmos.EntityFrameworkCore.Store

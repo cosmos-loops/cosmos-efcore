@@ -4,8 +4,8 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
-using Cosmos.Domain.Core;
-using Cosmos.Validations.Parameters;
+using Cosmos.Models;
+using Cosmos.Validation.Annotations;
 
 namespace Cosmos.EntityFrameworkCore.Store
 {

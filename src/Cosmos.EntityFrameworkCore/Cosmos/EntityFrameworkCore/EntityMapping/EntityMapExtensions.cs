@@ -4,14 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using Cosmos.Reflection;
 
-namespace Cosmos.EntityFrameworkCore.Map
+namespace Cosmos.EntityFrameworkCore.EntityMapping
 {
     /// <summary>
     /// Cosmos entity map extensions.
     /// </summary>
-    public static class CosmosEntityMapExtensions
+    internal static class EntityMapExtensions
     {
-        private static readonly ConcurrentDictionary<(Type, int), bool> MatchedCached = new ConcurrentDictionary<(Type, int), bool>();
+        private static readonly ConcurrentDictionary<(Type, int), bool> MatchedCached = new();
 
         /// <summary>
         /// Is matched entity mapping rule
@@ -33,7 +33,7 @@ namespace Cosmos.EntityFrameworkCore.Map
             if (!typeof(IEntityMap).IsAssignableFrom(type))
                 return CacheAndReturn(type, bodyTypes, false);
 
-            var bodyType = Types.GetRawTypeFromGenericClass(type, typeof(MapBase<>));
+            var bodyType = TypeReflections.GetRawTypeFromGenericType(type, typeof(MapBase<>));
 
             if (bodyType is null)
                 return CacheAndReturn(type, bodyTypes, false);

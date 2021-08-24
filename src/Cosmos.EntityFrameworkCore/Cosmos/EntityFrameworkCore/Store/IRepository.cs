@@ -1,6 +1,6 @@
 using Cosmos.Data.Common;
 using Cosmos.Data.Store;
-using Cosmos.Domain.Core;
+using Cosmos.Models;
 
 namespace Cosmos.EntityFrameworkCore.Store
 {

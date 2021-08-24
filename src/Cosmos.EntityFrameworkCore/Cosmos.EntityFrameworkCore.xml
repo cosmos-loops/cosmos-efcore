@@ -4,6 +4,70 @@
         <name>Cosmos.EntityFrameworkCore</name>
     </assembly>
     <members>
+        <member name="T:Cosmos.Collections.Pagination.EfCoreSolidPageExtensions">
+            <summary>
+            Extensions for solid page for EntityFrameworkCore
+            </summary>
+        </member>
+        <member name="M:Cosmos.Collections.Pagination.EfCoreSolidPageExtensions.AsPageable``1(Microsoft.EntityFrameworkCore.DbSet{``0},System.Nullable{System.Int32})">
+            <summary>
+            Make original query result to QueryablePage collection.
+            </summary>
+            <typeparam name="T">element type of your enumerable result</typeparam>
+            <param name="source">DbSet source</param>
+            <param name="limitedMemberCount">limited member count</param>
+            <returns></returns>
+        </member>
+        <member name="M:Cosmos.Collections.Pagination.EfCoreSolidPageExtensions.AsPageable``1(Microsoft.EntityFrameworkCore.DbSet{``0},System.Int32,System.Nullable{System.Int32})">
+            <summary>
+            Make original query result to QueryablePage collection.
+            </summary>
+            <typeparam name="T">element type of your enumerable result</typeparam>
+            <param name="source">DbSet source</param>
+            <param name="pageSize">page size</param>
+            <param name="limitedMemberCount">limited member count</param>
+            <returns></returns>
+        </member>
+        <member name="M:Cosmos.Collections.Pagination.EfCoreSolidPageExtensions.GetPage``1(Microsoft.EntityFrameworkCore.DbSet{``0},System.Int32)">
+            <summary>
+            Get specific page from original EfCore DbSet`1 source
+            </summary>
+            <typeparam name="T">element type of your EfCore DbSet`1 source</typeparam>
+            <param name="source">DbSet source</param>
+            <param name="pageNumber">page number</param>
+            <returns></returns>
+        </member>
+        <member name="M:Cosmos.Collections.Pagination.EfCoreSolidPageExtensions.GetPage``1(Microsoft.EntityFrameworkCore.DbSet{``0},System.Int32,System.Int32)">
+            <summary>
+            Get specific page from original EfCore DbSet`1 source
+            </summary>
+            <typeparam name="T">element type of your EfCore DbSet`1 source</typeparam>
+            <param name="source">DbSet source</param>
+            <param name="pageNumber">page number</param>
+            <param name="pageSize">page size</param>
+            <returns></returns>
+        </member>
+        <member name="M:Cosmos.Collections.Pagination.EfCoreSolidPageExtensions.GetPage``1(Microsoft.EntityFrameworkCore.DbSet{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Int32)">
+            <summary>
+            Get specific page from original EfCore DbSet`1 source
+            </summary>
+            <typeparam name="T">element type of your EfCore DbSet`1 source</typeparam>
+            <param name="source">DbSet source</param>
+            <param name="predicate">Predicate</param>
+            <param name="pageNumber">page number</param>
+            <returns></returns>
+        </member>
+        <member name="M:Cosmos.Collections.Pagination.EfCoreSolidPageExtensions.GetPage``1(Microsoft.EntityFrameworkCore.DbSet{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Int32,System.Int32)">
+            <summary>
+            Get specific page from original EfCore DbSet`1 source
+            </summary>
+            <typeparam name="T">element type of your EfCore DbSet`1 source</typeparam>
+            <param name="source">DbSet source</param>
+            <param name="predicate">Predicate</param>
+            <param name="pageNumber">page number</param>
+            <param name="pageSize">page size</param>
+            <returns></returns>
+        </member>
         <member name="T:Cosmos.EntityFrameworkCore.Core.ColumnInfo">
             <summary>
             Column information
@@ -71,67 +135,6 @@
             <typeparam name="TContext"></typeparam>
             <returns></returns>
         </member>
-        <member name="T:Cosmos.EntityFrameworkCore.CosmosDatabaseFacadeExtensions">
-            <summary>
-            Cosmos database facade extensions
-            </summary>
-        </member>
-        <member name="T:Cosmos.EntityFrameworkCore.CosmosDbContextExtensions">
-            <summary>
-            Cosmos DbContext extensions
-            </summary>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.CosmosDbContextExtensions.ClearCache(Cosmos.EntityFrameworkCore.IEfContext)">
-            <summary>
-            Clear cache
-            </summary>
-            <param name="context"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.CosmosDbContextExtensions.EnsureAutoHistory(Microsoft.EntityFrameworkCore.DbContext)">
-            <summary>
-            Ensures the automatic history.
-            </summary>
-            <param name="context">The context.</param>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.CosmosDbContextExtensions.EnsureAutoHistory``1(Microsoft.EntityFrameworkCore.DbContext,System.Func{``0})">
-            <summary>
-            Ensures the automatic history.
-            </summary>
-            <param name="context"></param>
-            <param name="createHistoryFactory"></param>
-            <typeparam name="TAutoHistory"></typeparam>
-        </member>
-        <member name="T:Cosmos.EntityFrameworkCore.CosmosDbContextTransactionExtensions">
-            <summary>
-            Extensions fot DbContext transaction
-            </summary>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.CosmosDbContextTransactionExtensions.ToTransactionWrapper(Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction)">
-            <summary>
-            To traction wrapper
-            </summary>
-            <param name="transaction"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.CosmosDbContextTransactionExtensions.ToTransactionWrapper(Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction,Cosmos.Data.Common.TransactionAppendOperator)">
-            <summary>
-            To traction wrapper
-            </summary>
-            <param name="transaction"></param>
-            <param name="operator"></param>
-            <returns></returns>
-        </member>
-        <member name="T:Cosmos.EntityFrameworkCore.CosmosDbReaderExtensions">
-            <summary>
-            Cosmos DbReader extensions
-            </summary>
-        </member>
-        <member name="T:Cosmos.EntityFrameworkCore.CosmosRawSqlExtensions">
-            <summary>
-            Cosmos raw sql extensions
-            </summary>
-        </member>
         <member name="T:Cosmos.EntityFrameworkCore.DbContextBase">
             <summary>
             DbContext base
@@ -149,6 +152,11 @@
             Internal connection...
             </summary>
             <returns></returns>
+        </member>
+        <member name="P:Cosmos.EntityFrameworkCore.DbContextBase.EnableAudit">
+            <summary>
+            Enable auto history
+            </summary>
         </member>
         <member name="M:Cosmos.EntityFrameworkCore.DbContextBase.OnSavingChanges">
             <summary>
@@ -204,27 +212,228 @@
             <returns></returns>
             <exception cref="T:Cosmos.Data.ConcurrencyException"></exception>
         </member>
-        <member name="P:Cosmos.EntityFrameworkCore.EfCoreAutoHistoryOptions.ChangedMaxLength">
+        <member name="T:Cosmos.EntityFrameworkCore.EfCoreException">
             <summary>
-            The maximum length of the 'Changed' column. <c>null</c> will use default setting 2048 unless ChangedVarcharMax is true
-            in which case the column will be varchar(max). Default: null.
+            EfCore exception
             </summary>
         </member>
-        <member name="P:Cosmos.EntityFrameworkCore.EfCoreAutoHistoryOptions.LimitChangedLength">
+        <member name="F:Cosmos.EntityFrameworkCore.EfCoreException.DEFAULT_DBCTX_FLAG">
             <summary>
-            Set this to true to enforce ChangedMaxLength. If this is false, ChangedMaxLength will be ignored.
-            Default: true.
+            Default db ctx flag
             </summary>
         </member>
-        <member name="P:Cosmos.EntityFrameworkCore.EfCoreAutoHistoryOptions.RowIdMaxLength">
+        <member name="F:Cosmos.EntityFrameworkCore.EfCoreException.DEFAULT_DBCTX_ERROR_MESSAGE">
             <summary>
-            The max length for the row id column. Default: 50.
+            Default db ctx error message
             </summary>
         </member>
-        <member name="P:Cosmos.EntityFrameworkCore.EfCoreAutoHistoryOptions.TableMaxLength">
+        <member name="F:Cosmos.EntityFrameworkCore.EfCoreException.DEFAULT_DBCTX_ERROR_CODE">
             <summary>
-            The max length for the table column. Default: 128.
+            Default db ctx error code
             </summary>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.EfCoreException.#ctor">
+            <summary>
+            Create a new instance of <see cref="T:Cosmos.EntityFrameworkCore.EfCoreException"/>
+            </summary>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.EfCoreException.#ctor(System.String,System.Exception)">
+            <summary>
+            Create a new instance of <see cref="T:Cosmos.EntityFrameworkCore.EfCoreException"/>
+            </summary>
+            <param name="errorMessage"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.EfCoreException.#ctor(System.String,System.String,System.Exception)">
+            <summary>
+            Create a new instance of <see cref="T:Cosmos.EntityFrameworkCore.EfCoreException"/>
+            </summary>
+            <param name="errorMessage"></param>
+            <param name="flag"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.EfCoreException.#ctor(System.Int64,System.String,System.Exception)">
+            <summary>
+            Create a new instance of <see cref="T:Cosmos.EntityFrameworkCore.EfCoreException"/>
+            </summary>
+            <param name="errorCode"></param>
+            <param name="errorMessage"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.EfCoreException.#ctor(System.Int64,System.String,System.String,System.Exception)">
+            <summary>
+            Create a new instance of <see cref="T:Cosmos.EntityFrameworkCore.EfCoreException"/>
+            </summary>
+            <param name="errorCode"></param>
+            <param name="errorMessage"></param>
+            <param name="flag"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.EfCoreException.#ctor(System.Data.IDbConnection)">
+            <summary>
+            Create a new instance of <see cref="T:Cosmos.EntityFrameworkCore.EfCoreException"/>
+            </summary>
+            <param name="connection"></param>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.EfCoreException.#ctor(System.Data.IDbConnection,System.String,System.Exception)">
+            <summary>
+            Create a new instance of <see cref="T:Cosmos.EntityFrameworkCore.EfCoreException"/>
+            </summary>
+            <param name="connection"></param>
+            <param name="errorMessage"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.EfCoreException.#ctor(System.Data.IDbConnection,System.String,System.String,System.Exception)">
+            <summary>
+            Create a new instance of <see cref="T:Cosmos.EntityFrameworkCore.EfCoreException"/>
+            </summary>
+            <param name="connection"></param>
+            <param name="errorMessage"></param>
+            <param name="flag"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.EfCoreException.#ctor(System.Data.IDbConnection,System.Int64,System.String,System.Exception)">
+            <summary>
+            Create a new instance of <see cref="T:Cosmos.EntityFrameworkCore.EfCoreException"/>
+            </summary>
+            <param name="connection"></param>
+            <param name="errorCode"></param>
+            <param name="errorMessage"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.EfCoreException.#ctor(System.Data.IDbConnection,System.Int64,System.String,System.String,System.Exception)">
+            <summary>
+            Create a new instance of <see cref="T:Cosmos.EntityFrameworkCore.EfCoreException"/>
+            </summary>
+            <param name="connection"></param>
+            <param name="errorCode"></param>
+            <param name="errorMessage"></param>
+            <param name="flag"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="P:Cosmos.EntityFrameworkCore.EfCoreException.Database">
+            <summary>
+            Gets database
+            </summary>
+        </member>
+        <member name="P:Cosmos.EntityFrameworkCore.EfCoreException.ConnectionString">
+            <summary>
+            Gets connection string
+            </summary>
+        </member>
+        <member name="P:Cosmos.EntityFrameworkCore.EfCoreException.ConnectionState">
+            <summary>
+            Gets connection state
+            </summary>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.EfCoreExtensions.ClearCache(Cosmos.EntityFrameworkCore.IEfContext)">
+            <summary>
+            Clear cache
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.EfCoreExtensions.IsInMemory(Cosmos.EntityFrameworkCore.DbContextBase)">
+            <summary>
+            Is in memory
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.EfCoreExtensions.GetEntityType``1(Cosmos.EntityFrameworkCore.DbContextBase)">
+            <summary>
+            Get EntityType for given type.
+            </summary>
+            <param name="context"></param>
+            <typeparam name="TEntity"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.EfCoreExtensions.GetEntityType(Cosmos.EntityFrameworkCore.DbContextBase,System.Type)">
+            <summary>
+            Get EntityType for given type.
+            </summary>
+            <param name="context"></param>
+            <param name="entityType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.EfCoreExtensions.GetTableName``1(Cosmos.EntityFrameworkCore.DbContextBase)">
+            <summary>
+            Get table name
+            </summary>
+            <param name="context"></param>
+            <typeparam name="TEntity"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.EfCoreExtensions.GetTableName(Cosmos.EntityFrameworkCore.DbContextBase,System.Type)">
+            <summary>
+            Get table name
+            </summary>
+            <param name="context"></param>
+            <param name="entityType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.EfCoreExtensions.GetKeyNames``1(Cosmos.EntityFrameworkCore.DbContextBase)">
+            <summary>
+            Get key names.
+            </summary>
+            <param name="context"></param>
+            <typeparam name="TEntity"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.EfCoreExtensions.GetEntityEntry``1(Microsoft.EntityFrameworkCore.DbContext,``0,System.Boolean@)">
+            <summary>
+            Get entity entry.
+            </summary>
+            <param name="dbCtx"></param>
+            <param name="entity"></param>
+            <param name="existBefore"></param>
+            <typeparam name="TEntity"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.EfCoreExtensions.GetDbContext``1(Microsoft.EntityFrameworkCore.DbSet{``0})">
+            <summary>
+            Get <see cref="T:Microsoft.EntityFrameworkCore.DbContext"/>
+            </summary>
+            <param name="dbSet"></param>
+            <typeparam name="TEntity"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.EfCoreExtensions.ToTransactionWrapper(Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction)">
+            <summary>
+            To traction wrapper
+            </summary>
+            <param name="transaction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.EfCoreExtensions.ToTransactionWrapper(Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction,Cosmos.Data.Common.TransactionAppendOperator)">
+            <summary>
+            To traction wrapper
+            </summary>
+            <param name="transaction"></param>
+            <param name="operator"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.EfCoreExtensions.IncludeIfNeed``2(System.Linq.IQueryable{``0},System.Boolean,System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Include if need...
+            </summary>
+            <param name="source"></param>
+            <param name="condition"></param>
+            <param name="property"></param>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TProperty"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.EfCoreExtensions.IncludeIfNeed``2(System.Linq.IQueryable{``0},System.Func{System.Boolean},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Include if need...
+            </summary>
+            <param name="source"></param>
+            <param name="condition"></param>
+            <param name="property"></param>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TProperty"></typeparam>
+            <returns></returns>
         </member>
         <member name="T:Cosmos.EntityFrameworkCore.EfCoreOptions">
             <summary>
@@ -241,10 +450,46 @@
             Connection string
             </summary>
         </member>
-        <member name="P:Cosmos.EntityFrameworkCore.EfCoreOptions.AutoHistory">
+        <member name="P:Cosmos.EntityFrameworkCore.EfCoreOptions.EnableRangeOperation">
             <summary>
-            Options of AutoHistory
+            Enable Audit, default is true.
             </summary>
+        </member>
+        <member name="P:Cosmos.EntityFrameworkCore.EfCoreOptions.EnableAudit">
+            <summary>
+            Enable Audit, default is false.
+            </summary>
+        </member>
+        <member name="P:Cosmos.EntityFrameworkCore.EfCoreOptions.AuditHistoryOptions">
+            <summary>
+            Internal
+            </summary>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.EfCoreOptions.AuditConfig(System.Action{Cosmos.Models.Audits.AuditHistoryOptions})">
+            <summary>
+            Configure AuditHistoryOptions
+            </summary>
+            <param name="configure"></param>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.EfCoreOptions.Create">
+            <summary>
+            To Create a new Microsoft EntityFramework Core options
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.EfCoreOptions.Create(System.Action{Cosmos.EntityFrameworkCore.EfCoreOptions})">
+            <summary>
+            To Create a new Microsoft EntityFramework Core options
+            </summary>
+            <param name="optAct"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.EfCoreOptionsGuard.For(Cosmos.EntityFrameworkCore.EfCoreOptions)">
+            <summary>
+            Guard Microsoft EntityFramework Core options
+            </summary>
+            <param name="options"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
         </member>
         <member name="T:Cosmos.EntityFrameworkCore.EfException">
             <summary>
@@ -360,6 +605,128 @@
             Gets connection state
             </summary>
         </member>
+        <member name="T:Cosmos.EntityFrameworkCore.EntityMapping.EntityMapExtensions">
+            <summary>
+            Cosmos entity map extensions.
+            </summary>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.EntityMapping.EntityMapExtensions.IsMatchedEntityMappingRule(System.Type,System.Collections.Generic.List{System.Type})">
+            <summary>
+            Is matched entity mapping rule
+            </summary>
+            <param name="type"></param>
+            <param name="bodyTypes"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Cosmos.EntityFrameworkCore.EntityMapping.EntityMapScanner`1">
+            <summary>
+            Entity map scanner
+            </summary>
+            <typeparam name="TContext"></typeparam>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.EntityMapping.EntityMapScanner`1.#ctor(System.Type)">
+            <summary>
+            Create a new instance of <see cref="T:Cosmos.EntityFrameworkCore.EntityMapping.EntityMapScanner`1"/>
+            </summary>
+            <param name="entityMapType"></param>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.EntityMapping.EntityMapScanner`1.#ctor(System.Type,System.String)">
+            <summary>
+            Create a new instance of <see cref="T:Cosmos.EntityFrameworkCore.EntityMapping.EntityMapScanner`1"/>
+            </summary>
+            <param name="entityMapType"></param>
+            <param name="limitedAssemblies"></param>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.EntityMapping.EntityMapScanner`1.GetSkipAssembliesNamespaces">
+            <summary>
+            Get skip assemblies namespaces
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.EntityMapping.EntityMapScanner`1.GetLimitedAssembliesNamespaces">
+            <summary>
+            Get limited assemblies namespaces
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.EntityMapping.EntityMapScanner`1.TypeFilter">
+            <summary>
+            Type filter
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Cosmos.EntityFrameworkCore.EntityMapping.IEntityMap">
+            <summary>
+            Interface for Entity Map
+            </summary>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.EntityMapping.IEntityMap.Map(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Map
+            </summary>
+            <param name="builder"></param>
+        </member>
+        <member name="T:Cosmos.EntityFrameworkCore.EntityMapping.MapBase`1">
+            <summary>
+            Map base
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+        </member>
+        <member name="P:Cosmos.EntityFrameworkCore.EntityMapping.MapBase`1.ModelBuilder">
+            <summary>
+            模型生成器
+            </summary>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.EntityMapping.MapBase`1.Map(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            映射配置
+            </summary>
+            <param name="modelBuilder">模型生成器</param>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.EntityMapping.MapBase`1.MapTable(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{`0})">
+             <summary>
+            Map Table
+             <br />
+             映射表
+             </summary>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.EntityMapping.MapBase`1.MapVersion(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{`0})">
+            <summary>
+            Map Version
+            <br />
+            映射乐观离线锁
+            </summary>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.EntityMapping.MapBase`1.MapProperties(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{`0})">
+            <summary>
+            Map Properties
+            <br />
+            映射属性
+            </summary>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.EntityMapping.MapBase`1.MapAssociations(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{`0})">
+            <summary>
+            Map Associations
+            <br />
+            映射导航属性
+            </summary>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.EntityMapping.MapBase`1.HasQueryFilter(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{`0})">
+            <summary>
+            Has query filter
+            <br />
+            映射过滤条件
+            </summary>
+            <param name="builder"></param>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.FluentUpdateBuilder`1.Set``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+            <summary>
+            name is the expression of property's name, and value is the expression of the value
+            </summary>
+            <param name="name">something like: b=>b.Age</param>
+            <param name="value">something like: b=>b.Age+1</param>
+            <returns></returns>
+        </member>
         <member name="T:Cosmos.EntityFrameworkCore.IEfContext">
             <summary>
             Interface for DbContext
@@ -378,138 +745,116 @@
             <param name="cancellationToken"></param>
             <returns></returns>
         </member>
-        <member name="T:Cosmos.EntityFrameworkCore.Map.CosmosEntityMapExtensions">
+        <member name="M:Cosmos.EntityFrameworkCore.Internals.ColumnInfoExtensions.GetColumnInfoColl``1(Microsoft.EntityFrameworkCore.Metadata.IEntityType)">
             <summary>
-            Cosmos entity map extensions.
-            </summary>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.Map.CosmosEntityMapExtensions.IsMatchedEntityMappingRule(System.Type,System.Collections.Generic.List{System.Type})">
-            <summary>
-            Is matched entity mapping rule
-            </summary>
-            <param name="type"></param>
-            <param name="bodyTypes"></param>
-            <returns></returns>
-        </member>
-        <member name="T:Cosmos.EntityFrameworkCore.Map.CosmosModelBuilderExtensions">
-            <summary>
-            Cosmos <see cref="T:Microsoft.EntityFrameworkCore.ModelBuilder"/> extensions.
-            </summary>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.Map.CosmosModelBuilderExtensions.EnableAutoHistory(Microsoft.EntityFrameworkCore.ModelBuilder,System.Nullable{System.Int32})">
-            <summary>
-            Enables the automatic recording change history.
-            </summary>
-            <param name="modelBuilder">The <see cref="T:Microsoft.EntityFrameworkCore.ModelBuilder"/> to enable auto history feature.</param>
-            <param name="changedMaxLength">The maximum length of the 'Changed' column. <c>null</c> will use default setting 2048.</param>
-            <returns>The <see cref="T:Microsoft.EntityFrameworkCore.ModelBuilder"/> had enabled auto history feature.</returns>
-        </member>
-        <member name="T:Cosmos.EntityFrameworkCore.Map.EntityMapScanner`1">
-            <summary>
-            Entity map scanner
-            </summary>
-            <typeparam name="TContext"></typeparam>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.Map.EntityMapScanner`1.#ctor(System.Type)">
-            <summary>
-            Create a new instance of <see cref="T:Cosmos.EntityFrameworkCore.Map.EntityMapScanner`1"/>
-            </summary>
-            <param name="entityMapType"></param>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.Map.EntityMapScanner`1.#ctor(System.Type,System.String)">
-            <summary>
-            Create a new instance of <see cref="T:Cosmos.EntityFrameworkCore.Map.EntityMapScanner`1"/>
-            </summary>
-            <param name="entityMapType"></param>
-            <param name="limitedAssemblies"></param>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.Map.EntityMapScanner`1.GetSkipAssembliesNamespaces">
-            <summary>
-            Get skip assemblies namespaces
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.Map.EntityMapScanner`1.GetLimitedAssembliesNamespaces">
-            <summary>
-            Get limited assemblies namespaces
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.Map.EntityMapScanner`1.TypeFilter">
-            <summary>
-            Type filter
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:Cosmos.EntityFrameworkCore.Map.IEntityMap">
-            <summary>
-            Interface for Entity Map
-            </summary>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.Map.IEntityMap.Map(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <summary>
-            Map
-            </summary>
-            <param name="builder"></param>
-        </member>
-        <member name="T:Cosmos.EntityFrameworkCore.Map.MapBase`1">
-            <summary>
-            Map base
+            Get properties except for navigationProperties or  autogenerated ones
             </summary>
             <typeparam name="TEntity"></typeparam>
+            <param name="entityType"></param>
+            <returns></returns>
         </member>
-        <member name="P:Cosmos.EntityFrameworkCore.Map.MapBase`1.ModelBuilder">
+        <member name="M:Cosmos.EntityFrameworkCore.Internals.ExpressionExtensions.GetMemberName``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})">
             <summary>
-            模型生成器
+            GetMemberName
             </summary>
+            <typeparam name="TEntity">TEntity</typeparam>
+            <typeparam name="TMember">TMember</typeparam>
+            <param name="memberExpression">get member expression</param>
+            <returns></returns>
         </member>
-        <member name="M:Cosmos.EntityFrameworkCore.Map.MapBase`1.Map(Microsoft.EntityFrameworkCore.ModelBuilder)">
+        <member name="M:Cosmos.EntityFrameworkCore.Internals.ExpressionExtensions.GetMemberInfo``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})">
             <summary>
-            映射配置
+            GetMemberInfo
             </summary>
-            <param name="modelBuilder">模型生成器</param>
+            <typeparam name="TEntity">TEntity</typeparam>
+            <typeparam name="TMember">TMember</typeparam>
+            <param name="expression">get member expression</param>
+            <returns></returns>
         </member>
-        <member name="M:Cosmos.EntityFrameworkCore.Map.MapBase`1.MapTable(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{`0})">
-             <summary>
-            Map Table
-             <br />
-             映射表
-             </summary>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.Map.MapBase`1.MapVersion(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{`0})">
+        <member name="M:Cosmos.EntityFrameworkCore.Internals.SelectExpressionExtensions.Parse``1(System.Linq.IQueryable{``0},Microsoft.EntityFrameworkCore.DbContext,System.Boolean)">
             <summary>
-            Map Version
-            <br />
-            映射乐观离线锁
-            </summary>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.Map.MapBase`1.MapProperties(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{`0})">
-            <summary>
-            Map Properties
-            <br />
-            映射属性
-            </summary>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.Map.MapBase`1.MapAssociations(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{`0})">
-            <summary>
-            Map Associations
-            <br />
-            映射导航属性
-            </summary>
-        </member>
-        <member name="M:Cosmos.EntityFrameworkCore.Map.MapBase`1.HasQueryFilter(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{`0})">
-            <summary>
-            Has query filter
-            <br />
-            映射过滤条件
-            </summary>
-            <param name="builder"></param>
-        </member>
-        <member name="T:Cosmos.EntityFrameworkCore.Map.VersionableRootMapBase`1">
-            <summary>
-            Versionable Root Map Base
+            parse select statement of queryable
             </summary>
             <typeparam name="TEntity"></typeparam>
+            <param name="queryable"></param>
+            <param name="ctx"></param>
+            <param name="ignoreQueryFilters"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Cosmos.EntityFrameworkCore.Internals.ParsedSelectResult.Parameters">
+            <summary>
+            parameters of query
+            </summary>
+        </member>
+        <member name="P:Cosmos.EntityFrameworkCore.Internals.ParsedSelectResult.Schema">
+            <summary>
+            Schema
+            </summary>
+        </member>
+        <member name="P:Cosmos.EntityFrameworkCore.Internals.ParsedSelectResult.TableName">
+            <summary>
+            Table name
+            </summary>
+        </member>
+        <member name="P:Cosmos.EntityFrameworkCore.Internals.ParsedSelectResult.ProjectionSql">
+            <summary>
+            columns of select
+            </summary>
+        </member>
+        <member name="P:Cosmos.EntityFrameworkCore.Internals.ParsedSelectResult.PredicateSql">
+            <summary>
+            where clause
+            </summary>
+        </member>
+        <member name="P:Cosmos.EntityFrameworkCore.Internals.ParsedSelectResult.FullSql">
+            <summary>
+            Full Sql
+            </summary>
+        </member>
+        <member name="P:Cosmos.EntityFrameworkCore.Internals.ParsedSelectResult.QuerySqlGenerator">
+            <summary>
+            Query Sql Generator
+            </summary>
+        </member>
+        <member name="P:Cosmos.EntityFrameworkCore.SqlRaw.ISqlRawQueryGenerator.ProjectionSql">
+            <summary>
+            Gets the project Sql.
+            </summary>
+        </member>
+        <member name="P:Cosmos.EntityFrameworkCore.SqlRaw.ISqlRawQueryGenerator.PredicateSql">
+            <summary>
+            Gets or sets the condition sql
+            </summary>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.SqlRaw.ISqlRawQueryGenerator.GetCommand(Microsoft.EntityFrameworkCore.Query.SqlExpressions.SelectExpression)">
+            <summary>
+            Get relational command by the given SelectExpression.
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Cosmos.EntityFrameworkCore.SqlRaw.SqlRawExtensions">
+            <summary>
+            Cosmos type extensions
+            </summary>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.SqlRaw.SqlRawHelper.DiffSql(System.String,System.String)">
+            <summary>
+            exclude the oldSQL from newSQL
+            Diff("abc","abc12")=="12"
+            </summary>
+            <param name="oldSql"></param>
+            <param name="newSql"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.SqlRaw.SqlRawInsertCommandExtensions.BuildDataTable``1(Microsoft.EntityFrameworkCore.DbSet{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Build DataTable for items
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="dbSet"></param>
+            <param name="items"></param>
+            <returns></returns>
         </member>
         <member name="T:Cosmos.EntityFrameworkCore.Store.IRepository`2">
             <summary>
@@ -524,6 +869,16 @@
             </summary>
             <typeparam name="TEntity"></typeparam>
             <typeparam name="TKey"></typeparam>
+        </member>
+        <member name="P:Cosmos.EntityFrameworkCore.Store.IStore`2.TableName">
+            <summary>
+            Table name
+            </summary>
+        </member>
+        <member name="P:Cosmos.EntityFrameworkCore.Store.IStore`2.Schema">
+            <summary>
+            Schema
+            </summary>
         </member>
         <member name="T:Cosmos.EntityFrameworkCore.Store.IQueryableStoreAppend`2">
             <summary>
@@ -620,6 +975,70 @@
             <typeparam name="TEntity"></typeparam>
             <typeparam name="TKey"></typeparam>
         </member>
+        <member name="M:Cosmos.EntityFrameworkCore.Store.IWriteableStoreAppend`2.UpdateWith(`0,System.String[])">
+            <summary>
+            Update a entity with property names.
+            </summary>
+            <param name="entity"></param>
+            <param name="propNames"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.Store.IWriteableStoreAppend`2.UpdateWith(`0,System.Linq.Expressions.Expression{System.Func{`0,System.Object}}[])">
+            <summary>
+            Update a entity with property names.
+            </summary>
+            <param name="entity"></param>
+            <param name="propertyExpressions"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.Store.IWriteableStoreAppend`2.UpdateWithout(`0,System.String[])">
+            <summary>
+            Update a entity without property names.
+            </summary>
+            <param name="entity"></param>
+            <param name="propNames"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.Store.IWriteableStoreAppend`2.UpdateWithout(`0,System.Linq.Expressions.Expression{System.Func{`0,System.Object}}[])">
+            <summary>
+            Update a entity without property names.
+            </summary>
+            <param name="entity"></param>
+            <param name="propertyExpressions"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.Store.IWriteableStoreAppend`2.UpdateWithAsync(`0,System.String[])">
+            <summary>
+            Update a entity with property names.
+            </summary>
+            <param name="entity"></param>
+            <param name="propNames"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.Store.IWriteableStoreAppend`2.UpdateWithAsync(`0,System.Linq.Expressions.Expression{System.Func{`0,System.Object}}[])">
+            <summary>
+            Update a entity with property names.
+            </summary>
+            <param name="entity"></param>
+            <param name="propertyExpressions"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.Store.IWriteableStoreAppend`2.UpdateWithoutAsync(`0,System.String[])">
+            <summary>
+            Update a entity without property names.
+            </summary>
+            <param name="entity"></param>
+            <param name="propNames"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.Store.IWriteableStoreAppend`2.UpdateWithoutAsync(`0,System.Linq.Expressions.Expression{System.Func{`0,System.Object}}[])">
+            <summary>
+            Update a entity without property names.
+            </summary>
+            <param name="entity"></param>
+            <param name="propertyExpressions"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
         <member name="M:Cosmos.EntityFrameworkCore.Store.IWriteableStoreAppend`2.Remove(System.Collections.Generic.IEnumerable{`1})">
             <summary>
             Remove by a set of id
@@ -640,11 +1059,28 @@
             </summary>
             <param name="ids"></param>
         </member>
+        <member name="M:Cosmos.EntityFrameworkCore.Store.IWriteableStoreAppend`2.UnsafeRemove(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Boolean)">
+            <summary>
+            Unsafe remove range
+            </summary>
+            <param name="predicate"></param>
+            <param name="ignoreQueryFilters"></param>
+            <returns></returns>
+        </member>
         <member name="M:Cosmos.EntityFrameworkCore.Store.IWriteableStoreAppend`2.UnsafeRemoveAsync(System.Collections.Generic.IEnumerable{`1},System.Threading.CancellationToken)">
             <summary>
             Unsafe remove by a set of id async
             </summary>
             <param name="ids"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.Store.IWriteableStoreAppend`2.UnsafeRemoveAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Unsafe remove range async
+            </summary>
+            <param name="predicate"></param>
+            <param name="ignoreQueryFilters"></param>
             <param name="cancellationToken"></param>
             <returns></returns>
         </member>
@@ -704,6 +1140,16 @@
         <member name="P:Cosmos.EntityFrameworkCore.Store.StoreBase`3.EntityType">
             <summary>
             Entity type
+            </summary>
+        </member>
+        <member name="P:Cosmos.EntityFrameworkCore.Store.StoreBase`3.TableName">
+            <summary>
+            Table name
+            </summary>
+        </member>
+        <member name="P:Cosmos.EntityFrameworkCore.Store.StoreBase`3.Schema">
+            <summary>
+            Schema
             </summary>
         </member>
         <member name="P:Cosmos.EntityFrameworkCore.Store.StoreBase`3.DeletableEntity">
@@ -1126,11 +1572,28 @@
             </summary>
             <param name="ids"></param>
         </member>
+        <member name="M:Cosmos.EntityFrameworkCore.Store.StoreBase`3.UnsafeRemove(System.Linq.Expressions.Expression{System.Func{`1,System.Boolean}},System.Boolean)">
+            <summary>
+            Unsafe remove range
+            </summary>
+            <param name="predicate"></param>
+            <param name="ignoreQueryFilters"></param>
+            <returns></returns>
+        </member>
         <member name="M:Cosmos.EntityFrameworkCore.Store.StoreBase`3.UnsafeRemoveAsync(System.Collections.Generic.IEnumerable{`2},System.Threading.CancellationToken)">
             <summary>
             Unsafe remove async
             </summary>
             <param name="ids"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.Store.StoreBase`3.UnsafeRemoveAsync(System.Linq.Expressions.Expression{System.Func{`1,System.Boolean}},System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Unsafe remove range async
+            </summary>
+            <param name="predicate"></param>
+            <param name="ignoreQueryFilters"></param>
             <param name="cancellationToken"></param>
             <returns></returns>
         </member>
@@ -1143,9 +1606,41 @@
         </member>
         <member name="M:Cosmos.EntityFrameworkCore.Store.StoreBase`3.Update(System.Collections.Generic.IEnumerable{`1})">
             <summary>
-            Add a set of entity
+            Update a set of entity
             </summary>
             <param name="entities"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.Store.StoreBase`3.UpdateWith(`1,System.String[])">
+            <summary>
+            Update a entity with property names.
+            </summary>
+            <param name="entity"></param>
+            <param name="propNames"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.Store.StoreBase`3.UpdateWith(`1,System.Linq.Expressions.Expression{System.Func{`1,System.Object}}[])">
+            <summary>
+            Update a entity with property names.
+            </summary>
+            <param name="entity"></param>
+            <param name="propertyExpressions"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.Store.StoreBase`3.UpdateWithout(`1,System.String[])">
+            <summary>
+            Update a entity without property names.
+            </summary>
+            <param name="entity"></param>
+            <param name="propNames"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.Store.StoreBase`3.UpdateWithout(`1,System.Linq.Expressions.Expression{System.Func{`1,System.Object}}[])">
+            <summary>
+            Update a entity without property names.
+            </summary>
+            <param name="entity"></param>
+            <param name="propertyExpressions"></param>
             <exception cref="T:System.ArgumentNullException"></exception>
         </member>
         <member name="M:Cosmos.EntityFrameworkCore.Store.StoreBase`3.UpdateAsync(`1)">
@@ -1163,137 +1658,107 @@
             <returns></returns>
             <exception cref="T:System.ArgumentNullException"></exception>
         </member>
-        <member name="T:Microsoft.EntityFrameworkCore.AutoHistory">
+        <member name="M:Cosmos.EntityFrameworkCore.Store.StoreBase`3.UpdateWithAsync(`1,System.String[])">
             <summary>
-            Represents the entity change history.
+            Update a entity with property names.
+            </summary>
+            <param name="entity"></param>
+            <param name="propNames"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.Store.StoreBase`3.UpdateWithAsync(`1,System.Linq.Expressions.Expression{System.Func{`1,System.Object}}[])">
+            <summary>
+            Update a entity with property names.
+            </summary>
+            <param name="entity"></param>
+            <param name="propertyExpressions"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.Store.StoreBase`3.UpdateWithoutAsync(`1,System.String[])">
+            <summary>
+            Update a entity without property names.
+            </summary>
+            <param name="entity"></param>
+            <param name="propNames"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:Cosmos.EntityFrameworkCore.Store.StoreBase`3.UpdateWithoutAsync(`1,System.Linq.Expressions.Expression{System.Func{`1,System.Object}}[])">
+            <summary>
+            Update a entity without property names.
+            </summary>
+            <param name="entity"></param>
+            <param name="propertyExpressions"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="P:Cosmos.Models.Audits.AuditHistory.RowId">
+            <summary>
+            Gets or sets the source of row Id
             </summary>
         </member>
-        <member name="P:Microsoft.EntityFrameworkCore.AutoHistory.Id">
+        <member name="P:Cosmos.Models.Audits.AuditHistory.TableName">
             <summary>
-            Gets or sets the primary key.
-            </summary>
-            <value>The id.</value>
-        </member>
-        <member name="P:Microsoft.EntityFrameworkCore.AutoHistory.RowId">
-            <summary>
-            Gets or sets the source row id.
-            </summary>
-            <value>The source row id.</value>
-        </member>
-        <member name="P:Microsoft.EntityFrameworkCore.AutoHistory.TableName">
-            <summary>
-            Gets or sets the name of the table.
-            </summary>
-            <value>The name of the table.</value>
-        </member>
-        <member name="P:Microsoft.EntityFrameworkCore.AutoHistory.Changed">
-            <summary>
-            Gets or sets the json about the changing.
-            </summary>
-            <value>The json about the changing.</value>
-        </member>
-        <member name="P:Microsoft.EntityFrameworkCore.AutoHistory.Kind">
-            <summary>
-            Gets or sets the change kind.
-            </summary>
-            <value>The change kind.</value>
-        </member>
-        <member name="P:Microsoft.EntityFrameworkCore.AutoHistory.Created">
-            <summary>
-            Gets or sets the create time.
-            </summary>
-            <value>The create time.</value>
-        </member>
-        <member name="T:Microsoft.EntityFrameworkCore.CosmosIncludeExtensions">
-            <summary>
-            Execute for include
+            Gets or sets the name of table
             </summary>
         </member>
-        <member name="M:Microsoft.EntityFrameworkCore.CosmosIncludeExtensions.IncludeIfNeed``2(System.Linq.IQueryable{``0},System.Boolean,System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+        <member name="P:Cosmos.Models.Audits.AuditHistory.OriginalVersion">
             <summary>
-            Include if need...
-            </summary>
-            <param name="source"></param>
-            <param name="condition"></param>
-            <param name="property"></param>
-            <typeparam name="TEntity"></typeparam>
-            <typeparam name="TProperty"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.EntityFrameworkCore.CosmosIncludeExtensions.IncludeIfNeed``2(System.Linq.IQueryable{``0},System.Func{System.Boolean},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
-            <summary>
-            Include if need...
-            </summary>
-            <param name="source"></param>
-            <param name="condition"></param>
-            <param name="property"></param>
-            <typeparam name="TEntity"></typeparam>
-            <typeparam name="TProperty"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="T:Microsoft.EntityFrameworkCore.DbContextUtils">
-            <summary>
-            Utils for <see cref="T:Microsoft.EntityFrameworkCore.DbContext"/>
+            Gets or sets the original version.
             </summary>
         </member>
-        <member name="M:Microsoft.EntityFrameworkCore.DbContextUtils.GetDbContext``1(Microsoft.EntityFrameworkCore.DbSet{``0})">
+        <member name="P:Cosmos.Models.Audits.AuditHistory.OriginalValue">
             <summary>
-            Get <see cref="T:Microsoft.EntityFrameworkCore.DbContext"/>
-            </summary>
-            <param name="dbSet"></param>
-            <typeparam name="TEntity"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="T:Microsoft.EntityFrameworkCore.Internal.AutoHistoryOptions">
-            <summary>
-            This class provides options for setting up auto history.
+            Gets or sets the original value
             </summary>
         </member>
-        <member name="P:Microsoft.EntityFrameworkCore.Internal.AutoHistoryOptions.Instance">
+        <member name="P:Cosmos.Models.Audits.AuditHistory.CurrentVersion">
             <summary>
-            The shared instance of the AutoHistoryOptions.
+            Gets or sets the current version.
             </summary>
         </member>
-        <member name="M:Microsoft.EntityFrameworkCore.Internal.AutoHistoryOptions.#ctor">
+        <member name="P:Cosmos.Models.Audits.AuditHistory.CurrentValue">
             <summary>
-            Prevent constructor from being called eternally.
+            Gets or sets the current value
             </summary>
         </member>
-        <member name="P:Microsoft.EntityFrameworkCore.Internal.AutoHistoryOptions.ChangedMaxLength">
+        <member name="P:Cosmos.Models.Audits.AuditHistory.Kind">
             <summary>
-            The maximum length of the 'Changed' column. <c>null</c> will use default setting 2048 unless ChangedVarcharMax is true
-            in which case the column will be varchar(max). Default: null.
+            Gets or sets the change kind
             </summary>
         </member>
-        <member name="P:Microsoft.EntityFrameworkCore.Internal.AutoHistoryOptions.LimitChangedLength">
+        <member name="P:Cosmos.Models.Audits.AuditHistory.OperatorId">
             <summary>
-            Set this to true to enforce ChangedMaxLength. If this is false, ChangedMaxLength will be ignored.
-            Default: true.
+            Gets or sets the operator's Id
             </summary>
         </member>
-        <member name="P:Microsoft.EntityFrameworkCore.Internal.AutoHistoryOptions.RowIdMaxLength">
+        <member name="P:Cosmos.Models.Audits.AuditHistory.CreatedTime">
             <summary>
-            The max length for the row id column. Default: 50.
+            Gets or sets the created time of this item.
             </summary>
         </member>
-        <member name="P:Microsoft.EntityFrameworkCore.Internal.AutoHistoryOptions.TableMaxLength">
+        <member name="T:Cosmos.Models.Audits.EfCoreAuditHistoryExtensions">
             <summary>
-            The max length for the table column. Default: 128.
+            Cosmos DbContext extensions
             </summary>
         </member>
-        <member name="P:Microsoft.EntityFrameworkCore.Internal.AutoHistoryOptions.JsonSerializerSettings">
+        <member name="M:Cosmos.Models.Audits.EfCoreAuditHistoryExtensions.EnsureAuditHistory(Microsoft.EntityFrameworkCore.DbContext,Cosmos.Models.Audits.AuditHistoryOptions)">
             <summary>
-            The JsonSerializerSettings for the changed column.
+            Ensures the automatic history.
             </summary>
+            <param name="context">The context.</param>
+            <param name="options"></param>
         </member>
-        <member name="P:Microsoft.EntityFrameworkCore.Internal.AutoHistoryOptions.JsonSerializer">
+        <member name="M:Cosmos.Models.Audits.EfCoreAuditHistoryExtensions.EnsureAuditHistory``1(Microsoft.EntityFrameworkCore.DbContext,System.Func{``0},Cosmos.Models.Audits.AuditHistoryOptions)">
             <summary>
-            The json serializer to use when writing changes. Created internally.
+            Ensures the automatic history.
             </summary>
+            <param name="context"></param>
+            <param name="createHistoryFactory"></param>
+            <param name="options"></param>
+            <typeparam name="TAuditHistory"></typeparam>
         </member>
-        <member name="T:System.Reflection.CosmosTypeExtensions">
+        <member name="T:Cosmos.Models.Audits.EnableAuditExtensions">
             <summary>
-            Cosmos type extensions (temp)
+            Cosmos <see cref="T:Microsoft.EntityFrameworkCore.ModelBuilder"/> extensions.
             </summary>
         </member>
     </members>
