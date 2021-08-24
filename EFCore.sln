@@ -19,10 +19,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cosmos.EntityFrameworkCore.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cosmos.EntityFrameworkCore.SqlServer", "src\Cosmos.EntityFrameworkCore.SqlServer\Cosmos.EntityFrameworkCore.SqlServer.csproj", "{2939193A-C210-4125-B21F-C2C6CF3AE325}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "core", "core", "{91F9EF0C-662C-4A9C-BA84-4285D53CC358}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "impl", "impl", "{849EC35D-8674-48AF-B432-63940477830F}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution", "solution", "{49576CAA-13CA-442C-B7B2-BA11E68063E8}"
 ProjectSection(SolutionItems) = preProject
 	LICENSE = LICENSE
@@ -30,6 +26,8 @@ ProjectSection(SolutionItems) = preProject
 	.gitignore = .gitignore
 	common.props = common.props
 	common.tests.props = common.tests.props
+	asset\version.dev.props = asset\version.dev.props
+	asset\version.props = asset\version.props
 EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cosmos.EntityFrameworkCore.MySqlConnector", "src\Cosmos.EntityFrameworkCore.MySqlConnector\Cosmos.EntityFrameworkCore.MySqlConnector.csproj", "{AC3152FA-E06D-498D-85FF-12F23F591A8D}"
@@ -50,10 +48,15 @@ EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{84D1122E-E3DB-44A9-AE73-B852AA5D93FA}"
 ProjectSection(SolutionItems) = preProject
-	build\PublishBetaVersion_Script.bat = build\PublishBetaVersion_Script.bat
-	build\PublishNightlyVersion_Script.bat = build\PublishNightlyVersion_Script.bat
-	build\PublishReleaseVersion_Script.bat = build\PublishReleaseVersion_Script.bat
+	build\Beta.bat = build\Beta.bat
+	build\Beta_WithoutBuild.bat = build\Beta_WithoutBuild.bat
+	build\Nightly.bat = build\Nightly.bat
+	build\Nightly_WithoutBuild.bat = build\Nightly_WithoutBuild.bat
+	build\Release.bat = build\Release.bat
+	build\Release_WithoutBuild.bat = build\Release_WithoutBuild.bat
 EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "efcore-dialects", "efcore-dialects", "{02EF524A-0F04-4783-B07A-1BC46B02E63A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -97,16 +100,15 @@ Global
 		SolutionGuid = {1DE1DBFF-ADAF-4C7A-90AF-97CEE1DC299E}
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{91F9EF0C-662C-4A9C-BA84-4285D53CC358} = {FE7E3A01-EB9D-45CA-9BDF-16B5469209DB}
-		{8F7AAD56-AACE-4675-86B6-CFFD62D7EB50} = {91F9EF0C-662C-4A9C-BA84-4285D53CC358}
-		{849EC35D-8674-48AF-B432-63940477830F} = {FE7E3A01-EB9D-45CA-9BDF-16B5469209DB}
-		{A3F06F42-A08B-4F65-9F3C-480A73A8493D} = {849EC35D-8674-48AF-B432-63940477830F}
-		{4CEE63DF-1BF1-4DAD-B122-537BDE3AD813} = {849EC35D-8674-48AF-B432-63940477830F}
-		{3C428252-7043-42B8-A411-B9F531FE8FFB} = {849EC35D-8674-48AF-B432-63940477830F}
-		{19D31A7B-B7C8-4E30-90C5-BBEFC1E90708} = {849EC35D-8674-48AF-B432-63940477830F}
-		{2939193A-C210-4125-B21F-C2C6CF3AE325} = {849EC35D-8674-48AF-B432-63940477830F}
-		{AC3152FA-E06D-498D-85FF-12F23F591A8D} = {849EC35D-8674-48AF-B432-63940477830F}
 		{9DD87C55-C709-40E8-819B-45FC0D927A8E} = {09413441-E9D4-4D3C-BB9D-87C75BA65426}
 		{566D3B38-7465-4D39-9822-51AA437469FD} = {09413441-E9D4-4D3C-BB9D-87C75BA65426}
+		{02EF524A-0F04-4783-B07A-1BC46B02E63A} = {FE7E3A01-EB9D-45CA-9BDF-16B5469209DB}
+		{A3F06F42-A08B-4F65-9F3C-480A73A8493D} = {02EF524A-0F04-4783-B07A-1BC46B02E63A}
+		{AC3152FA-E06D-498D-85FF-12F23F591A8D} = {02EF524A-0F04-4783-B07A-1BC46B02E63A}
+		{4CEE63DF-1BF1-4DAD-B122-537BDE3AD813} = {02EF524A-0F04-4783-B07A-1BC46B02E63A}
+		{3C428252-7043-42B8-A411-B9F531FE8FFB} = {02EF524A-0F04-4783-B07A-1BC46B02E63A}
+		{19D31A7B-B7C8-4E30-90C5-BBEFC1E90708} = {02EF524A-0F04-4783-B07A-1BC46B02E63A}
+		{2939193A-C210-4125-B21F-C2C6CF3AE325} = {02EF524A-0F04-4783-B07A-1BC46B02E63A}
+		{8F7AAD56-AACE-4675-86B6-CFFD62D7EB50} = {FE7E3A01-EB9D-45CA-9BDF-16B5469209DB}
 	EndGlobalSection
 EndGlobal

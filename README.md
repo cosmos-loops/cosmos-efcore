@@ -13,7 +13,7 @@ People or projects that have made a great contribbution to this project:
 
 ### Organizations and projects
 
-- [Arch/AutoHistory](https://github.com/Arch/AutoHistory), MIT
+- [AutoHistory](https://github.com/Arch/AutoHistory), MIT
 - [ZZZPROJECTS/EntityFramework-Plus/](https://github.com/zzzprojects/EntityFramework-Plus), MIT
 
 ---
