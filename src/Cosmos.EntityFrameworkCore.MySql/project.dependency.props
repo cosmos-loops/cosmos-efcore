@@ -1,0 +1,13 @@
+<Project>
+
+    <ItemGroup>
+        <PackageReference Include="Cosmos.Data.Extensions.DependencyInjection" Version="$(Data-PkgVersion)" />
+        <PackageReference Include="Cosmos.Data.Extensions.MySql" Version="$(Data-PkgVersion)" />
+        <PackageReference Include="MySql.EntityFrameworkCore" Version="5.0.3.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Cosmos.EntityFrameworkCore\Cosmos.EntityFrameworkCore.csproj" />
+    </ItemGroup>
+
+</Project>

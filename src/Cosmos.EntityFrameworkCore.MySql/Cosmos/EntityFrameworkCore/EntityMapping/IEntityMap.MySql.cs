@@ -1,4 +1,4 @@
-namespace Cosmos.EntityFrameworkCore.Map
+namespace Cosmos.EntityFrameworkCore.EntityMapping
 {
     /// <summary>
     /// Interface for MySql entity map

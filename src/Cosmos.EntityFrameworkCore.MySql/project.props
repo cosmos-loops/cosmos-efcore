@@ -1,0 +1,9 @@
+<Project>
+
+    <PropertyGroup>
+        <AssemblyName>Cosmos.EntityFrameworkCore.MySql</AssemblyName>
+        <PackageId>Cosmos.EntityFrameworkCore.MySql</PackageId>
+        <Description>MySql extensions for Cosmos data.</Description>
+    </PropertyGroup>
+
+</Project>

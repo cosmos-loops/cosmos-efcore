@@ -1,6 +1,7 @@
 using System;
 using Cosmos.EntityFrameworkCore.Core;
-using Cosmos.EntityFrameworkCore.Map;
+using Cosmos.EntityFrameworkCore.EntityMapping;
+using Cosmos.Models.Audits;
 using Microsoft.EntityFrameworkCore;
 
 namespace Cosmos.EntityFrameworkCore
@@ -20,9 +21,7 @@ namespace Cosmos.EntityFrameworkCore
         /// </summary>
         /// <param name="options"></param>
         protected MySqlDbContext(DbContextOptions<TContext> options)
-            : base(options, EfCoreOptionsRegistrar.Get<TContext>())
-        {
-        }
+            : base(options, EfCoreOptionsRegistrar.Get<TContext>()) { }
 
         /// <summary>
         /// On model creating
@@ -38,10 +37,10 @@ namespace Cosmos.EntityFrameworkCore
                 }
             }
 
-            //if AutoHistory 
-            if (OwnEfCoreOptions.AutoHistory.Enable)
+            //if EnableAudit 
+            if (OwnEfCoreOptions.EnableAudit)
             {
-                modelBuilder.EnableAutoHistory<AutoHistory>(OwnEfCoreOptions.AutoHistory.ToConfigure());
+                modelBuilder.RegisterForAuditHistory<AuditHistory>(OwnEfCoreOptions.AuditHistoryOptions);
             }
         }
     }
