@@ -1,0 +1,9 @@
+<Project>
+
+    <PropertyGroup>
+        <AssemblyName>Cosmos.EntityFrameworkCore.PostgreSql</AssemblyName>
+        <PackageId>Cosmos.EntityFrameworkCore.PostgreSql</PackageId>
+        <Description>PostgreSql extensions for Cosmos data.</Description>
+    </PropertyGroup>
+
+</Project>

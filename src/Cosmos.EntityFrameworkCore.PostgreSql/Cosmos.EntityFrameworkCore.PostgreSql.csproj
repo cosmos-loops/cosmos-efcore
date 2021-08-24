@@ -1,16 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="Cosmos.EntityFrameworkCore.PostgreSql._shared.props" />
+    <PropertyGroup>
+        <Configurations>Debug;Release</Configurations>
+        <Platforms>AnyCPU</Platforms>
+    </PropertyGroup>
+
+    <Import Project="project.props" />
 
     <Import Project="..\..\common.props" />
 
-    <ItemGroup>
-        <ProjectReference Include="..\Cosmos.EntityFrameworkCore\Cosmos.EntityFrameworkCore.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <PackageReference Include="Cosmos.Data.Extensions.DependencyInjection" Version="$(TargetPkgVersion)" />
-        <PackageReference Include="Cosmos.Data.Extensions.PostgreSql" Version="$(TargetPkgVersion)" />
-    </ItemGroup>
+    <Import Project="project.dependency.props" />
 
 </Project>

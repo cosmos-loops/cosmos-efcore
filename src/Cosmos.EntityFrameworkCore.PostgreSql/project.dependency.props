@@ -1,0 +1,13 @@
+<Project>
+
+    <ItemGroup>
+        <PackageReference Include="Cosmos.Data.Extensions.DependencyInjection" Version="$(Data-PkgVersion)" />
+        <PackageReference Include="Cosmos.Data.Extensions.PostgreSql" Version="$(Data-PkgVersion)" />
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.7" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Cosmos.EntityFrameworkCore\Cosmos.EntityFrameworkCore.csproj" />
+    </ItemGroup>
+
+</Project>

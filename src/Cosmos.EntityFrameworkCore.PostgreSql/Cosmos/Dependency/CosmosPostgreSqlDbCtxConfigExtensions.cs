@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Cosmos.Data
+namespace Cosmos.Dependency
 {
     /// <summary>
     /// Cosmos PostgreSql DbContext configuration extensions
@@ -22,27 +22,27 @@ namespace Cosmos.Data
         /// <returns></returns>
         /// <exception cref="ArgumentNullException"></exception>
         public static IDbContextConfig UseEfCoreWithPostgreSql<TContext>(
-            this DbContextConfig context, Action<EfCoreOptions> optAct = null)
+            this DbContextConfig<MicrosoftProxyRegister> context, Action<EfCoreOptions> optAct = null)
             where TContext : DbContext, IEfContext
         {
             if (context is null)
                 throw new ArgumentNullException(nameof(context));
 
-            var opt = EfCoreOptionsHelper.CreateOptions(optAct);
+            var opt = EfCoreOptions.Create(optAct);
 
-            EfCoreOptionsHelper.GuardOptions(opt);
+            EfCoreOptionsGuard.For(opt);
 
-            context.RegisterDbContext(services =>
+            context.RegisterDbContext(register =>
             {
                 if (!string.IsNullOrWhiteSpace(opt.ConnectionString))
                 {
                     EfCoreOptionsRegistrar.Register<TContext>(opt);
-                    services.AddDbContext<TContext>(builder => builder.UseNpgsql(opt.ConnectionString));
+                    register.RawServices.AddDbContext<TContext>(builder => builder.UseNpgsql(opt.ConnectionString));
                 }
                 else if (!string.IsNullOrWhiteSpace(opt.ConnectionName))
                 {
                     EfCoreOptionsRegistrar.Register<TContext>(opt);
-                    services.AddDbContext<TContext>((provider, builder) => builder.UseNpgsql(provider.GetService<IConfigurationRoot>().GetConnectionString(opt.ConnectionName)));
+                    register.RawServices.AddDbContext<TContext>((provider, builder) => builder.UseNpgsql(provider.GetService<IConfigurationRoot>().GetConnectionString(opt.ConnectionName)));
                 }
                 else
                 {
@@ -63,29 +63,29 @@ namespace Cosmos.Data
         /// <returns></returns>
         /// <exception cref="ArgumentNullException"></exception>
         public static IDbContextConfig UseEfCoreWithPostgreSql<TContextService, TContextImplementation>(
-            this DbContextConfig context, Action<EfCoreOptions> optAct = null)
+            this DbContextConfig<MicrosoftProxyRegister> context, Action<EfCoreOptions> optAct = null)
             where TContextService : IEfContext
             where TContextImplementation : DbContext, TContextService
         {
             if (context is null)
                 throw new ArgumentNullException(nameof(context));
 
-            var opt = EfCoreOptionsHelper.CreateOptions(optAct);
+            var opt = EfCoreOptions.Create(optAct);
 
-            EfCoreOptionsHelper.GuardOptions(opt);
+            EfCoreOptionsGuard.For(opt);
 
-            context.RegisterDbContext(services =>
+            context.RegisterDbContext(register =>
             {
                 if (!string.IsNullOrWhiteSpace(opt.ConnectionString))
                 {
                     EfCoreOptionsRegistrar.Register<TContextImplementation>(opt);
-                    services.AddDbContext<TContextService, TContextImplementation>(
+                    register.RawServices.AddDbContext<TContextService, TContextImplementation>(
                         builder => builder.UseNpgsql(opt.ConnectionString));
                 }
                 else if (!string.IsNullOrWhiteSpace(opt.ConnectionName))
                 {
                     EfCoreOptionsRegistrar.Register<TContextImplementation>(opt);
-                    services.AddDbContext<TContextService, TContextImplementation>(
+                    register.RawServices.AddDbContext<TContextService, TContextImplementation>(
                         (provider, builder) => builder.UseNpgsql(provider.GetService<IConfigurationRoot>().GetConnectionString(opt.ConnectionName)));
                 }
                 else
