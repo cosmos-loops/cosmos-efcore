@@ -1,6 +1,6 @@
-using Cosmos.Domain.Core;
+using Cosmos.Models;
 
-namespace Cosmos.EntityFrameworkCore.Map
+namespace Cosmos.EntityFrameworkCore.EntityMapping
 {
     /// <summary>
     /// Entity map

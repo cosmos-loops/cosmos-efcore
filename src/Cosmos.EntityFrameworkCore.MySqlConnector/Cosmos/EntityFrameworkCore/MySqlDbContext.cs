@@ -1,5 +1,8 @@
 using System;
-using Cosmos.EntityFrameworkCore.Map;
+using Cosmos.EntityFrameworkCore.Core;
+using Cosmos.EntityFrameworkCore.EntityMapping;
+using Cosmos.EntityFrameworkCore.SqlRaw;
+using Cosmos.Models.Audits;
 using Microsoft.EntityFrameworkCore;
 
 namespace Cosmos.EntityFrameworkCore
@@ -19,7 +22,18 @@ namespace Cosmos.EntityFrameworkCore
         /// </summary>
         /// <param name="options"></param>
         protected MySqlDbContext(DbContextOptions<TContext> options)
-            : base(options) { }
+            : base(options, EfCoreOptionsRegistrar.Get<TContext>()) { }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+
+            //if EnableRangeOperation
+            if (OwnEfCoreOptions.EnableRangeOperation)
+            {
+                optionsBuilder.UseRangeOperations();
+            }
+        }
 
         /// <inheritdoc />
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -30,6 +44,12 @@ namespace Cosmos.EntityFrameworkCore
                 {
                     map?.Map(modelBuilder);
                 }
+            }
+
+            //if EnableAudit 
+            if (OwnEfCoreOptions.EnableAudit)
+            {
+                modelBuilder.RegisterForAuditHistory<AuditHistory>(OwnEfCoreOptions.AuditHistoryOptions);
             }
         }
     }
