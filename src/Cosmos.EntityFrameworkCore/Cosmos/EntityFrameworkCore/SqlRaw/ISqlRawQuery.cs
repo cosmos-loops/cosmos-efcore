@@ -2,16 +2,9 @@
 using System.Data;
 using System.Threading.Tasks;
 
-/*
- * Reference to:
- *     https://github.com/PaulARoy/EntityFrameworkCore.RawSQLExtensions
- * Author:
- *     Paul Roy
- */
-
-namespace Cosmos.EntityFrameworkCore.Core.RawQuery
+namespace Cosmos.EntityFrameworkCore.SqlRaw
 {
-    public interface ISqlQuery<T>
+    public interface ISqlRawQuery<T>
     {
         Task<IList<T>> ToListAsync();
 

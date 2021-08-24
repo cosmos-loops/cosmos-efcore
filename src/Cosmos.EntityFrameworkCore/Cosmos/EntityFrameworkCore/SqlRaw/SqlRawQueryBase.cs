@@ -1,10 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 // ReSharper disable InconsistentNaming
 
@@ -15,14 +15,14 @@ using System.Threading.Tasks;
  *     Paul Roy
  */
 
-namespace Cosmos.EntityFrameworkCore.Core.RawQuery
+namespace Cosmos.EntityFrameworkCore.SqlRaw
 {
-    public abstract class SqlQueryBase<T> : ISqlQuery<T>
+    public abstract class SqlRawQueryBase<T> : ISqlRawQuery<T>
     {
         protected DatabaseFacade _databaseFacade;
         protected DbParameter[] _sqlParameters;
 
-        public SqlQueryBase(DatabaseFacade databaseFacade, params DbParameter[] sqlParameters)
+        public SqlRawQueryBase(DatabaseFacade databaseFacade, params DbParameter[] sqlParameters)
         {
             _databaseFacade = databaseFacade;
             _sqlParameters = sqlParameters;
@@ -107,68 +107,22 @@ namespace Cosmos.EntityFrameworkCore.Core.RawQuery
         // customization of command (sql / stored procedure)
         protected abstract void InitCommand(DbCommand command);
 
-        private async Task<U> ExecuteAsync<U>(Func<DbDataReader, Task<U>> databaseReaderAction)
+        private Task<U> ExecuteAsync<U>(Func<DbDataReader, Task<U>> databaseReaderAction)
         {
-            U result = default;
-
-            var conn = _databaseFacade.GetDbConnection();
-            try
-            {
-                await conn.OpenAsync();
-                await using var command = conn.CreateCommand();
-                InitCommand(command);
-
-                foreach (var param in _sqlParameters)
-                {
-                    var p = command.CreateParameter();
-                    p.ParameterName = param.ParameterName;
-                    p.Value = param.Value;
-                    command.Parameters.Add(p);
-                }
-
-                await using var reader = await command.ExecuteReaderAsync();
-                result = await databaseReaderAction.Invoke(reader);
-            }
-            finally
-            {
-                await conn.CloseAsync();
-            }
-
-            return result;
+            return SqlRawWorker.ExecuteQueryAsync(
+                _databaseFacade.GetDbConnection,
+                databaseReaderAction,
+                InitCommand,
+                _sqlParameters);
         }
 
         private U Execute<U>(Func<DbDataReader, U> databaseReaderAction)
         {
-            U result = default;
-
-            var conn = _databaseFacade.GetDbConnection();
-            try
-            {
-                if (conn.State != ConnectionState.Open)
-                {
-                    conn.Open();
-                }
-
-                using var command = conn.CreateCommand();
-                InitCommand(command);
-
-                foreach (var param in _sqlParameters)
-                {
-                    var p = command.CreateParameter();
-                    p.ParameterName = param.ParameterName;
-                    p.Value = param.Value;
-                    command.Parameters.Add(p);
-                }
-
-                using var reader = command.ExecuteReader();
-                result = databaseReaderAction.Invoke(reader);
-            }
-            finally
-            {
-                conn.Close();
-            }
-
-            return result;
+            return SqlRawWorker.ExecuteQuery(
+                _databaseFacade.GetDbConnection,
+                databaseReaderAction,
+                InitCommand,
+                _sqlParameters);
         }
     }
 }

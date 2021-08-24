@@ -1,6 +1,5 @@
 ﻿using System.Data.Common;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Cosmos.EntityFrameworkCore.Core.RawQuery;
 
 /*
  * Reference to:
@@ -9,9 +8,9 @@ using Cosmos.EntityFrameworkCore.Core.RawQuery;
  *     Paul Roy
  */
 
-namespace Cosmos.EntityFrameworkCore
+namespace Cosmos.EntityFrameworkCore.SqlRaw
 {
-    public class SpRawQuery<T> : SqlQueryBase<T>
+    public class SpRawQuery<T> : SqlRawQueryBase<T>
     {
         private string _storedProcedureName;
 
@@ -20,11 +19,16 @@ namespace Cosmos.EntityFrameworkCore
         {
             _storedProcedureName = storedProcedureName;
         }
-        
+
         protected override void InitCommand(DbCommand command)
         {
             command.CommandText = _storedProcedureName;
             command.CommandType = System.Data.CommandType.StoredProcedure;
+        }
+
+        public static ISpRawQueryBuilder<T> Of(DatabaseFacade databaseFacade)
+        {
+            return new SpRawQueryBuilder<T>(databaseFacade);
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System.Data.Common;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Cosmos.EntityFrameworkCore.Core.RawQuery;
 
 /*
  * Reference to:
@@ -9,13 +8,13 @@ using Cosmos.EntityFrameworkCore.Core.RawQuery;
  *     Paul Roy
  */
 
-namespace Cosmos.EntityFrameworkCore
+namespace Cosmos.EntityFrameworkCore.SqlRaw
 {
-    public class SqlRawQuery<T> : SqlQueryBase<T>
+    public class SqlRawQuery<T> : SqlRawQueryBase<T>
     {
         private string _sqlQuery;
 
-        public SqlRawQuery(DatabaseFacade databaseFacade, string sqlQuery, params DbParameter[] sqlParameters) 
+        public SqlRawQuery(DatabaseFacade databaseFacade, string sqlQuery, params DbParameter[] sqlParameters)
             : base(databaseFacade, sqlParameters)
         {
             _sqlQuery = sqlQuery;
@@ -24,6 +23,11 @@ namespace Cosmos.EntityFrameworkCore
         protected override void InitCommand(DbCommand command)
         {
             command.CommandText = _sqlQuery;
+        }
+
+        public static ISqlRawQueryBuilder<T> Of(DatabaseFacade databaseFacade)
+        {
+            return new SqlRawQueryBuilder<T>(databaseFacade);
         }
     }
 }
