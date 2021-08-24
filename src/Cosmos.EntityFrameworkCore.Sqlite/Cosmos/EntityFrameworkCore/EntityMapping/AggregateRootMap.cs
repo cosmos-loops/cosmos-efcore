@@ -1,8 +1,8 @@
-using Cosmos.Domain.Core;
-using Cosmos.Domain.EntityDescriptors;
+using Cosmos.Models;
+using Cosmos.Models.Descriptors.EntityDescriptors;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Cosmos.EntityFrameworkCore.Map
+namespace Cosmos.EntityFrameworkCore.EntityMapping
 {
     /// <summary>
     /// Mapping config for AggregateRoot
@@ -10,8 +10,8 @@ namespace Cosmos.EntityFrameworkCore.Map
     /// 聚合根映射配置
     /// </summary>
     /// <typeparam name="TEntity">实体类型</typeparam>
-    public abstract class AggregateRootMap<TEntity> : VersionableRootMapBase<TEntity>, ISqliteEntityMap
-    where TEntity : class, IEntity, IVersionable, new()
+    public abstract class AggregateRootMap<TEntity> : MapBase<TEntity>, ISqliteEntityMap
+        where TEntity : class, IEntity, IVersionable, new()
     {
         /// <summary>
         /// 映射乐观离线锁

@@ -1,0 +1,9 @@
+<Project>
+
+    <PropertyGroup>
+        <AssemblyName>Cosmos.EntityFrameworkCore.Sqlite</AssemblyName>
+        <PackageId>Cosmos.EntityFrameworkCore.Sqlite</PackageId>
+        <Description>SQLite extensions for Cosmos data.</Description>
+    </PropertyGroup>
+
+</Project>
